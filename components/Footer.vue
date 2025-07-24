@@ -1,6 +1,6 @@
 <template>
   <footer class="bg-white text-black z-10 relative overflow-hidden">
-    <div class="container mx-auto pt-8 sm:pt-10 lg:pt-10 pb-8 px-4 sm:px-6 md:px-10 lg:px-12 relative z-10 h-full">
+    <div class="container mx-auto px-4 sm:px-8 lg:px-12 py-8 sm:py-10 lg:pt-14 relative h-full z-10">
       <div class="flex flex-col md:flex-row justify-between gap-8">
         <!-- Left section - Main heading -->
         <div class="space-y-6 md:w-1/2 z-10">
@@ -9,13 +9,15 @@
             <span class="block mt-2 sm:mt-3">OF YOUR LIFE WITH</span>
             <span class="block mt-2 sm:mt-3">KUPING DJ!</span>
           </h1>
-        </div>
+        </div>  
 
-        <!-- Aura background image -->
+         <!-- Aura background image - Modified for all breakpoints -->
         <img
           src="/icons/footer/aura.svg"
           alt="Aura Background"
-          class="absolute bottom-0 left-0 w-full max-w-[1000px] opacity-80 mix-blend-lighten pointer-events-none z-0"
+          class="absolute inset-0 h-full w-auto max-w-none opacity-80 mix-blend-lighten pointer-events-none z-0
+                 md:left-[-5%] md:right-0 md:w-[110%] md:h-full  /* Tablet: full width with no left spacing */
+                 lg:top-0 lg:left-0 lg:h-full lg:w-[1000px] lg:max-w-none  /* Desktop: original style */"
         />
 
         <!-- Right section - Navigation -->

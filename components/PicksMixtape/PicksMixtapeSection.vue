@@ -1,6 +1,6 @@
 <template>
   <div class="picksMixtape-sectio bg-black">
-    <div class="container mx-auto px-12 py-14 relative">
+    <div class="container mx-auto py-8 sm:py-10 md:py-12 lg:py-14 px-4 sm:px-5 md:px-6 lg:px-8 xl:px-12 relative z-10">
       <!-- Section Header -->
       <div class="flex flex-col md:flex-row justify-between items-start md:items-center mb-8 md:mb-12">
         <h2 class="text-3xl md:text-4xl text-white font-glancyr-regular thacking-wide">KUPING DJ<br/>PICKS MIXTAPE</h2>

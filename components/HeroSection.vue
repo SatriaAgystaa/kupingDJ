@@ -18,32 +18,32 @@
     />
 
     <!-- Main Content -->
-    <div class="container mx-auto px-4 sm:px-6 lg:px-10 py-6 sm:py-8 relative z-10">
+    <div class="container mx-auto px-4 sm:px-8 lg:px-12 py-4 sm:py-6 lg:py-10 relative z-10">
       <div class="grid lg:grid-cols-2 gap-8 sm:gap-12 items-center pb-0">
         <!-- Left Content -->
-        <div class="space-y-8 sm:space-y-12 font-glancyr-light">
+        <div class="space-y-8 sm:space-y-12 font-glancyr-medium">
           <!-- Main Heading -->
           <div class="space-y-4 sm:space-y-6">
-            <h1 class="text-4xl sm:text-5xl lg:text-7xl text-gray-900 leading-tight tracking-wider">
+            <h1 class="text-4xl sm:text-5xl lg:text-7xl text-gray-900 leading-tight">
               <span class="block">DISCOVER THE</span>
-              <span class="block mt-2 sm:mt-3">ULTIMATE</span>
-              <span class="block mt-2 sm:mt-3">DJ MARKETPLACE</span>
-              <span class="block mt-2 sm:mt-3">EXPERIENCE!</span>
+              <span class="block mt-1 sm:mt-2">ULTIMATE</span>
+              <span class="block mt-1 sm:mt-2">DJ MARKETPLACE</span>
+              <span class="block mt-1 sm:mt-2">EXPERIENCE!</span>
             </h1>
           </div>
 
           <!-- Statistics -->
           <div class="grid grid-cols-3 pt-2 sm:pt-4 font-geist-medium">
             <div class="text-center lg:text-left">
-              <div class="text-3xl sm:text-4xl lg:text-5xl text-gray-900 tracking-wide font-glancyr-light">70</div>
+              <div class="text-3xl sm:text-4xl lg:text-5xl text-gray-900 tracking-wide font-glancyr-regular">70</div>
               <div class="text-base sm:text-lg text-black tracking-wide">Best Artist</div>
             </div>
             <div class="text-center lg:text-left">
-              <div class="text-3xl sm:text-4xl lg:text-5xl text-gray-900 tracking-wide font-glancyr-light">2413</div>
+              <div class="text-3xl sm:text-4xl lg:text-5xl text-gray-900 tracking-wide font-glancyr-regular">2413</div>
               <div class="text-base sm:text-lg text-black tracking-wide">Mix Tapes</div>
             </div>
             <div class="text-center lg:text-left">
-              <div class="text-3xl sm:text-4xl lg:text-5xl text-gray-900 tracking-wide font-glancyr-light">4412</div>
+              <div class="text-3xl sm:text-4xl lg:text-5xl text-gray-900 tracking-wide font-glancyr-regular">4412</div>
               <div class="text-base sm:text-lg text-black tracking-wide">Albums</div>
             </div>
           </div>
@@ -81,14 +81,6 @@
 
 .float-animation {
   animation: float 3s ease-in-out infinite;
-}
-
-@media (max-width: 640px) {
-  h1 {
-    font-size: 2.5rem;
-    line-height: 1.1;
-    letter-spacing: 0.025em;
-  }
 }
 
 /* Responsive adjustments for background images */

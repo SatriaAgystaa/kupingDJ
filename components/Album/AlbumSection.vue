@@ -1,11 +1,14 @@
+<!-- AlbumSection.vue -->
 <template>
   <main class="album-section relative overflow-hidden">
-    <div class="container mx-auto py-8 sm:py-10 lg:py-14 px-4 sm:px-6 md:px-10 lg:px-12 relative">
+    <div class="container mx-auto py-8 sm:py-10 md:py-12 lg:py-14 px-4 sm:px-5 md:px-6 lg:px-8 xl:px-12 relative z-10">
       <!-- Section Header -->
-      <h2 class="text-4xl md:text-5xl font-glancyr-medium thacking-wide mb-12">NEW ARRIVAL ALBUM</h2>
+      <h2 class="text-3xl sm:text-4xl md:text-4xl lg:text-5xl xl:text-5xl font-glancyr-medium tracking-wide mb-4 sm:mb-6 md:mb-8">
+        NEW ARRIVAL ALBUM
+      </h2>
       
       <!-- Albums Grid -->
-      <div class="grid lg:grid-cols-2 gap-12 items-start pb-0 mb-12">
+      <div class="grid lg:grid-cols-2 gap-8 sm:gap-10 md:gap-6 items-start pb-0 mb-12">
         <AlbumCard
           v-for="album in displayedAlbums"
           :key="album.id"
@@ -17,14 +20,12 @@
         />
       </div>
 
-      <!-- Load More Button -->
-      
       <!-- Explore Button Section -->
-      <div class="flex justify-center mt-12 pb-12">
+      <div class="flex justify-center">
         <div class="flex group font-glancyr-light hover:scale-105 transition-all duration-300">
           <!-- Red Button -->
           <button 
-            class="bg-red-800 text-white px-4 py-2 font-semibold tracking-wide text-sm 
+            class="bg-red-800 text-white px-4 py-2 sm:px-5 sm:py-3 font-semibold tracking-wide text-sm sm:text-base 
                    transition-all duration-300 group-hover:bg-red-700"
           >
             EXPLORE ALL ALBUM
@@ -32,13 +33,13 @@
 
           <!-- Black Icon Section -->
           <div 
-            class="bg-black px-4 py-3 flex items-center justify-center 
+            class="bg-black px-4 py-3 sm:px-5 sm:py-3 flex items-center justify-center 
                    transition-all duration-300 group-hover:bg-gray-900"
           >
             <img 
               src="/icons/baseicons/arrow_white.svg" 
               alt="arrow" 
-              class="w-4 h-4 transition-transform duration-300 group-hover:translate-x-1" 
+              class="w-4 h-4 sm:w-5 sm:h-5 transition-transform duration-300 group-hover:translate-x-1" 
             />
           </div>
         </div>

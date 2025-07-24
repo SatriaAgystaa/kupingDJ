@@ -1,5 +1,5 @@
 <template>
-  <section class="w-full mx-auto bg-[#330100] relative py-14 px-12">
+  <section class="container w-full bg-[#330100] mx-auto py-8 sm:py-10 md:py-12 lg:py-14 px-4 sm:px-5 md:px-6 lg:px-8 xl:px-12 relative z-10">
     <!-- Background Effect (dibungkus agar hanya aura yang overflow-hidden) -->
     <div class="absolute inset-0 z-0 pointer-events-none overflow-hidden">
       <img

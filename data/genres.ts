@@ -24,10 +24,5 @@ export const genres: Genre[] = [
     id: "pop",
     title: "POP",
     iconPath: "/icons/genre/pop.svg"
-  },
-  {
-    id: "popunk",
-    title: "POPunk",
-    iconPath: "/icons/genre/pop.svg"
   }
 ]

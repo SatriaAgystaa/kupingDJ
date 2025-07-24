@@ -1,20 +1,22 @@
 <template>
-  <div class="relative bg-white w-full aspect-[16/9] flex flex-col overflow-hidden group">
+  <div class="relative bg-white w-full aspect-[16/9] flex flex-col overflow-hidden group shadow-sm hover:shadow-md transition-shadow duration-300">
     <div 
-      class="flex justify-start z-10 p-6 font-glancyr-regular"
+      class="flex justify-start z-10 p-4 sm:p-5 md:p-6 font-glancyr-regular"
       :style="{
         color: [1, 4].includes(magic.id) ? '#ffffff' : '#000000'
       }"
     >
-      <h3 class="text-2xl lg:text-3xl leading-tight tracking-wide whitespace-pre-line">
+      <h3 class="text-xl sm:text-2xl md:text-3xl lg:text-3xl leading-tight tracking-wide whitespace-pre-line">
         {{ magic.title }}
       </h3>
     </div>
     <img
       :src="magic.image"
       :alt="magic.title"
-      class="absolute inset-0 w-full h-full object-cover transition-transform duration-500 group-hover:scale-105"
+      class="absolute inset-0 w-full h-full object-cover transition-transform duration-500 ease-out group-hover:scale-105"
+      loading="lazy"
     />
+    <div class="absolute inset-0 bg-gradient-to-t from-black/10 to-transparent"></div>
   </div>
 </template>
 
