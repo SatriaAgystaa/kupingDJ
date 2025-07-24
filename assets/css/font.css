@@ -1,0 +1,71 @@
+/* ========================= */
+/* Glancyr */
+/* ========================= */
+@font-face {
+  font-family: 'GlancyrThin';
+  src: url('/public/fonts/glancyr/Glancyr-Thin.otf') format('opentype');
+}
+@font-face {
+  font-family: 'GlancyrExtraLight';
+  src: url('/public/fonts/glancyr/Glancyr-ExtraLight.otf') format('opentype');
+}
+@font-face {
+  font-family: 'GlancyrLight';
+  src: url('/public/fonts/glancyr/Glancyr-Light.otf') format('opentype');
+}
+@font-face {
+  font-family: 'GlancyrRegular';
+  src: url('/public/fonts/glancyr/Glancyr-Regular.otf') format('opentype');
+}
+@font-face {
+  font-family: 'GlancyrMedium';
+  src: url('/public/fonts/glancyr/Glancyr-Medium.otf') format('opentype');
+}
+@font-face {
+  font-family: 'GlancyrSemiBold';
+  src: url('/public/fonts/glancyr/Glancyr-SemiBold.otf') format('opentype');
+}
+@font-face {
+  font-family: 'GlancyrBold';
+  src: url('/public/fonts/glancyr/Glancyr-Bold.otf') format('opentype');
+}
+
+/* ========================= */
+/* Geist */
+/* ========================= */
+@font-face {
+  font-family: 'GeistThin';
+  src: url('/public/fonts/geist/Geist-Thin.ttf') format('truetype');
+}
+@font-face {
+  font-family: 'GeistExtraLight';
+  src: url('/public/fonts/geist/Geist-ExtraLight.ttf') format('truetype');
+}
+@font-face {
+  font-family: 'GeistLight';
+  src: url('/public/fonts/geist/Geist-Light.ttf') format('truetype');
+}
+@font-face {
+  font-family: 'GeistRegular';
+  src: url('/public/fonts/geist/Geist-Regular.ttf') format('truetype');
+}
+@font-face {
+  font-family: 'GeistMedium';
+  src: url('/public/fonts/geist/Geist-Medium.ttf') format('truetype');
+}
+@font-face {
+  font-family: 'GeistSemiBold';
+  src: url('/public/fonts/geist/Geist-SemiBold.ttf') format('truetype');
+}
+@font-face {
+  font-family: 'GeistBold';
+  src: url('/public/fonts/geist/Geist-Bold.ttf') format('truetype');
+}
+@font-face {
+  font-family: 'GeistExtraBold';
+  src: url('/public/fonts/geist/Geist-ExtraBold.ttf') format('truetype');
+}
+@font-face {
+  font-family: 'GeistBlack';
+  src: url('/public/fonts/geist/Geist-Black.ttf') format('truetype');
+}
