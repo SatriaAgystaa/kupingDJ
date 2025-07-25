@@ -64,7 +64,7 @@
         <!-- Login Link with animation -->
         <p class="text-left text-sm text-black mt-3 font-geist-regular transform transition-all duration-500 opacity-0 animate-fade-in" style="animation-delay: 600ms">
           Remember your password?
-          <a href="#" class="font-geist-medium border-b border-[#B00000] text-[#B00000] hover:text-red-800 transition-colors duration-200">
+          <a href="/login" class="font-geist-medium border-b border-[#B00000] text-[#B00000] hover:text-red-800 transition-colors duration-200">
             Login Now
           </a>
         </p>

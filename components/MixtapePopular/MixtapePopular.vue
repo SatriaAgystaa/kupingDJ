@@ -23,7 +23,7 @@
     </div>
 
     <!-- Mixtape Grid -->
-    <div class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 xl:grid-cols-5 gap-x-4 sm:gap-x-6 md:gap-x-8 gap-y-6 sm:gap-y-8 lg:gap-y-10">
+    <div class="grid grid-cols-2 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 xl:grid-cols-5 gap-x-4 sm:gap-x-6 md:gap-x-8 gap-y-6 sm:gap-y-8 lg:gap-y-12">
       <div
         v-for="mixtape in mixtapes"
         :key="mixtape.id"

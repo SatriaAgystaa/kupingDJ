@@ -8,7 +8,7 @@
       </h2>
       
       <!-- Albums Grid -->
-      <div class="grid lg:grid-cols-2 gap-8 sm:gap-10 md:gap-6 items-start pb-0 mb-12">
+      <div class="grid md:grid-cols-2 lg:grid-cols-2 gap-8 sm:gap-10 md:gap-6 items-start pb-0 mb-12">
         <AlbumCard
           v-for="album in displayedAlbums"
           :key="album.id"

@@ -18,7 +18,7 @@
         </h1>
 
         <!-- Form -->
-        <form class="space-y-6">
+        <form class="space-y-6" @submit.prevent="handleLogin">
           <!-- Facebook Username with input focus animation -->
           <div class="transform transition-all duration-500 opacity-0 animate-fade-in" style="animation-delay: 400ms">
             <label for="facebook-username" class="block text-md font-geist-semibold text-black mb-2">
@@ -34,6 +34,7 @@
                 name="facebook-username"
                 placeholder="Enter your Facebook username"
                 class="w-full pl-10 pr-3 py-2 border border-gray-100 shadow-sm bg-gray-50 text-sm placeholder-gray-400 focus:outline-none focus:ring-[#B00000] focus:border-[#B00000] transition-all duration-300 hover:shadow-md focus:shadow-lg"
+                v-model="formData.username"
               />
             </div>
           </div>
@@ -50,6 +51,7 @@
                 name="password"
                 placeholder="Enter your password"
                 class="w-full pr-10 pl-3 py-2 border border-gray-100 shadow-sm bg-gray-50 text-sm placeholder-gray-400 focus:outline-none focus:ring-[#B00000] focus:border-[#B00000] transition-all duration-300 hover:shadow-md focus:shadow-lg"
+                v-model="formData.password"
               />
               <div class="absolute inset-y-0 right-0 pr-3 flex items-center cursor-pointer group">
                 <img 
@@ -63,7 +65,7 @@
             <!-- Reset Password -->
             <div class="text-sm font-geist-regular transition-colors duration-300">
               <span class="text-black">Forget your password?</span>
-              <a href="#" class="font-geist-medium border-b border-[#B00000] text-[#B00000] hover:text-red-800 transition-colors duration-200">
+              <a href="/reset-password" class="font-geist-medium border-b border-[#B00000] text-[#B00000] hover:text-red-800 transition-colors duration-200">
                 Reset Password
               </a>
             </div>
@@ -73,10 +75,18 @@
           <div class="w-full transform transition-all duration-500 opacity-0 animate-fade-in" style="animation-delay: 600ms">
             <div class="flex w-full group font-glancyr-light hover:scale-[1.02] transition-all duration-300 active:scale-95">
               <button 
+                type="submit" @click="handleLogin"
                 class="bg-red-800 text-white py-2 sm:py-2.5 px-4 font-semibold tracking-wide text-sm w-full 
-                      transition-all duration-300 group-hover:bg-red-700 text-center shadow-md hover:shadow-lg"
+                      transition-all duration-300 group-hover:bg-red-700 text-center shadow-md hover:shadow-lg":disabled="isLoading"
               >
-                <span class="inline-block group-active:translate-y-0.5 transition-transform">LOGIN</span>
+                <span v-if="!isLoading" class="inline-block group-active:translate-y-0.5 transition-transform">LOGIN</span>
+                <span v-else class="inline-flex items-center gap-2">
+                  <svg class="animate-spin h-5 w-5 text-white" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24">
+                    <circle class="opacity-25" cx="12" cy="12" r="10" stroke="currentColor" stroke-width="4"></circle>
+                    <path class="opacity-75" fill="currentColor" d="M4 12a8 8 0 018-8V0C5.373 0 0 5.373 0 12h4zm2 5.291A7.962 7.962 0 014 12H0c0 3.042 1.135 5.824 3 7.938l3-2.647z"></path>
+                  </svg>
+                  PROCESSING...
+                </span>
               </button>
               <div 
                 class="bg-black px-4 py-2 sm:py-2.5 flex items-center justify-center 
@@ -95,9 +105,9 @@
         <!-- Register Link -->
         <p class="text-left text-sm text-black mb-4 mt-3 font-geist-regular transform transition-all duration-500 opacity-0 animate-fade-in" style="animation-delay: 700ms">
           Do not have account?
-          <a href="#" class="font-geist-medium border-b border-[#B00000] text-[#B00000] hover:text-red-800 transition-colors duration-200">
+          <NuxtLink to="/register" class="font-geist-medium border-b border-[#B00000] text-[#B00000] hover:text-red-800 transition-colors duration-200">
             Register Now
-          </a>
+          </NuxtLink>
         </p>
 
         <!-- OR Divider with animation -->
@@ -171,18 +181,57 @@
 </template>
 
 <script setup>
+import { ref } from 'vue'
+import { useRouter } from 'vue-router'
+import { authData } from '~/data/login'
+
+const router = useRouter()
+const isLoading = ref(false)
+
+const formData = ref({
+  username: '',
+  password: ''
+})
+
 // Toggle password visibility
 const togglePasswordVisibility = () => {
-  const passwordInput = document.getElementById('password');
-  const icon = document.querySelector('[alt="Show password icon"]');
+  const passwordInput = document.getElementById('password')
+  const icon = document.querySelector('[alt="Show password icon"]')
   if (passwordInput.type === 'password') {
-    passwordInput.type = 'text';
-    icon.src = '/icons/auth/hide.svg';
+    passwordInput.type = 'text'
+    icon.src = '/icons/auth/hide.svg'
   } else {
-    passwordInput.type = 'password';
-    icon.src = '/icons/auth/hide.svg';
+    passwordInput.type = 'password'
+    icon.src = '/icons/auth/hide.svg'
   }
-};
+}
+
+// Handle login
+const handleLogin = async () => {
+  isLoading.value = true
+  
+  try {
+    // Simulate API call delay (remove in production)
+    await new Promise(resolve => setTimeout(resolve, 500))
+    
+    if (formData.value.username === authData.username && 
+        formData.value.password === authData.password) {
+      
+      authData.isLoggedIn = true
+      if (process.client) {
+        localStorage.setItem('isLoggedIn', 'true')
+        localStorage.setItem('username', formData.value.username)
+      }
+      
+      // Force hard redirect to ensure complete page reload
+      window.location.href = '/'
+    } else {
+      alert('Username atau password salah!')
+    }
+  } finally {
+    isLoading.value = false
+  }
+}
 </script>
 
 <style scoped>

@@ -1,11 +1,7 @@
 <template>
-  <div
-    class="mixtape-card bg-white rounded-lg overflow-hidden transition-all duration-300"
-    :class="{ 'mx-0': isCarousel }"
-    :style="isCarousel ? { width: `calc(${100 / Math.min(visibleCards, 4)}% - 2rem)` } : {}"
-  >
+  <div class="mixtape-card bg-white rounded-lg overflow-hidden transition-all duration-300 hover:shadow-lg w-full">
     <!-- Cover and Vinyl -->
-    <div class="pt-4 sm:pt-5">
+    <div class="pt-3 sm:pt-4 md:pt-5 px-3 sm:px-4 md:px-5">
       <MixtapeCover 
         :image="image" 
         :title="title" 
@@ -16,7 +12,7 @@
     </div>
 
     <!-- Meta Information -->
-    <div class="pt-4 pb-4 sm:pb-5">
+    <div class="pt-3 pb-4 sm:pt-4 sm:pb-5 md:pt-5 md:pb-6">
       <MixtapeMeta
         :artist="artist"
         :artistImage="artistImage"
@@ -49,15 +45,7 @@ const props = defineProps({
   rating: String,
   bpm: String,
   date: String,
-  isFavorited: Boolean,
-  visibleCards: {
-    type: Number,
-    default: 4
-  },
-  isCarousel: {
-    type: Boolean,
-    default: false
-  }
+  isFavorited: Boolean
 })
 
 defineEmits(['play', 'toggle-favorite', 'buy-now', 'add-to-cart'])
@@ -65,51 +53,13 @@ defineEmits(['play', 'toggle-favorite', 'buy-now', 'add-to-cart'])
 
 <style scoped>
 .mixtape-card {
-  min-width: 0;
+  min-width: 0; /* Prevent text overflow */
   max-width: 100%;
-  width: 100%;
-  transition: transform 0.3s ease;
-  flex-shrink: 0;
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
 }
 
 .mixtape-card:hover {
   transform: translateY(-4px);
-}
-
-/* Desktop max-width */
-@media (min-width: 1024px) {
-  .mixtape-card {
-    max-width: 320px;
-  }
-}
-
-/* Mobile adjustments */
-@media (max-width: 767px) {
-  .mixtape-card {
-    padding: 0.5rem;
-  }
-  
-  .pt-4 {
-    padding-top: 0.75rem;
-  }
-  
-  .pb-4 {
-    padding-bottom: 0.75rem;
-  }
-}
-
-/* Small mobile adjustments */
-@media (max-width: 480px) {
-  .mixtape-card {
-    padding: 0.25rem;
-  }
-  
-  .pt-4 {
-    padding-top: 0.5rem;
-  }
-  
-  .pb-4 {
-    padding-bottom: 0.5rem;
-  }
+  box-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.1);
 }
 </style>

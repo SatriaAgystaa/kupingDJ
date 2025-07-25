@@ -1,6 +1,6 @@
 <!-- AlbumCard.vue -->
 <template>
-  <div class="album-card bg-white border rounded-lg overflow-hidden shadow-sm h-full hover:shadow-md transition-shadow duration-300">
+  <div class="album-card bg-white border overflow-hidden shadow-sm h-full hover:shadow-md transition-shadow duration-300">
     <div class="grid grid-cols-1 lg:grid-cols-2 gap-0 h-full">
       <!-- Left Section -->
       <div class="p-4 sm:p-5 md:p-6 flex flex-col h-full border-b border-gray-200">
@@ -39,7 +39,7 @@
       </div>
 
       <!-- Right Section -->
-      <div class="px-4 sm:px-0 md:px-6 lg:px-0 sm:pr-5 md:pr-0 lg:pr-6 py-4 sm:py-5 md:py-6 flex flex-col h-full sm:aspect-square md:aspect-[3/2] lg:asspect-square w-full">
+      <div class="px-4 sm:px-0 md:px-6 lg:px-0 sm:pr-5 lg:pr-6 py-4 sm:py-5 md:py-6 flex flex-col h-full sm:aspect-square md:aspect-square lg:asspect-square w-full">
         <div class="flex-1 overflow-y-auto pr-1 custom-scroll font-geist-regular">
           <div class="grid grid-cols-2 gap-3">
             <div
@@ -55,8 +55,8 @@
                       <img :src="track.headIcon" class="w-4 h-4 sm:w-4 sm:h-4"/>
                       <!-- Music progress bar - only show if not file.svg -->
                       <template v-if="!track.headIcon.includes('file.svg')">
-                        <div class="flex-1 h-1 bg-gray-200 rounded-full overflow-hidden">
-                          <div class="h-full bg-[#A10501] rounded-full" style="width: 30%"></div>
+                        <div class="flex-1 h-1 bg-gray-200 overflow-hidden">
+                          <div class="h-full bg-[#A10501]" style="width: 30%"></div>
                         </div>
                       </template>
                     </div>
@@ -79,8 +79,8 @@
                       <img :src="track.headIcon" class="w-4 h-4 sm:w-4 sm:h-4"/>
                       <!-- Music progress bar - only show if not file.svg -->
                       <template v-if="!track.headIcon.includes('file.svg')">
-                        <div class="flex-1 h-1 bg-gray-200 rounded-full overflow-hidden">
-                          <div class="h-full bg-[#A10501] rounded-full" style="width: 30%"></div>
+                        <div class="flex-1 h-1 bg-gray-200 overflow-hidden">
+                          <div class="h-full bg-[#A10501]" style="width: 30%"></div>
                         </div>
                       </template>
                     </div>

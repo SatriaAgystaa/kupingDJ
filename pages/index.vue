@@ -3,7 +3,7 @@
     <Login />
     <section id="hero"><HeroSection /></section>
     <BannerHero />
-    <section id="artist"><ArtistCarousel /></section>
+    <section id="artist"><ArtistSection /></section>
     <section id="mixtape"><MixtapeSection /></section>
     <MixtapePopular />
     <section id="album"><AlbumSection /></section>
