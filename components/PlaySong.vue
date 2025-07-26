@@ -1,109 +1,270 @@
 <template>
-  <div class="flex flex-col sm:flex-row items-stretch sm:items-center justify-between w-full max-w-[1200px] md:max-w-[1400px] lg:max-w-[1600px] xl:max-w-[1800px] 2xl:max-w-[2000px] mx-auto px-3 sm:px-4 md:px-6 lg:px-8 xl:px-10 2xl:px-12 py-4 sm:py-6 md:py-8 lg:py-10 xl:py-12 2xl:py-14 relative font-geist gap-3 sm:gap-4 md:gap-5 lg:gap-6">
-    <!-- Left Section -->
-    <div class="flex items-center gap-2 sm:gap-2.5 md:gap-3 lg:gap-3.5 w-full sm:w-[200px] md:w-[240px] lg:w-[280px] xl:w-[320px] 2xl:w-[360px] flex-shrink-0 relative">
-      <!-- Close Button -->
-      <button
-        @click="$emit('close')"
-        class="text-gray-500 hover:text-black transition shrink-0"
-        aria-label="Close"
-      >
-        <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5 sm:h-5 sm:w-5 md:h-6 md:w-6 lg:h-6 lg:w-6 xl:h-7 xl:w-7 2xl:h-8 2xl:w-8 text-black" fill="currentColor" viewBox="0 0 24 24">
-          <path
-            fill-rule="evenodd"
-            d="M6.225 4.811a.75.75 0 011.06 0L12 9.525l4.715-4.714a.75.75 0 111.06 1.06L13.06 10.5l4.714 4.715a.75.75 0 11-1.06 1.06L12 11.56l-4.715 4.715a.75.75 0 01-1.06-1.06L10.94 10.5 6.225 5.785a.75.75 0 010-1.06z"
-            clip-rule="evenodd"
-          />
-        </svg>
-      </button>
+  <div class="fixed bottom-0 left-0 right-0 bg-white border-t border-gray-200 shadow-lg z-50">
+    <!-- Desktop View (unchanged) -->
+    <div class="hidden lg:flex flex-row items-center justify-between w-full max-w-[2000px] mx-auto px-6 xl:px-12 py-4 relative font-geist gap-4">
+      <!-- Left Section -->
+      <div class="flex items-center gap-2 w-[280px] flex-shrink-0 relative">
+        <!-- Close Button -->
+        <button
+          @click="$emit('close')"
+          class="text-gray-500 hover:text-black transition shrink-0"
+          aria-label="Close"
+        >
+          <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6 text-black" fill="currentColor" viewBox="0 0 24 24">
+            <path
+              fill-rule="evenodd"
+              d="M6.225 4.811a.75.75 0 011.06 0L12 9.525l4.715-4.714a.75.75 0 111.06 1.06L13.06 10.5l4.714 4.715a.75.75 0 11-1.06 1.06L12 11.56l-4.715 4.715a.75.75 0 01-1.06-1.06L10.94 10.5 6.225 5.785a.75.75 0 010-1.06z"
+              clip-rule="evenodd"
+            />
+          </svg>
+        </button>
 
-      <!-- Mixtape Image -->
-      <img
-        :src="currentMixtape.image"
-        :alt="currentMixtape.title"
-        class="w-12 h-12 sm:w-14 sm:h-14 md:w-16 md:h-16 lg:w-[72px] lg:h-[72px] xl:w-20 xl:h-20 2xl:w-24 2xl:h-24 object-cover"
-      />
+        <!-- Mixtape Image -->
+        <img
+          :src="currentMixtape.image"
+          :alt="currentMixtape.title"
+          class="w-16 h-16 object-cover rounded"
+        />
 
-      <!-- Title & Artist -->
-      <div class="truncate flex-1 min-w-0">
-        <h3 class="text-sm sm:text-base md:text-lg lg:text-lg xl:text-xl 2xl:text-2xl font-geist-semibold truncate leading-tight">
-          {{ currentMixtape.title }}
-        </h3>
-        <div class="flex items-center gap-1 sm:gap-1.5 md:gap-1.5 lg:gap-2 mt-0.5 sm:mt-1 md:mt-1.5 lg:mt-2">
-          <img
-            :src="currentMixtape.artistImage"
-            :alt="currentMixtape.artist"
-            class="w-3 h-3 sm:w-4 sm:h-4 md:w-5 md:h-5 lg:w-5 lg:h-5 xl:w-6 xl:h-6 2xl:w-7 2xl:h-7 rounded-full"
-          />
-          <span class="text-xs sm:text-sm md:text-base lg:text-base xl:text-lg 2xl:text-xl font-geist-regular text-gray-700 truncate">{{ currentMixtape.artist }}</span>
+        <!-- Title & Artist -->
+        <div class="truncate flex-1 min-w-0">
+          <h3 class="text-lg font-geist-semibold truncate leading-tight">
+            {{ currentMixtape.title }}
+          </h3>
+          <div class="flex items-center gap-1.5 mt-1.5">
+            <img
+              :src="currentMixtape.artistImage"
+              :alt="currentMixtape.artist"
+              class="w-5 h-5 rounded-full"
+            />
+            <span class="text-md font-geist-regular text-gray-700 truncate">{{ currentMixtape.artist }}</span>
+          </div>
+        </div>
+      </div>
+
+      <!-- Center Section -->
+      <div class="flex items-center flex-1 max-w-[800px] px-6">
+        <!-- Favorite Button -->
+        <button
+          @click="toggleFavorite"
+          class="w-10 h-10 flex items-center justify-center rounded-full border border-gray-300 hover:border-red-500 transition mr-3 shrink-0"
+        >
+          <img src="/icons/baseicons/like_black.svg" class="w-5 h-5" alt="">
+        </button>
+
+        <!-- Play/Pause Button -->
+        <button
+          @click="togglePlay"
+          class="w-10 h-10 flex items-center justify-center rounded-full border border-gray-300 bg-white hover:bg-gray-100 transition mr-3 shrink-0"
+        >
+          <img :src="isPlaying ? '/icons/baseicons/pause.svg' : '/icons/baseicons/play_black.svg'" class="w-6 h-6" alt="">
+        </button>
+
+        <!-- Progress + Duration -->
+        <div class="flex flex-col flex-1 min-w-0">
+          <!-- Progress Bar -->
+          <div class="h-2 bg-gray-200 rounded-full overflow-hidden relative mb-1.5">
+            <div
+              class="absolute top-0 left-0 h-full bg-[#A10501] transition-all duration-300"
+              :style="{ width: progressPercentage + '%' }"
+            ></div>
+          </div>
+          <!-- Duration -->
+          <div class="text-md font-geist-semibold text-black whitespace-nowrap">
+            {{ formatTime(currentTime) }} - {{ formatTime(duration) }}
+          </div>
+        </div>
+      </div>
+
+      <!-- Right Section -->
+      <div class="flex flex-col justify-between items-end w-[260px] flex-shrink-0 gap-2">
+        <!-- Price -->
+        <div class="text-lg font-geist-semibold text-black leading-tight w-full text-right">
+          {{ currentMixtape.price }}
+        </div>
+
+        <!-- Date & BPM -->
+        <div class="flex justify-between w-full text-sm text-gray-500">
+          <div class="flex items-center gap-1.5">
+            <img src="/icons/baseicons/date.svg" alt="Date" class="w-4 h-4" />
+            <span class="font-geist-regular">{{ currentMixtape.date }}</span>
+          </div>
+          <span class="font-geist-semibold">{{ currentMixtape.bpm }}BPM</span>
+        </div>
+
+        <!-- Buttons -->
+        <div class="flex w-full">
+          <button
+            @click="$emit('buy-now')"
+            class="flex-1 border border-[#A10501] text-[#A10501] text-sm font-glancyr-semibold py-2 px-3 hover:bg-[#A10501] hover:text-white transition-all active:scale-[0.98]"
+          >
+            BUY NOW
+          </button>
+          <button
+            @click="$emit('add-to-cart')"
+            class="border border-black text-black ml-2 p-2 hover:bg-black hover:text-white transition-all active:scale-95"
+          >
+            <img src="/icons/baseicons/cart_black.svg" alt="Cart" class="w-4 h-4" />
+          </button>
         </div>
       </div>
     </div>
 
-    <!-- Center Section -->
-    <div class="flex items-center w-full sm:flex-1 sm:max-w-[600px] md:max-w-[700px] lg:max-w-[800px] px-0 sm:px-4 md:px-6">
-      <!-- Favorite Button -->
-      <button
-        @click="toggleFavorite"
-        class="w-10 h-10 sm:w-10 sm:h-10 md:w-11 md:h-11 flex items-center justify-center rounded-full border border-gray-300 hover:border-red-500 transition mr-2 sm:mr-3 shrink-0"
-      >
-        <img src="/icons/baseicons/like_black.svg" class="w-5 h-5 sm:w-5 sm:h-5" alt="">
-      </button>
-
-      <!-- Play/Pause Button -->
-      <button
-        @click="stopPlayback"
-        class="w-10 h-10 sm:w-10 sm:h-10 md:w-11 md:h-11 flex items-center justify-center rounded-full border border-gray-300 bg-white hover:bg-gray-100 transition mr-2 sm:mr-3 shrink-0"
-      >
-        <img src="/icons/baseicons/pause.svg" class="w-5 h-5 sm:w-6 sm:h-6" alt="">
-      </button>
-
-      <!-- Progress + Duration -->
-      <div class="flex flex-col flex-1 min-w-0">
-        <!-- Progress Bar -->
-        <div class="h-2 sm:h-2 bg-gray-200 rounded-full overflow-hidden relative mb-1 sm:mb-1.5">
-          <div
-            class="absolute top-0 left-0 h-full bg-[#A10501] transition-all duration-300"
-            :style="{ width: progressPercentage + '%' }"
-          ></div>
+    <!-- Tablet View (768px - 1023px) -->
+    <div class="hidden md:flex lg:hidden flex-col px-6 py-4 gap-4">
+      <!-- Top Row - Song Info and Controls -->
+      <div class="flex items-center justify-between w-full">
+        <!-- Left Section - Song Info -->
+        <div class="flex items-center gap-4 flex-1 min-w-0">
+          <img
+            :src="currentMixtape.image"
+            :alt="currentMixtape.title"
+            class="w-14 h-14 object-cover rounded"
+          />
+          <div class="truncate">
+            <h3 class="text-md font-geist-semibold truncate leading-tight">
+              {{ currentMixtape.title }}
+            </h3>
+            <div class="flex items-center gap-1.5 mt-1">
+              <img
+                :src="currentMixtape.artistImage"
+                :alt="currentMixtape.artist"
+                class="w-4 h-4 rounded-full"
+              />
+              <span class="text-sm font-geist-regular text-gray-600 truncate">{{ currentMixtape.artist }}</span>
+            </div>
+          </div>
         </div>
+
+        <!-- Center Section - Controls -->
+        <div class="flex items-center gap-4">
+          <button
+            @click="toggleFavorite"
+            class="w-10 h-10 flex items-center justify-center rounded-full border border-gray-300 hover:border-red-500 transition shrink-0"
+          >
+            <img src="/icons/baseicons/like_black.svg" class="w-5 h-5" alt="">
+          </button>
+          
+          <button
+            @click="togglePlay"
+            class="w-10 h-10 flex items-center justify-center rounded-full border border-gray-300 bg-white hover:bg-gray-100 transition shrink-0"
+          >
+            <img :src="isPlaying ? '/icons/baseicons/pause.svg' : '/icons/baseicons/play_black.svg'" class="w-6 h-6" alt="">
+          </button>
+        </div>
+      </div>
+
+      <!-- Middle Row - Progress Bar -->
+      <div class="h-1.5 bg-gray-200 rounded-full overflow-hidden relative w-full">
+        <div
+          class="absolute top-0 left-0 h-full bg-[#A10501] transition-all duration-300"
+          :style="{ width: progressPercentage + '%' }"
+        ></div>
+      </div>
+
+      <!-- Bottom Row - Duration, Price and Actions -->
+      <div class="flex items-center justify-between w-full">
         <!-- Duration -->
-        <div class="text-sm sm:text-md font-geist-semibold text-black whitespace-nowrap">
+        <div class="text-sm font-geist-semibold text-black">
           {{ formatTime(currentTime) }} - {{ formatTime(duration) }}
         </div>
+
+        <!-- Price and BPM -->
+        <div class="flex items-center gap-4">
+          <div class="text-sm font-geist-semibold text-black">
+            {{ currentMixtape.price }}
+          </div>
+          <div class="text-xs font-geist-semibold text-gray-500">
+            {{ currentMixtape.bpm }}BPM
+          </div>
+        </div>
+
+        <!-- Buttons -->
+        <div class="flex items-center gap-3">
+          <button
+            @click="$emit('buy-now')"
+            class="border border-[#A10501] text-[#A10501] text-sm font-glancyr-semibold py-1.5 px-4 hover:bg-[#A10501] hover:text-white transition-all active:scale-[0.98]"
+          >
+            BUY NOW
+          </button>
+          <button
+            @click="$emit('add-to-cart')"
+            class="border border-black text-black p-2 hover:bg-black hover:text-white transition-all active:scale-95"
+          >
+            <img src="/icons/baseicons/cart_black.svg" alt="Cart" class="w-4 h-4" />
+          </button>
+        </div>
       </div>
     </div>
 
-    <!-- Right Section -->
-    <div class="flex flex-col justify-between items-stretch sm:items-end w-full sm:w-[200px] md:w-[230px] lg:w-[260px] flex-shrink-0 gap-2 sm:gap-2">
-      <!-- Price -->
-      <div class="text-lg sm:text-lg md:text-xl font-geist-semibold text-black leading-tight w-full text-left sm:text-right">
-        {{ currentMixtape.price }}
+    <!-- Mobile View (up to 767px) -->
+    <div class="flex md:hidden flex-col px-4 py-3 gap-3">
+      <!-- Progress Bar -->
+      <div class="h-1 bg-gray-200 rounded-full overflow-hidden relative w-full">
+        <div
+          class="absolute top-0 left-0 h-full bg-[#A10501] transition-all duration-300"
+          :style="{ width: progressPercentage + '%' }"
+        ></div>
       </div>
 
-      <!-- Date & BPM -->
-      <div class="flex justify-between w-full text-sm sm:text-sm text-gray-500">
-        <div class="flex items-center gap-1.5">
-          <img src="/icons/baseicons/date.svg" alt="Date" class="w-4 h-4 sm:w-4 sm:h-4" />
-          <span class="font-geist-regular">{{ currentMixtape.date }}</span>
+      <!-- Song Info and Controls -->
+      <div class="flex items-center justify-between w-full">
+        <!-- Song Info -->
+        <div class="flex items-center gap-3 flex-1 min-w-0">
+          <img
+            :src="currentMixtape.image"
+            :alt="currentMixtape.title"
+            class="w-12 h-12 object-cover rounded"
+          />
+          <div class="truncate">
+            <h3 class="text-sm font-geist-semibold truncate leading-tight">
+              {{ currentMixtape.title }}
+            </h3>
+            <div class="flex items-center gap-1 mt-0.5">
+              <span class="text-xs font-geist-regular text-gray-600 truncate">{{ currentMixtape.artist }}</span>
+              <span class="text-xs font-geist-regular text-gray-500 mx-1">•</span>
+              <span class="text-xs font-geist-regular text-gray-500">{{ formatTime(currentTime) }}/{{ formatTime(duration) }}</span>
+            </div>
+          </div>
         </div>
-        <span class="font-geist-semibold">{{ currentMixtape.bpm }}BPM</span>
+
+        <!-- Controls -->
+        <div class="flex items-center gap-2">
+          <button
+            @click="toggleFavorite"
+            class="w-8 h-8 flex items-center justify-center rounded-full border border-gray-300 hover:border-red-500 transition shrink-0"
+          >
+            <img src="/icons/baseicons/like_black.svg" class="w-4 h-4" alt="">
+          </button>
+          
+          <button
+            @click="togglePlay"
+            class="w-10 h-10 flex items-center justify-center rounded-full border border-gray-300 bg-white hover:bg-gray-100 transition shrink-0"
+          >
+            <img :src="isPlaying ? '/icons/baseicons/pause.svg' : '/icons/baseicons/play_black.svg'" class="w-5 h-5" alt="">
+          </button>
+        </div>
       </div>
 
-      <!-- Buttons -->
-      <div class="flex w-full">
-        <button
-          @click="$emit('buy-now')"
-          class="flex-1 border border-[#A10501] text-[#A10501] text-sm sm:text-sm font-glancyr-semibold py-2 px-3 sm:py-2 sm:px-3 hover:bg-[#A10501] hover:text-white transition-all active:scale-[0.98]"
-        >
-          BUY NOW
-        </button>
-        <button
-          @click="$emit('add-to-cart')"
-          class="border border-black text-black ml-2 p-2 sm:p-2 hover:bg-black hover:text-white transition-all active:scale-95"
-        >
-          <img src="/icons/baseicons/cart_black.svg" alt="Cart" class="w-4 h-4 sm:w-4 sm:h-4" />
-        </button>
+      <!-- Price and Buy Button -->
+      <div class="flex items-center justify-between w-full">
+        <div class="text-sm font-geist-semibold text-black">
+          {{ currentMixtape.price }}
+        </div>
+        <div class="flex items-center gap-2">
+          <button
+            @click="$emit('buy-now')"
+            class="border border-[#A10501] text-[#A10501] text-xs font-glancyr-semibold py-1 px-3 hover:bg-[#A10501] hover:text-white transition-all active:scale-[0.98]"
+          >
+            BUY NOW
+          </button>
+          <button
+            @click="$emit('add-to-cart')"
+            class="border border-black text-black p-1.5 hover:bg-black hover:text-white transition-all active:scale-95"
+          >
+            <img src="/icons/baseicons/cart_black.svg" alt="Cart" class="w-3.5 h-3.5" />
+          </button>
+        </div>
       </div>
     </div>
   </div>
@@ -174,7 +335,6 @@ const formatTime = (seconds: number) => {
 
 // Lifecycle
 onMounted(() => {
-  // Initialize with first mixtape if none provided
   if (!currentMixtape.value) {
     currentMixtape.value = mixtapes[0]
   }
@@ -209,12 +369,16 @@ onUnmounted(() => {
   transform: scale(0.95);
 }
 
-/* Container adjustments */
-@media (min-width: 1536px) {
-  .container {
-    max-width: 1400px;
-    padding-left: 1.5rem;
-    padding-right: 1.5rem;
+/* Fixed player styling */
+.fixed {
+  box-shadow: 0 -2px 10px rgba(0, 0, 0, 0.05);
+  border-top: 1px solid #e5e7eb;
+}
+
+/* Mobile specific styles */
+@media (max-width: 767px) {
+  .fixed {
+    padding-bottom: env(safe-area-inset-bottom);
   }
 }
 </style>
