@@ -12,72 +12,75 @@
         />
 
         <!-- Register Title with staggered animation -->
-        <h1 class="text-3xl font-glancyr-regular text-black uppercase leading-tight tracking-tight mb-10 overflow-hidden">
-          <span class="block transform transition-all duration-700 translate-y-10 opacity-0 animate-slide-up" style="animation-delay: 200ms">REGISTER ACCOUNT</span>
+        <h1 class="text-3xl font-glancyr-regular text-black uppercase leading-tight tracking-tight mb-6 overflow-hidden">
+          <span class="block transform transition-all duration-700 translate-y-10 opacity-0 animate-slide-up" style="animation-delay: 200ms">DJ VERIFICATION</span>
         </h1>
+
+        <!-- Description text -->
+        <p class="text-md font-geist-regular text-gray-500 mb-2 transform transition-all duration-500 opacity-0 animate-fade-in" style="animation-delay: 300ms">
+          If you're a real DJ and you want access to exclusive mix tapes, promos, and unreleased edits, this is where it starts.
+        </p>
+        <p class="text-md font-geist-regular text-gray-500 mb-2 transform transition-all duration-500 opacity-0 animate-fade-in" style="animation-delay: 300ms">
+          To apply, just drop your DJ name and social media links — like Instagram, SoundCloud, YouTube, or your personal website. 
+          We'll check your profile to make sure you're legit.
+        </p>
+        <p class="text-md font-geist-regular text-gray-500 mb-2 transform transition-all duration-500 opacity-0 animate-fade-in" style="animation-delay: 350ms">
+          Only verified DJs will get access to our private catalog.
+          Just real DJs doing real work.
+        </p>
+        <p class="text-md font-geist-regular text-gray-500 mb-2 transform transition-all duration-500 opacity-0 animate-fade-in" style="animation-delay: 350ms">
+          No spam accounts, no false profiles.<br>
+        </p>
+        <p class="text-md font-geist-regular text-gray-500 mb-10 transform transition-all duration-500 opacity-0 animate-fade-in" style="animation-delay: 350ms">
+          Just real DJs doing real work.
+        </p>
 
         <!-- Form Content -->
         <div class="flex-1">
-          <!-- Register Form -->
-          <form class="space-y-6">
-            <!-- Email with animation -->
+          <!-- Verification Form -->
+          <form class="space-y-6" @submit.prevent="handleSubmit">
+            <!-- DJ Name with animation -->
             <div class="transform transition-all duration-500 opacity-0 animate-fade-in" style="animation-delay: 600ms">
-              <label class="block text-md font-geist-semibold text-black mb-2">Email</label>
+              <label class="block text-md font-geist-semibold text-black mb-2">Your DJ Name</label>
               <input
-                type="email"
-                placeholder="Enter your email"
+                v-model="form.djName"
+                type="text"
+                placeholder="Enter your DJ name"
                 class="w-full px-3 py-2 border border-gray-100 shadow-sm bg-gray-50 text-sm placeholder-gray-400 focus:outline-none focus:ring-[#B00000] focus:border-[#B00000] transition-all duration-300 hover:shadow-md focus:shadow-lg"
+                required
               />
             </div>
 
-            <!-- Password with animation -->
+            <!-- Social Media Link with animation -->
             <div class="transform transition-all duration-500 opacity-0 animate-fade-in" style="animation-delay: 700ms">
-              <label class="block text-md font-geist-semibold text-black mb-2">Password</label>
-              <div class="relative group">
-                <input
-                  type="password"
-                  placeholder="Enter your password"
-                  class="w-full px-3 py-2 border border-gray-100 shadow-sm bg-gray-50 text-sm placeholder-gray-400 focus:outline-none focus:ring-[#B00000] focus:border-[#B00000] transition-all duration-300 hover:shadow-md focus:shadow-lg"
-                />
-                <div class="absolute inset-y-0 right-0 pr-3 flex items-center cursor-pointer">
-                  <img 
-                    src="/icons/auth/hide.svg" 
-                    alt="Show password icon" 
-                    class="h-5 w-5 transition-transform duration-300 hover:scale-110 active:scale-95"
-                    @click="togglePasswordVisibility('password')"
-                  />
-                </div>
-              </div>
+              <label class="block text-md font-geist-semibold text-black mb-2">Social Media Link</label>
+              <input
+                v-model="form.socialMediaLink"
+                type="text"
+                placeholder="Enter social media link"
+                class="w-full px-3 py-2 border border-gray-100 shadow-sm bg-gray-50 text-sm placeholder-gray-400 focus:outline-none focus:ring-[#B00000] focus:border-[#B00000] transition-all duration-300 hover:shadow-md focus:shadow-lg"
+                required
+              />
             </div>
 
-            <!-- Confirm Password with animation -->
-            <div class="pb-6 transform transition-all duration-500 opacity-0 animate-fade-in" style="animation-delay: 800ms">
-              <label class="block text-md font-geist-semibold text-black mb-2">Confirm Password</label>
-              <div class="relative group">
-                <input
-                  type="password"
-                  id="confirm-password"
-                  placeholder="Re-Enter your password"
-                  class="w-full px-3 py-2 border border-gray-100 shadow-sm bg-gray-50 text-sm placeholder-gray-400 focus:outline-none focus:ring-[#B00000] focus:border-[#B00000] transition-all duration-300 hover:shadow-md focus:shadow-lg"
-                />
-                <div class="absolute inset-y-0 right-0 pr-3 flex items-center cursor-pointer">
-                  <img 
-                    src="/icons/auth/hide.svg" 
-                    alt="Show password icon" 
-                    class="h-5 w-5 transition-transform duration-300 hover:scale-110 active:scale-95"
-                    @click="togglePasswordVisibility('confirm-password')"
-                  />
-                </div>
-              </div>
+            <!-- Additional Notes with animation -->
+            <div class="transform transition-all duration-500 opacity-0 animate-fade-in" style="animation-delay: 800ms">
+              <label class="block text-md font-geist-semibold text-black mb-2">Additional Notes</label>
+              <textarea
+                v-model="form.additionalNotes"
+                placeholder="Enter any additional links or notes"
+                class="w-full px-3 py-2 border border-gray-100 shadow-sm bg-gray-50 text-sm placeholder-gray-400 focus:outline-none focus:ring-[#B00000] focus:border-[#B00000] transition-all duration-300 hover:shadow-md focus:shadow-lg h-24"
+              ></textarea>
             </div>
 
-            <!-- Register Button with enhanced interaction -->
+            <!-- Verify Button with enhanced interaction -->
             <div class="w-full transform transition-all duration-500 opacity-0 animate-fade-in" style="animation-delay: 900ms">
               <div class="flex w-full group font-glancyr-light hover:scale-[1.02] transition-all duration-300 active:scale-[0.98]">
                 <button 
+                  type="submit"
                   class="flex-1 bg-red-800 text-white py-2 px-4 font-semibold tracking-wide text-sm shadow-md hover:shadow-lg transition-all duration-300 group-hover:bg-red-700"
                 >
-                  <span class="inline-block group-active:translate-y-0.5 transition-transform">REGISTER</span>
+                  <span class="inline-block group-active:translate-y-0.5 transition-transform">VERIFY</span>
                 </button>
                 <div 
                   class="bg-black px-4 py-2 flex items-center justify-center transition-all duration-300 group-hover:bg-gray-900"
@@ -104,7 +107,7 @@
 
       <!-- Footer with fade-in -->
       <p class="text-sm font-geist-regular text-gray-400 mt-8 text-left transform transition-all duration-500 opacity-0 animate-fade-in" style="animation-delay: 1000ms">
-        © 2023 Copyright by Kuping DJ. All rights reserved.
+        © 2025 Copyright by Kuping DJ. All rights reserved.
       </p>
     </div>
 
@@ -136,29 +139,36 @@
         style="animation-delay: 700ms"
       />
     </div>
+
+    <!-- Modal Component -->
+    <ModalRegister 
+      :isOpen="showModal" 
+      @close="closeModal" 
+    />
   </div>
 </template>
 
 <script setup>
 import { ref } from 'vue';
-import { authData } from '~/data/auth';
+import ModalRegister from '@/components/Auth/ModalRegister.vue';
 
-// State form dengan data dummy
-const form = ref({ ...authData.registerForm });
+const showModal = ref(false);
+const form = ref({
+  djName: '',
+  socialMediaLink: '',
+  additionalNotes: ''
+});
 
-// Fungsi untuk handle link/unlink Facebook
-const linkFacebook = () => {
-  form.value.isFacebookLinked = true;
-  // Simulasikan proses linking (bisa diganti dengan API call)
-  setTimeout(() => {
-    console.log('Facebook linked successfully!');
-  }, 1000);
+const handleSubmit = () => {
+  // Form validation could be added here
+  showModal.value = true;
 };
 
-const unlinkFacebook = () => {
-  form.value.isFacebookLinked = false;
+const closeModal = () => {
+  showModal.value = false;
 };
-// Toggle password visibility
+
+// Toggle password visibility (kept in case needed for other forms)
 const togglePasswordVisibility = (fieldId) => {
   const input = document.getElementById(fieldId);
   const icon = input.nextElementSibling.querySelector('img');

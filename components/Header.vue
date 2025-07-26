@@ -99,83 +99,98 @@
       </div>
     </div>
     
-    <!-- Mobile Navigation with smooth animation -->
+    <!-- Mobile Sidebar Navigation -->
     <transition
-      enter-active-class="transition-all duration-500 ease-out"
-      leave-active-class="transition-all duration-400 ease-in"
-      enter-from-class="opacity-0 max-h-0"
-      enter-to-class="opacity-100 max-h-[500px]"
-      leave-from-class="opacity-100 max-h-[500px]"
-      leave-to-class="opacity-0 max-h-0"
+      enter-active-class="transition-all duration-300 ease-out"
+      leave-active-class="transition-all duration-200 ease-in"
+      enter-from-class="opacity-0 -translate-x-full"
+      enter-to-class="opacity-100 translate-x-0"
+      leave-from-class="opacity-100 translate-x-0"
+      leave-to-class="opacity-0 -translate-x-full"
     >
-      <nav 
+      <div 
         v-if="isMobileMenuOpen"
-        class="md:hidden bg-white border-t border-gray-100 px-4 overflow-hidden"
+        class="fixed inset-0 z-40 md:hidden"
       >
-        <div class="flex flex-col gap-3 py-3">
-          <!-- Navigation Items with hover effects -->
-          <a 
-            v-for="(link, index) in navLinks" 
-            :key="index"
-            :href="link.href" 
-            class="text-black hover:text-red-800 py-2 px-3 text-sm sm:text-base transition-all duration-500 rounded-md hover:bg-gray-50 active:bg-gray-100"
-            @click="closeMobileMenu"
-          >
-            <div class="flex items-center">
-              <span class="flex-1">{{ link.text }}</span>
-              <svg xmlns="http://www.w3.org/2000/svg" class="w-4 h-4 ml-2 transform transition-transform duration-500 group-hover:translate-x-1" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7" />
-              </svg>
-            </div>
-            <div class="w-0 h-0.5 bg-red-800 transition-all duration-500 group-hover:w-full mt-1"></div>
-          </a>
-          
-          <!-- Auth Buttons with hover effects -->
-          <!-- Auth Buttons with hover effects -->
-<template v-if="!isLoggedIn">
-  <div class="flex flex-col gap-3 mt-2">
-    <!-- Register Button -->
-    <div class="flex group font-glancyr-light hover:scale-105 transition-all duration-300 w-full">
-      <NuxtLink 
-        to="/register" 
-        class="flex-1 flex group font-glancyr-light hover:scale-105 transition-all duration-300 min-w-0"
-        @click="closeMobileMenu"
-      >
-        <div class="flex-1 bg-red-800 text-white border-2 border-red-800 px-4 py-2 tracking-wide text-sm transition-all duration-300 group-hover:bg-red-700 text-center flex items-center justify-center">
-          REGISTER NOW
-        </div>
-        <div class="bg-black border-2 border-black px-4 py-2 flex items-center justify-center transition-all duration-300 group-hover:bg-gray-900 flex-shrink-0">
-          <img src="/icons/baseicons/arrow_white.svg" alt="arrow" class="w-3 h-3 transition-transform duration-300 group-hover:translate-x-1" />
-        </div>
-      </NuxtLink>
-    </div>
-
-    <!-- Login Button -->
-    <div class="flex group font-glancyr-light hover:scale-105 transition-all duration-300 w-full">
-      <NuxtLink 
-        to="/login" 
-        class="flex-1 group font-glancyr-light hover:scale-105 transition-all duration-300 min-w-0"
-        @click="closeMobileMenu"
-      >
-        <div class="bg-white text-center flex items-center justify-center text-black border-2 border-black px-6 py-2 tracking-wide text-sm transition-all duration-300">
-          LOGIN
-        </div>
-      </NuxtLink>
-    </div>
-  </div>
-</template>
-          <!-- <template v-else>
-            <button 
-              @click="logout"
-              class="flex group font-glancyr-light transition-all duration-500 w-full overflow-hidden rounded-md shadow-sm hover:shadow-md active:shadow-sm"
+        <!-- Overlay -->
+        <div 
+          class="absolute inset-0"
+          @click="closeMobileMenu"
+        ></div>
+        
+        <!-- Sidebar Content -->
+        <div class="relative flex flex-col w-3/5 max-w-xs h-full bg-white shadow-xl">
+          <div class="flex items-center justify-between px-4 py-3 border-b border-gray-200">
+            <NuxtLink 
+              to="/" 
+              class="flex items-center"
+              @click="closeMobileMenu"
             >
-              <div class="flex-1 bg-white text-black border-2 border-black px-6 py-3 text-center tracking-wide text-sm transition-all duration-500 hover:bg-gray-50 group-hover:-translate-y-0.5">
-                LOGOUT
-              </div>
+              <img 
+                src="/icons/baseicons/logo.svg" 
+                alt="Kuping DJ Logo" 
+                class="w-8 h-8"
+              >
+            </NuxtLink>
+            <button 
+              @click="closeMobileMenu"
+              class="p-1 text-gray-500 hover:text-red-800 transition-colors"
+            >
+              <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12" />
+              </svg>
             </button>
-          </template> -->
+          </div>
+          
+          <div class="flex-1 overflow-y-auto py-4 px-4">
+            <!-- Navigation Items -->
+            <div class="space-y-2">
+              <a 
+                v-for="(link, index) in navLinks" 
+                :key="index"
+                :href="link.href" 
+                class="block py-3 px-3 text-gray-900 hover:bg-gray-50 rounded-md transition-colors duration-300"
+                @click="closeMobileMenu"
+              >
+                <div class="flex items-center">
+                  <span class="flex-1 font-medium">{{ link.text }}</span>
+                  <svg xmlns="http://www.w3.org/2000/svg" class="w-4 h-4 ml-2 text-gray-400" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7" />
+                  </svg>
+                </div>
+              </a>
+            </div>
+            
+            <!-- Auth Buttons -->
+            <template v-if="!isLoggedIn">
+              <div class="mt-6 space-y-3">
+                <!-- Register Button -->
+                <NuxtLink 
+                  to="/register" 
+                  class="flex items-center justify-between group font-glancyr-light transition-all duration-300 w-full rounded-md overflow-hidden"
+                  @click="closeMobileMenu"
+                >
+                  <div class="flex-1 bg-red-800 text-white border-2 border-red-800 px-4 py-3 tracking-wide text-sm transition-all duration-300 group-hover:bg-red-700 text-center">
+                    REGISTER NOW
+                  </div>
+                  <div class="bg-black border-2 border-black px-4 py-3 flex items-center justify-center transition-all duration-300 group-hover:bg-gray-900">
+                    <img src="/icons/baseicons/arrow_white.svg" alt="arrow" class="w-3 h-3 transition-transform duration-300 group-hover:translate-x-1" />
+                  </div>
+                </NuxtLink>
+
+                <!-- Login Button -->
+                <NuxtLink 
+                  to="/login" 
+                  class="block w-full bg-white text-center text-black border-2 border-black px-6 py-3 tracking-wide text-sm transition-colors duration-300 hover:bg-gray-50 rounded-md"
+                  @click="closeMobileMenu"
+                >
+                  LOGIN
+                </NuxtLink>
+              </div>
+            </template>
+          </div>
         </div>
-      </nav>
+      </div>
     </transition>
   </header>
 </template>
@@ -211,10 +226,16 @@ onMounted(() => {
 
 const toggleMobileMenu = () => {
   isMobileMenuOpen.value = !isMobileMenuOpen.value
+  if (isMobileMenuOpen.value) {
+    document.body.style.overflow = 'hidden'
+  } else {
+    document.body.style.overflow = ''
+  }
 }
 
 const closeMobileMenu = () => {
   isMobileMenuOpen.value = false
+  document.body.style.overflow = ''
 }
 
 const logout = () => {
@@ -251,11 +272,6 @@ html {
 /* Button press effect */
 .active\:scale-95:active {
   transform: scale(0.95);
-}
-
-/* Mobile menu item animation */
-nav a {
-  transition-property: color, background-color, transform;
 }
 
 /* Ensure smooth hover on mobile devices */

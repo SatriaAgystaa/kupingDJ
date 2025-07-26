@@ -19,7 +19,7 @@
         <!-- Navigation Arrows -->
         <button 
           @click="slideLeft" 
-          class="absolute left-0 top-44 -translate-y-1/2 z-10 
+          class="absolute left-0 top-1/2 -translate-y-1/2 z-10 
                  w-10 h-10 sm:w-12 sm:h-12 md:w-14 md:h-14 rounded-full flex items-center justify-center 
                  bg-gray-500/20 backdrop-blur-md text-white 
                  transition-all duration-300 hover:bg-gray-500/30 hover:scale-105"
@@ -31,7 +31,7 @@
         
         <button 
           @click="slideRight" 
-          class="absolute right-0 top-44 -translate-y-1/2 z-10 
+          class="absolute right-0 top-1/2 -translate-y-1/2 z-10 
                  w-10 h-10 sm:w-12 sm:h-12 md:w-14 md:h-14 rounded-full flex items-center justify-center 
                  bg-gray-500/20 backdrop-blur-md text-white 
                  transition-all duration-300 hover:bg-gray-500/30 hover:scale-105"

@@ -7,7 +7,7 @@
         <img 
           src="/icons/baseicons/logo.svg" 
           alt="Kuping DJ Logo" 
-          class="h-12 w-auto mb-24 transform transition-all duration-500 opacity-0 animate-fade-in"
+          class="h-12 w-auto mb-16 transform transition-all duration-500 opacity-0 animate-fade-in"
           style="animation-delay: 100ms"
         />
 

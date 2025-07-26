@@ -7,7 +7,7 @@
         <img 
           src="/icons/baseicons/logo.svg" 
           alt="Kuping DJ Logo" 
-          class="h-12 w-auto mb-24 transform transition-all duration-500 opacity-0 animate-fade-in"
+          class="h-12 w-auto mb-16 transform transition-all duration-500 opacity-0 animate-fade-in"
           style="animation-delay: 100ms"
         />
 
@@ -125,8 +125,7 @@
                     transition-all duration-300 text-center shadow-md hover:shadow-lg hover:bg-gray-50"
             >
               <span class="inline-flex items-center gap-2 group-active:translate-y-0.5 transition-transform">
-                <img src="/icons/auth/facebook.svg" alt="Facebook" class="w-4 h-4" />
-                LOGIN BY FACEBOOK
+                LOGIN BY GOOGLE
               </span>
             </button>
             <div 

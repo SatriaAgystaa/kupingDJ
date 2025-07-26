@@ -50,20 +50,38 @@ npm run postinstall
 ```
 ├── app.vue              # Root component with NuxtLayout and NuxtPage
 ├── layouts/            
-│   └── default.vue      # Main layout with Header and Footer
+│   ├── default.vue      # Main layout with Header, Footer, and auth check
+│   └── empty.vue        # Minimal layout without header/footer
 ├── pages/              
-│   └── index.vue        # Homepage (file-based routing)
+│   ├── index.vue        # Homepage with all sections (file-based routing)
+│   ├── login.vue        # User login page
+│   ├── register.vue     # User registration page
+│   ├── register-verification.vue  # Email verification page
+│   ├── forgot-password.vue        # Password recovery page
+│   └── reset-password.vue         # Password reset page
 ├── components/          # Organized by feature/domain
 │   ├── Album/          # AlbumCard, AlbumSection
-│   ├── Artist/         # ArtistCard, ArtistCarousel  
+│   ├── Artist/         # ArtistCard, ArtistSection
+│   ├── Auth/           # Authentication components
+│   │   ├── ForgotPassword.vue     # Password recovery form
+│   │   ├── Login.vue              # Login form component
+│   │   ├── LoginRequiredAlert.vue # Alert shown when not logged in
+│   │   ├── ModalRegister.vue      # Registration modal
+│   │   ├── Register.vue           # Registration form
+│   │   ├── RegisterVerification.vue # Email verification component
+│   │   └── ResetPassword.vue      # Password reset form
+│   ├── Cart/           # CartSection for shopping cart
 │   ├── Features/       # FeatureCard, FeatureSection
 │   ├── Genre/          # GenreCard, GenreSection
 │   ├── Magic/          # MagicCard, MagicSection
 │   ├── Mixtape/        # MixtapeCard, MixtapeCover, MixtapeMeta, MixtapeSection
 │   ├── MixtapePopular/ # Dedicated popular mixtape components
+│   ├── Notification/   # NotificationSection
 │   ├── Picks/          # PicksCard, PicksSection
 │   ├── PicksAlbum/     # Album-specific picks components
 │   ├── PicksMixtape/   # Mixtape-specific picks components
+│   ├── PlaySong.vue    # Music player component
+│   ├── Profile/        # ProfileSection for user profile
 │   ├── Testimonials/   # TestimonialCard, TestimonialSection
 │   ├── BannerFooter.vue
 │   ├── BannerHero.vue
@@ -76,14 +94,19 @@ npm run postinstall
 ├── data/               # TypeScript data modules with interfaces
 │   ├── albums.ts       
 │   ├── artists.ts      
+│   ├── auth.ts         # Authentication-related data
+│   ├── cart.ts         # Shopping cart data
 │   ├── features.ts     
 │   ├── genres.ts       
+│   ├── login.ts        # Login form data
 │   ├── magics.ts       
 │   ├── mixtapes.ts     # Contains BPM, price, ratings, downloads
 │   ├── mixtapesPopular.ts
+│   ├── notification.ts # Notification data
 │   ├── picks.ts        
 │   ├── picksAlbums.ts  
 │   ├── picksMixtapes.ts
+│   ├── profile.ts      # User profile data
 │   └── testimonials.ts 
 ├── assets/             
 │   ├── css/            
@@ -97,6 +120,7 @@ npm run postinstall
 │   ├── icons/          # Main icon repository
 │   │   ├── album/      # Album-related icons
 │   │   ├── artists/    # Artist profile images
+│   │   ├── auth/       # Authentication-related icons
 │   │   ├── baseicons/  # Core UI icons (arrows, cart, etc.)
 │   │   ├── features/   # Feature section icons
 │   │   ├── footer/     # Footer-specific icons
@@ -106,9 +130,10 @@ npm run postinstall
 │   │   ├── mixtapes/   # Mixtape cover images
 │   │   ├── picks/      # Picks section icons
 │   │   └── testimoni/  # Testimonial avatars
-│   ├── images/         # Duplicate image assets (consider consolidating)
-│   │   ├── artists/    
-│   │   └── mixtapes/   
+│   ├── images/         # Additional image assets
+│   │   ├── artists/    # Artist images (duplicate of icons/artists)
+│   │   ├── mixtapes/   # Mixtape covers (duplicate of icons/mixtapes)
+│   │   └── login.png   # Login page background image   
 │   ├── favicon.ico     
 │   └── robots.txt      
 └── server/             
@@ -121,6 +146,8 @@ npm run postinstall
 2. **Data Management**: Centralized data in TypeScript modules under `/data`
 3. **Asset Management**: Icons organized by category, custom fonts in public directory
 4. **Styling**: Tailwind CSS with custom font configurations (Geist and Glancyr families)
+5. **Authentication**: Client-side authentication with localStorage check in default layout
+6. **Page Layouts**: Two layouts available - default (with header/footer) and empty (minimal)
 
 ### Custom Font Configuration
 
@@ -176,32 +203,43 @@ export interface Mixtape {
    - Follow the existing pattern of organizing components by feature/domain
    - Use composition API with `<script setup>` syntax
    - Place shared components at the root of `/components`
+   - Import components explicitly in `<script setup>` sections
 
 2. **Asset Management**:
    - **Icons**: Place SVG icons in `/public/icons/[category]/`
    - **Images**: Use `/public/images/` for static images
    - **Fonts**: Already configured in `/public/fonts/`
    - Use `@nuxt/image` component for optimized image loading
+   - Note: Some images are duplicated between `/public/icons/` and `/public/images/`
 
 3. **Data Management**:
    - Add new data collections as TypeScript files in `/data/`
    - Define proper TypeScript interfaces for type safety
    - Export both the interface and the data array
+   - Follow existing patterns for data structure (e.g., Mixtape interface)
 
 4. **Routing**: 
    - Create new pages in `/pages/` - Nuxt will automatically generate routes
    - Use file-based routing conventions
+   - Authentication pages are already set up (login, register, forgot-password, etc.)
 
 5. **Styling**:
    - Use Tailwind utility classes
    - Custom fonts are available via `font-[family]-[weight]` classes
    - Global styles in `/assets/css/`
+   - Font families: `font-geist-[weight]` and `font-glancyr-[weight]`
+
+6. **Authentication**:
+   - Authentication state is managed via localStorage
+   - LoginRequiredAlert component shows when user is not logged in
+   - Check `localStorage.getItem('isLoggedIn')` for auth status
 
 ## Known Issues & Improvements
 
 ### Current State
 - The project is actively being developed
-- Modified files in git status: components/PicksMixtape/PicksMixtapeSection.vue, data/albums.ts, data/genres.ts
+- Recent additions include authentication system components and new UI elements
+- Authentication uses client-side localStorage for session management
 
 ### Missing Infrastructure
 - **Testing**: No test framework configured (consider Vitest)
