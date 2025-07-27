@@ -5,7 +5,7 @@
         <!-- Left side - Title -->
         <div class="lg:w-1/4 lg:sticky lg:top-6 md:top-8 lg:top-10 xl:top-12 2xl:top-14">
           <div class="space-y-3 xs:space-y-4 sm:space-y-5 md:space-y-6 lg:space-y-7 xl:space-y-8 2xl:space-y-9">
-            <h2 class="text-xl xs:text-2xl sm:text-2xl md:text-2xl lg:text-3xl xl:text-3xl 2xl:text-4xl font-glancyr-regular text-black leading-snug xs:leading-tight sm:leading-tight md:leading-tight lg:leading-tight xl:leading-tight tracking-tight">
+            <h2 class="text-xl xs:text-2xl sm:text-2xl md:text-2xl lg:text-3xl xl:text-3xl 2xl:text-3xl font-glancyr-regular text-black leading-snug xs:leading-tight sm:leading-tight md:leading-tight lg:leading-tight xl:leading-tight tracking-tight">
               ARTIST STORY
             </h2>
           </div>

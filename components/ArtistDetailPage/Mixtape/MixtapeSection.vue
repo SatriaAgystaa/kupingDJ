@@ -2,7 +2,7 @@
   <section class="bg-white py-8 sm:py-10 lg:py-14 px-4 sm:px-6 md:px-10 lg:px-12">
     <!-- Section Title -->
     <div class="mb-6 sm:mb-8 lg:mb-10">
-      <h2 class="text-2xl sm:text-3xl md:text-4xl lg:text-5xl font-glancyr-medium">
+      <h2 class="text-xl xs:text-2xl sm:text-2xl md:text-2xl lg:text-3xl xl:text-3xl 2xl:text-4xl font-glancyr-medium">
         ALL WISHNU SANTIKA MIXTAPE
       </h2>
     </div>

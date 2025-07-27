@@ -4,7 +4,7 @@
       <div class="flex flex-col lg:flex-row gap-8 lg:gap-12">
         <!-- Title Section -->
         <div class="lg:w-1/4">
-          <h2 class="text-3xl font-glancyr-regular text-black mb-6">
+          <h2 class="text-xl xs:text-2xl sm:text-2xl md:text-2xl lg:text-3xl xl:text-3xl 2xl:text-3xl font-glancyr-regular text-black mb-6">
             BEST SELLER<br>MIXTAPE
           </h2>
         </div>
