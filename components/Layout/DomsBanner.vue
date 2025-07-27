@@ -1,6 +1,6 @@
 <template>
   <div class="relative overflow-hidden bg-[#A10501]">
-    <div class="pt-8 container mx-auto pt-8 sm:py-10 md:py-12 lg:py-14 px-4 sm:px-6 md:px-8 lg:px-12 xl:px-16 relative z-10">
+    <div class="pt-8 container mx-auto pt-8 sm:py-10 md:py-12 lg:py-14 px-4 sm:px-6 md:px-8 lg:px-12 relative z-10">
       <!-- Background pattern - menggunakan vw untuk responsive -->
       <img
         src="/icons/footer/wavy_lines.svg"

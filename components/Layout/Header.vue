@@ -208,11 +208,11 @@ const isLoggedIn = ref(false)
 const username = ref('')
 
 const navLinks = [
-  { text: 'Home', href: '#hero' },
-  { text: 'Mixtape', href: '#mixtape' },
-  { text: 'Album', href: '#album' },
-  { text: 'Artists', href: '#artist' },
-  { text: 'About', href: '#about' }
+  { text: 'Home', href: '/' },
+  { text: 'Mixtape', href: '/mixtape' },
+  { text: 'Album', href: '/album' },
+  { text: 'Artists', href: '/artist' },
+  { text: 'About', href: '/about' }
 ]
 
 // Check auth status when component mounts

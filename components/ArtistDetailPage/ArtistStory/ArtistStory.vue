@@ -1,6 +1,6 @@
 <template>
   <section class="w-full bg-white">
-    <div class="container mx-auto py-6 xs:py-7 sm:py-8 md:py-10 lg:py-12 xl:py-14 2xl:py-16 px-4 xs:px-5 sm:px-6 md:px-10 lg:px-10 xl:px-12 2xl:px-12 relative z-10">
+    <div class="container mx-auto py-6 xs:py-7 sm:py-8 md:py-10 lg:py-12 xl:py-12 2xl:py-12 px-4 xs:px-5 sm:px-6 md:px-10 lg:px-10 xl:px-12 2xl:px-12 relative z-10">
       <div class="flex flex-col lg:flex-row lg:items-start gap-4 xs:gap-5 sm:gap-6 md:gap-8 lg:gap-10 xl:gap-12 2xl:gap-14">
         <!-- Left side - Title -->
         <div class="lg:w-1/4 lg:sticky lg:top-6 md:top-8 lg:top-10 xl:top-12 2xl:top-14">

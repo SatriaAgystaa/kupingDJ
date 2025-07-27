@@ -1,6 +1,6 @@
 <template>
   <section class="w-full bg-white">
-    <div class="container mx-auto pb-6 xs:pb-7 sm:pb-8 md:pb-10 lg:pb-12 xl:pb-14 2xl:pb-16 px-4 xs:px-5 sm:px-6 md:px-8 lg:px-10 xl:px-12 2xl:px-12 relative z-10">
+    <div class="container mx-auto pb-6 xs:pb-7 sm:pb-8 md:pb-10 lg:pb-12 xl:pb-12 2xl:pb-12 px-4 xs:px-5 sm:px-6 md:px-10 lg:px-10 xl:px-12 2xl:px-12 relative z-10">
       <div class="flex flex-col lg:flex-row lg:items-start gap-6 xs:gap-7 sm:gap-8 md:gap-10 lg:gap-12 xl:gap-14 2xl:gap-16">
         <!-- Social media cards -->
         <div class="w-full relative">

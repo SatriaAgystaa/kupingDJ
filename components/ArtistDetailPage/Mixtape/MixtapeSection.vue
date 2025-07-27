@@ -1,5 +1,5 @@
 <template>
-  <section class="bg-white py-8 sm:py-10 lg:py-14 px-4 sm:px-6 md:px-10 lg:px-12">
+  <section class="bg-white mx-auto py-6 xs:py-7 sm:py-8 md:py-10 lg:py-12 xl:py-12 2xl:py-12 px-4 xs:px-5 sm:px-6 md:px-10 lg:px-10 xl:px-12 2xl:px-12">
     <!-- Section Title -->
     <div class="mb-6 sm:mb-8 lg:mb-10">
       <h2 class="text-xl xs:text-2xl sm:text-2xl md:text-2xl lg:text-3xl xl:text-3xl 2xl:text-4xl font-glancyr-medium">

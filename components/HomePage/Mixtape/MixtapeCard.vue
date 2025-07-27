@@ -1,5 +1,5 @@
 <template>
-  <div class="mixtape-card bg-white rounded-lg overflow-hidden transition-all duration-300 hover:shadow-lg w-full">
+  <div class="mixtape-card bg-[#f7f7f7] overflow-hidden transition-all duration-300 w-full">
     <!-- Cover and Vinyl -->
     <div class="pt-3 sm:pt-4 md:pt-5 px-3 sm:px-4 md:px-5">
       <MixtapeCover 
@@ -55,11 +55,10 @@ defineEmits(['play', 'toggle-favorite', 'buy-now', 'add-to-cart'])
 .mixtape-card {
   min-width: 0; /* Prevent text overflow */
   max-width: 100%;
-  transition: transform 0.3s ease, box-shadow 0.3s ease;
+  transition: transform 0.3s ease;
 }
 
 .mixtape-card:hover {
   transform: translateY(-4px);
-  box-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.1);
 }
 </style>

@@ -40,7 +40,7 @@
     </div>
     
     <!-- Action Buttons -->
-    <div class="flex gap-2 sm:gap-2.5 md:gap-3 font-glancyr-regular">
+    <div class="flex gap-2 sm:gap-2 md:gap-2 font-glancyr-regular">
       <button 
         @click="$emit('buy-now')"
         class="flex-1 bg-white border border-[#A10501] text-[#A10501] py-1.5 sm:py-2 px-2 sm:px-3 text-xs sm:text-[13px] md:text-sm lg:text-[15px] font-bold 
@@ -50,10 +50,20 @@
       </button>
       <button 
         @click="$emit('add-to-cart')"
-        class="bg-white border border-black text-black p-1.5 sm:p-2 transition-all duration-200 hover:bg-black hover:text-white active:scale-95"
+        class="bg-white border border-black text-black p-1 sm:p-1.5 transition-all duration-200 
+                hover:bg-black hover:text-white active:scale-95 group"
         aria-label="Add to cart"
       >
-        <img src="/icons/baseicons/cart_black.svg" alt="Cart" class="w-3.5 h-3.5 sm:w-4 sm:h-4 md:w-4.5 md:h-4.5" />
+        <img 
+          src="/icons/baseicons/cart_black.svg" 
+          alt="Cart" 
+          class="w-3 sm:w-3.5 h-3 sm:h-3.5 group-hover:hidden"
+        >
+        <img 
+          src="/icons/baseicons/cart_white.svg" 
+          alt="Cart" 
+          class="w-3 sm:w-3.5 h-3 sm:h-3.5 hidden group-hover:block"
+        >
       </button>
     </div>
   </div>

@@ -1,5 +1,5 @@
 <template>
-  <div class="mixtape-section w-full overflow-hidden bg-white">
+  <div class="mixtape-section w-full overflow-hidden bg-[#f7f7f7]">
     <div class="container mx-auto px-4 sm:px-8 lg:px-12 py-4 sm:py-6 lg:py-10 relative z-10">
       <!-- Section Header -->
       <div class="flex flex-col md:flex-row justify-between items-start md:items-center mb-6 sm:mb-8 md:mb-12">

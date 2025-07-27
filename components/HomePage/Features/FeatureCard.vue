@@ -1,5 +1,5 @@
 <template>
-  <div class="relative bg-white p-4 sm:p-5 md:p-6 shadow-sm border border-gray-200 hover:shadow-md transition-shadow duration-300 w-full aspect-3/4 sm:aspect-square md:aspect-square lg:aspect-square xl:aspect-square flex flex-col overflow-hidden rounded-lg">
+  <div class="relative bg-white p-4 sm:p-5 md:p-6 shadow-sm border border-gray-200 hover:shadow-md transition-shadow duration-300 w-full aspect-3/4 sm:aspect-square md:aspect-square lg:aspect-square xl:aspect-square flex flex-col overflow-hidden">
     <!-- Icon at top -->
     <div class="flex justify-start mb-4 sm:mb-5 md:mb-6 z-10">
       <img 
