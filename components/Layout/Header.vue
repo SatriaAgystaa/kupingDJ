@@ -198,6 +198,9 @@
 <script setup>
 import { ref, onMounted } from 'vue'
 import { useRouter } from 'vue-router'
+import CartSection from './Cart/CartSection.vue'
+import NotificationSection from './Notification/NotificationSection.vue'
+import ProfileSection from './Profile/ProfileSection.vue'
 
 const router = useRouter()
 const isMobileMenuOpen = ref(false)

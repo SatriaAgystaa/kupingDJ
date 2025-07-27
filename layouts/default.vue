@@ -2,11 +2,11 @@
   <div class="flex min-h-screen flex-col">
     <Header />
 
-    <main class="flex-1 z-10 pb-20 md:pb-28">
+    <main>
       <NuxtPage />
     </main>
 
-    <PlaySong v-if="showPlayer" />
+    <!-- <PlaySong v-if="showPlayer" /> -->
 
     <LoginRequiredAlert v-if="showLoginAlert" @close="showLoginAlert = false" />
      
@@ -19,12 +19,12 @@
 </template>
 
 <script setup>
-import Header from '~/components/Header.vue'
-import DomsBanner from '~/components/DomsBanner.vue'
-import BannerFooter from '~/components/BannerFooter.vue'
-import Footer from '~/components/Footer.vue'
+import Header from '~/components/Layout/Header.vue'
+import DomsBanner from '~/components/Layout/DomsBanner.vue'
+import BannerFooter from '~/components/Layout/BannerFooter.vue'
+import Footer from '~/components/Layout/Footer.vue'
 import LoginRequiredAlert from '~/components/Auth/LoginRequiredAlert.vue'
-import PlaySong from '~/components/PlaySong.vue'
+import PlaySong from '~/components/Layout/PlaySong.vue'
 
 const showLoginAlert = ref(false)
 const showPlayer = ref(true)
@@ -40,17 +40,4 @@ onMounted(() => {
 </script>
 
 <style>
-/* Additional padding adjustments for mobile */
-@media (max-width: 767px) {
-  main {
-    padding-bottom: 5rem;
-  }
-}
-
-/* Tablet padding adjustment */
-@media (min-width: 768px) and (max-width: 1023px) {
-  main {
-    padding-bottom: 5.5rem;
-  }
-}
 </style>

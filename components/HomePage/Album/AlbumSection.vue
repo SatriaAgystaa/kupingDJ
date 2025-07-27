@@ -1,6 +1,6 @@
 <!-- AlbumSection.vue -->
 <template>
-  <main class="album-section relative overflow-hidden">
+  <div class="album-section relative overflow-hidden">
     <div class="container mx-auto py-8 sm:py-10 md:py-12 lg:py-14 px-4 sm:px-5 md:px-6 lg:px-8 xl:px-12 relative z-10">
       <!-- Section Header -->
       <h2 class="text-3xl sm:text-4xl md:text-4xl lg:text-5xl xl:text-5xl font-glancyr-medium tracking-wide mb-4 sm:mb-6 md:mb-8">
@@ -45,7 +45,7 @@
         </div>
       </div>
     </div>
-  </main>
+  </div>
 </template>
 
 <script setup>
