@@ -1,7 +1,7 @@
 <!-- GenreSection.vue -->
 <template>
   <section class="w-full bg-white">
-    <div class="mx-auto py-6 xs:py-7 sm:py-8 md:py-10 lg:py-12 xl:py-12 2xl:py-12 px-4 xs:px-5 sm:px-6 md:px-10 lg:px-10 xl:px-12 2xl:px-12 relative z-10">
+    <div class="mx-auto py-6 xs:py-7 sm:py-8 md:py-10 lg:py-12 xl:py-12 2xl:py-12 px-4 xs:px-5 sm:px-6 md:px-10 lg:px-10 xl:px-12 2xl:px-12 relative">
       <div class="flex flex-col lg:flex-row lg:items-start gap-8 sm:gap-10 md:gap-12">
         <!-- Left side - Title and Navigation -->
         <div class="lg:w-1/3 lg:sticky lg:top-8">

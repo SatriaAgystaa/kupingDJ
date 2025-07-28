@@ -10,7 +10,7 @@
     </div>
 
     <!-- Content container with higher z-index -->
-    <div class="relative z-10 flex flex-col h-full">
+    <div class="relative flex flex-col h-full">
       <!-- Icon at top -->
       <div class="flex justify-start mb-4 sm:mb-5 md:mb-6">
         <img 
