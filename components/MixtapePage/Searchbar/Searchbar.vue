@@ -1,7 +1,7 @@
 <template>
   <div class="w-full bg-white">
-    <div class="mx-auto py-6 xs:py-7 sm:py-8 md:py-10 lg:py-12 xl:py-12 2xl:py-6 px-4 xs:px-5 sm:px-6 md:px-10 lg:px-10 xl:px-12 2xl:px-12">
-      <div class="flex flex-col sm:flex-row items-center gap-4 sm:gap-6 md:gap-12 w-full">
+    <div class="mx-auto py-4 xs:py-6 sm:py-6 md:py-6 lg:py-6 xl:py-6 2xl:py-6 px-4 xs:px-5 sm:px-6 md:px-10 lg:px-10 xl:px-12 2xl:px-12">
+      <div class="flex flex-col sm:flex-row items-center gap-2 sm:gap-6 md:gap-12 w-full">
         <!-- Text Section -->
         <div class="flex-shrink-0">
           <h2 class="text-xl xs:text-2xl sm:text-2.5xl md:text-3xl lg:text-3.5xl xl:text-3xl font-glancyr-medium whitespace-nowrap">
