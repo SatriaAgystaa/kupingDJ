@@ -1,6 +1,6 @@
 <template>
   <header class="w-full bg-white shadow-sm sticky top-0 z-50 border-b border-gray-100">
-    <div class="mx-auto py-3 sm:py-4 md:py-5 lg:py-6 px-4 sm:px-5 md:px-6 lg:px-8 xl:px-12 relative z-10">
+    <div class="mx-auto py-3 sm:py-4 md:py-5 lg:py-6 px-4 xs:px-5 sm:px-6 md:px-10 lg:px-10 xl:px-12 2xl:px-12 relative z-10">
       <div class="flex items-center justify-between">
         <!-- Left Section: Logo + Navigation -->
         <div class="flex items-center gap-3 xs:gap-4 sm:gap-5 md:gap-6 lg:gap-8 xl:gap-10">
