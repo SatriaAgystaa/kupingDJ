@@ -1,23 +1,23 @@
 <!-- ~/components/YourProfileSection.vue -->
 <template>
-  <div class="mx-auto py-6 xs:py-7 sm:py-8 md:py-10 lg:py-12 xl:py-12 2xl:py-12 px-4 xs:px-5 sm:px-6 md:px-10 lg:px-10 xl:px-12 2xl:px-12">
-    <h1 class="text-5xl font-glancyr-medium text-gray-900 mb-10">YOUR PROFILE</h1>
+  <div class="mx-auto py-8 sm:py-10 md:py-12 lg:py-14 px-4 sm:px-5 md:px-6 lg:px-8 xl:px-12 relative z-10">
+    <h1 class="text-2xl xs:text-2.5xl sm:text-3xl md:text-3.5xl lg:text-4xl xl:text-4.5xl font-glancyr-medium text-gray-900 mb-4 sm:mb-6 md:mb-8 lg:mb-10">YOUR PROFILE</h1>
     
     <ProfileCard :profile="profile" />
 
     <!-- Combined Container with Border -->
     <div class="border border-gray-200 mb-6">
       <!-- Tabs and Search Section -->
-      <div class="p-4 border-b border-gray-200">
-        <div class="flex flex-col sm:flex-row justify-between items-start sm:items-center gap-4">
+      <div class="p-3 sm:p-4 border-b border-gray-200">
+        <div class="flex flex-col md:flex-col lg:flex-row justify-between items-start sm:items-center gap-3 sm:gap-4">
           <!-- Tabs Navigation -->
-          <div class="w-full sm:w-auto">
-            <nav class="flex space-x-0 divide-x divide-black border border-black font-glancyr-medium">
+          <div class="w-full overflow-x-auto lg:w-[800px]">
+            <nav class="flex w-full divide-x divide-black border border-black font-glancyr-medium min-w-max md:min-w-0">
               <button
                 v-for="tab in tabs"
                 :key="tab.name"
                 @click="activeTab = tab.name"
-                class="px-6 py-3 text-sm items-center transition-colors"
+                class="flex-1 px-2 xs:px-3 sm:px-4 py-2 sm:py-3 text-xs xs:text-sm sm:text-sm text-center transition-colors whitespace-nowrap"
                 :class="{
                   'bg-black text-white': activeTab === tab.name,
                   'text-black bg-white hover:bg-gray-50': activeTab !== tab.name
@@ -29,28 +29,28 @@
           </div>
 
           <!-- Search and Filter Container -->
-          <div class="flex gap-4 w-full sm:w-[500px]">
+          <div class="flex flex-col md:flex-row lg:flex-row gap-3 sm:gap-4 w-full md:w-full lg:w-[500px]">
             <!-- Search Bar -->
             <div class="relative flex-1">
               <input 
                 type="text" 
                 :placeholder="getSearchPlaceholder()"
-                class="w-full pl-4 pr-10 py-3 border border-[#f7f7f7] bg-[#f7f7f7] text-sm font-geist-regular"
+                class="w-full pl-3 sm:pl-4 md:pl-4 pr-9 sm:pr-10 py-2 sm:py-3 border border-[#f7f7f7] bg-[#f7f7f7] text-xs sm:text-sm md:text-sm font-geist-regular"
                 v-model="searchQuery"
               >
-              <div class="absolute right-3 top-3 text-black">
-                <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+              <div class="absolute right-2 sm:right-3 md:right-3 top-1/2 transform -translate-y-1/2 text-black">
+                <svg xmlns="http://www.w3.org/2000/svg" class="h-4 w-4 sm:h-5 sm:w-5 md:h-5 md:w-5" fill="none" viewBox="0 0 24 24" stroke="currentColor">
                   <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z" />
                 </svg>
               </div>
             </div>
 
             <!-- Filter Button -->
-            <button class="flex items-center gap-2 px-4 py-3 border border-gray-300 text-sm hover:bg-gray-50 whitespace-nowrap">
-              <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+            <button class="flex items-center justify-center gap-1 sm:gap-2 px-3 sm:px-4 md:px-4 py-2 sm:py-3 border border-gray-300 text-xs sm:text-sm md:text-sm hover:bg-gray-50 whitespace-nowrap">
+              <svg xmlns="http://www.w3.org/2000/svg" class="h-4 w-4 sm:h-5 sm:w-5 md:h-5 md:w-5" fill="none" viewBox="0 0 24 24" stroke="currentColor">
                 <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 4a1 1 0 011-1h16a1 1 0 011 1v2.586a1 1 0 01-.293.707l-6.414 6.414a1 1 0 00-.293.707V17l-4 4v-6.586a1 1 0 00-.293-.707L3.293 7.293A1 1 0 013 6.586V4z" />
               </svg>
-              <span class="font-geist-medium" >Filter</span>
+              <span class="font-geist-medium">Filter</span>
             </button>
           </div>
         </div>
@@ -62,11 +62,11 @@
           v-if="activeTab === 'transaction-history'" 
           :search-query="searchQuery"
         />
-        <div v-else-if="activeTab === 'owned-mixtapes'" class="py-4">
-          <p class="text-gray-500">Owned Mixtapes & Albums content will be displayed here</p>
+        <div v-else-if="activeTab === 'owned-mixtapes'" class="p-4 sm:p-6">
+          <p class="text-sm sm:text-base text-gray-500">Owned Mixtapes & Albums content will be displayed here</p>
         </div>
-        <div v-else-if="activeTab === 'liked-mixtapes'" class="py-4">
-          <p class="text-gray-500">Liked Mixtapes & Albums content will be displayed here</p>
+        <div v-else-if="activeTab === 'liked-mixtapes'" class="p-4 sm:p-6">
+          <p class="text-sm sm:text-base text-gray-500">Liked Mixtapes & Albums content will be displayed here</p>
         </div>
       </div>
     </div>

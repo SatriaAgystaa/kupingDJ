@@ -2,7 +2,7 @@
   <div class="mx-auto py-8 sm:py-10 md:py-12 lg:py-14 px-4 sm:px-5 md:px-6 lg:px-8 xl:px-12 relative z-10">
     <!-- Your Chart Title -->
     <div class="mb-8 sm:mb-10 md:mb-12">
-      <h1 class="text-2xl sm:text-3xl md:text-4xl lg:text-4.5xl xl:text-5xl font-glancyr-medium tracking-wide">YOUR CHART</h1>
+      <h1 class="text-2xl sm:text-3xl md:text-4xl lg:text-4.5xl xl:text-5xl font-glancyr-medium">YOUR CHART</h1>
     </div>
     
     <div class="flex flex-col lg:flex-row gap-4 md:gap-6 lg:gap-8">
