@@ -84,7 +84,7 @@
       </div>
 
       <!-- Total Price -->
-      <div class="text-black whitespace-nowrap justify-between md:justify-between flex flex-row md:flex-row lg:flex-col">
+      <div class="text-black whitespace-nowrap justify-between items-center lg:items-start md:justify-between flex flex-row md:flex-row lg:flex-col">
         <span class="font-geist-regular text-gray-500 text-xs">Total ({{ transaction.items.length }} items)</span>
         <span class="font-geist-semibold text-sm sm:text-base">{{ transaction.total }}</span>
       </div>

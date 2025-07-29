@@ -45,13 +45,7 @@
               </div>
             </div>
 
-            <!-- Filter Button -->
-            <button class="flex items-center justify-center gap-1 sm:gap-2 px-3 sm:px-4 md:px-4 py-2 sm:py-3 border border-gray-300 text-xs sm:text-sm md:text-sm hover:bg-gray-50 whitespace-nowrap">
-              <svg xmlns="http://www.w3.org/2000/svg" class="h-4 w-4 sm:h-5 sm:w-5 md:h-5 md:w-5" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 4a1 1 0 011-1h16a1 1 0 011 1v2.586a1 1 0 01-.293.707l-6.414 6.414a1 1 0 00-.293.707V17l-4 4v-6.586a1 1 0 00-.293-.707L3.293 7.293A1 1 0 013 6.586V4z" />
-              </svg>
-              <span class="font-geist-medium">Filter</span>
-            </button>
+            <Filter />
           </div>
         </div>
       </div>
@@ -77,6 +71,7 @@
 import { profileData } from '~/data/profile'
 import ProfileCard from '../ProfileCard/ProfileCard.vue'
 import TransactionHistorySection from '../TrasactionHistory/TransactionHistorySection.vue'
+import Filter from '../Filter/FilterSection.vue'
 
 const profile = profileData
 const searchQuery = ref('')

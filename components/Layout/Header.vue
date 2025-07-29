@@ -19,7 +19,7 @@
           </div>
           
           <!-- Desktop Navigation -->
-          <nav class="hidden md:flex gap-4 md:gap-5 lg:gap-6 xl:gap-8 font-geist-medium text-xs xs:text-xs sm:text-sm md:text-[14px] lg:text-[15px] xl:text-base">
+          <nav class="hidden md:flex gap-4 md:gap-5 lg:gap-6 xl:gap-8 font-geist-medium text-xs xs:text-xs sm:text-sm md:text-md lg:text-md xl:text-base">
             <a 
               v-for="(link, index) in navLinks" 
               :key="index"
@@ -43,7 +43,7 @@
                 class="flex group font-glancyr-light hover:scale-105 transition-all duration-300 min-w-0"
                 @click="closeAlert"
               >
-                <div class="flex-1 bg-red-800 text-white border-2 border-red-800 px-2 xs:px-2.5 sm:px-3 md:px-3 lg:px-4 xl:px-5 py-1 xs:py-1.5 sm:py-1.5 md:py-1.5 lg:py-2 tracking-wide text-[10px] xs:text-xs sm:text-xs md:text-xs lg:text-sm xl:text-sm transition-all duration-300 group-hover:bg-red-700 text-center flex items-center justify-center truncate">
+                <div class="flex-1 bg-red-800 text-white border-2 border-red-800 px-2 xs:px-2.5 sm:px-3 md:px-3 lg:px-4 xl:px-5 py-1 xs:py-1.5 sm:py-1.5 md:py-1.5 lg:py-2 tracking-wide text-xs xs:text-xs sm:text-xs md:text-xs lg:text-sm xl:text-sm transition-all duration-300 group-hover:bg-red-700 text-center flex items-center justify-center truncate">
                   REGISTER NOW
                 </div>
                 <div class="bg-black border-2 border-black px-1.5 xs:px-2 sm:px-2 md:px-2 lg:px-3 xl:px-3 py-1 xs:py-1.5 sm:py-1.5 md:py-1.5 lg:py-2 flex items-center justify-center transition-all duration-300 group-hover:bg-gray-900 flex-shrink-0">
@@ -55,7 +55,7 @@
             <!-- Login Button -->
             <div class="hidden md:flex group font-glancyr-light hover:scale-105 transition-all duration-300">
               <NuxtLink to="/login" class="flex group font-glancyr-light hover:scale-105 transition-all duration-300 min-w-0">
-                <div class="bg-white text-center flex items-center justify-center truncate text-black border-2 border-black px-2 xs:px-2.5 sm:px-3 md:px-3 lg:px-4 xl:px-5 py-1 xs:py-1.5 sm:py-1.5 md:py-1.5 lg:py-2 tracking-wide text-[10px] xs:text-xs sm:text-xs md:text-xs lg:text-sm xl:text-sm transition-all duration-300">
+                <div class="bg-white text-center flex items-center justify-center truncate text-black border-2 border-black px-2 xs:px-2.5 sm:px-3 md:px-3 lg:px-4 xl:px-5 py-1 xs:py-1.5 sm:py-1.5 md:py-1.5 lg:py-2 tracking-wide text-xs xs:text-xs sm:text-xs md:text-xs lg:text-sm xl:text-sm transition-all duration-300">
                   LOGIN
                 </div>
               </NuxtLink>
@@ -292,14 +292,4 @@ nav a:active {
   transition-duration: 200ms;
 }
 
-/* Custom text sizes */
-.text-\[10px\] {
-  font-size: 10px;
-}
-.text-\[14px\] {
-  font-size: 14px;
-}
-.text-\[15px\] {
-  font-size: 15px;
-}
 </style>

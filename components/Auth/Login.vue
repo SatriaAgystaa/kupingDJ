@@ -19,22 +19,19 @@
 
         <!-- Form -->
         <form class="space-y-6" @submit.prevent="handleLogin">
-          <!-- Facebook Username with input focus animation -->
+          <!-- Email Field -->
           <div class="transform transition-all duration-500 opacity-0 animate-fade-in" style="animation-delay: 400ms">
-            <label for="facebook-username" class="block text-md font-geist-semibold text-black mb-2">
-              Facebook Username
+            <label for="email" class="block text-md font-geist-semibold text-black mb-2">
+              Email
             </label>
             <div class="relative group">
-              <div class="absolute inset-y-0 left-0 pl-3 flex items-center pointer-events-none transition-transform duration-300 group-focus-within:-translate-y-1">
-                <img src="/icons/auth/facebook.svg" alt="Facebook icon" class="h-5 w-5 transition-transform duration-300 group-focus-within:scale-110" />
-              </div>
               <input
-                type="text"
-                id="facebook-username"
-                name="facebook-username"
-                placeholder="Enter your Facebook username"
-                class="w-full pl-10 pr-3 py-2 border border-gray-100 shadow-sm bg-gray-50 text-sm placeholder-gray-400 focus:outline-none focus:ring-[#B00000] focus:border-[#B00000] transition-all duration-300 hover:shadow-md focus:shadow-lg"
-                v-model="formData.username"
+                type="email"
+                id="email"
+                name="email"
+                placeholder="Enter your email address"
+                class="w-full pl-10 pl-3 py-2 border border-gray-100 shadow-sm bg-gray-50 text-sm placeholder-gray-400 focus:outline-none focus:ring-[#B00000] focus:border-[#B00000] transition-all duration-300 hover:shadow-md focus:shadow-lg"
+                v-model="formData.email"
               />
             </div>
           </div>
@@ -117,7 +114,7 @@
           <div class="flex-grow border-t border-gray-300 transform transition-all duration-500 scale-x-0 origin-right animate-scale-in" style="animation-delay: 750ms"></div>
         </div>
 
-        <!-- Facebook Login Button -->
+        <!-- Google Login Button -->
         <div class="w-full transform transition-all duration-500 opacity-0 animate-fade-in" style="animation-delay: 850ms">
           <div class="flex w-full group font-glancyr-light hover:scale-[1.02] transition-all duration-300 active:scale-95">
             <button 
@@ -188,7 +185,7 @@ const router = useRouter()
 const isLoading = ref(false)
 
 const formData = ref({
-  username: '',
+  email: '',
   password: ''
 })
 
@@ -213,19 +210,19 @@ const handleLogin = async () => {
     // Simulate API call delay (remove in production)
     await new Promise(resolve => setTimeout(resolve, 500))
     
-    if (formData.value.username === authData.username && 
+    if (formData.value.email === authData.email && 
         formData.value.password === authData.password) {
       
       authData.isLoggedIn = true
       if (process.client) {
         localStorage.setItem('isLoggedIn', 'true')
-        localStorage.setItem('username', formData.value.username)
+        localStorage.setItem('email', formData.value.email)
       }
       
       // Force hard redirect to ensure complete page reload
       window.location.href = '/'
     } else {
-      alert('Username atau password salah!')
+      alert('Email atau password salah!')
     }
   } finally {
     isLoading.value = false
