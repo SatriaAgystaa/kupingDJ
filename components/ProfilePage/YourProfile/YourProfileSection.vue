@@ -8,7 +8,7 @@
     <!-- Combined Container with Border -->
     <div class="border border-gray-200 mb-6">
       <!-- Tabs and Search Section -->
-      <div class="p-3 sm:p-4 border-b border-gray-200">
+      <div class="p-4 border-b border-gray-200">
         <div class="flex flex-col md:flex-col lg:flex-row justify-between items-start sm:items-center gap-3 sm:gap-4">
           <!-- Tabs Navigation -->
           <div class="w-full overflow-x-auto lg:w-[800px]">
