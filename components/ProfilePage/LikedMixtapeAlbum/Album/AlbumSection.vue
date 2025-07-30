@@ -1,11 +1,14 @@
 <template>
   <div class="album-section relative overflow-hidden">
-    <div class="mx-auto py-6 xs:py-7 sm:py-8 md:py-10 lg:py-12 xl:py-12 2xl:py-12 px-4 xs:px-5 sm:px-6 md:px-10 lg:px-10 xl:px-12 2xl:px-12 relative">
-      <!-- Section Header -->
-      <h2 class="text-3xl sm:text-4xl md:text-4xl lg:text-5xl xl:text-5xl font-glancyr-medium tracking-wide mb-4 sm:mb-6 md:mb-8">
-        EDM ALBUM
-      </h2>
-
+    <div class="mx-auto p-4 relative z-10">
+      <!-- Section Title -->
+      <div class="mb-3 sm:mb-4">
+        <div class="flex items-center">
+          <h3 class="text-base sm:text-lg lg:text-xl font-glancyr-medium pr-3 sm:pr-4">OWNED ALBUM</h3>
+          <div class="flex-grow border-t border-gray-200"></div>
+        </div>
+      </div>
+      
       <!-- Albums Grid -->
       <div class="grid grid-cols-1 sm:grid-cols-2 gap-x-4 sm:gap-x-6 md:gap-x-8 gap-y-6 sm:gap-y-8 lg:gap-y-12">
         <AlbumCard

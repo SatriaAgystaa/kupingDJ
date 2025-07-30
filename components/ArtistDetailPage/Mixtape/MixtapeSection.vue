@@ -38,7 +38,7 @@
         <button
           @click="prevPage"
           :disabled="currentPage === 1"
-          class="p-2 border border-gray-300 hover:bg-gray-100 disabled:opacity-50 disabled:cursor-not-allowed"
+          class="p-2 hover:bg-gray-100 disabled:opacity-50 disabled:cursor-not-allowed"
           aria-label="Previous page"
         >
           <img src="/icons/baseicons/bulk_left.svg" alt="Previous" class="w-4 h-4" />
@@ -59,7 +59,7 @@
         <button
           @click="nextPage"
           :disabled="currentPage === totalPages"
-          class="p-2 border border-gray-300 hover:bg-gray-100 disabled:opacity-50 disabled:cursor-not-allowed"
+          class="p-2 hover:bg-gray-100 disabled:opacity-50 disabled:cursor-not-allowed"
           aria-label="Next page"
         >
           <img src="/icons/baseicons/bulk_right.svg" alt="Next" class="w-4 h-4" />

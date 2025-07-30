@@ -42,14 +42,14 @@
             </button>
           </div>
           
-          <div class="flex items-center justify-between p-4 border-b border-gray-200">
+          <NuxtLink to="/your-chart" class="flex items-center justify-between p-4 border-b border-gray-200">
             <button class="text-sm sm:text-md font-geist-medium text-black hover:text-red-800 transition-colors duration-200">See All</button>
             <button class="text-black hover:text-red-800 transition-colors duration-200">
               <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5" fill="none" viewBox="0 0 24 24" stroke="currentColor">
                 <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7" />
               </svg>
             </button>
-          </div>
+          </NuxtLink>
           
           <div class="max-h-64 overflow-y-auto">
             <div class="space-y-3 p-4">

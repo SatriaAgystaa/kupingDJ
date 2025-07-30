@@ -124,7 +124,7 @@
             height="14"
           />
         </div>
-      </div>
+    </div>
     </div>
   </div>
 </template>

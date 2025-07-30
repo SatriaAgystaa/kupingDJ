@@ -4,7 +4,7 @@
     <button 
       @click="toggleDropdown"
       aria-label="Filter" 
-      class="hover:text-[#A10501] w-full justify-center items-center hover:border-[#A10501] hover:bg-[#A10501]/10 transition-all duration-300 px-3 xs:px-3.5 sm:px-4 py-2 xs:py-2 sm:py-2 md:py-3 relative group flex items-center gap-1.5 sm:gap-2"
+      class="hover:text-[#A10501] w-full justify-center items-center hover:border-[#A10501] hover:bg-[#A10501]/10 transition-all duration-300 px-3 xs:px-3.5 sm:px-4 py-2 xs:py-2 sm:py-2 md:py-2.5 relative group flex items-center gap-1.5 sm:gap-2"
       :class="{'text-[#A10501] border border-[#A10501]': isOpen, 'border border-gray-300 text-black': !isOpen}"
     >
       <span class="text-xs xs:text-xs sm:text-sm font-geist-medium">Filter</span>

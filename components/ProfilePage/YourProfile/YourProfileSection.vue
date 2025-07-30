@@ -1,8 +1,8 @@
-<!-- ~/components/YourProfileSection.vue -->
 <template>
   <div class="mx-auto py-8 sm:py-10 md:py-12 lg:py-14 px-4 sm:px-5 md:px-6 lg:px-8 xl:px-12 relative z-10">
-    <h1 class="text-2xl xs:text-2.5xl sm:text-3xl md:text-3.5xl lg:text-4xl xl:text-4.5xl font-glancyr-medium text-gray-900 mb-4 sm:mb-6 md:mb-8 lg:mb-10">YOUR PROFILE</h1>
-    
+    <div class="mb-8 sm:mb-10 md:mb-12">
+      <h1 class="text-2xl sm:text-3xl md:text-4xl lg:text-4.5xl xl:text-5xl font-glancyr-medium">YOUR PROFILE</h1>
+    </div>
     <ProfileCard :profile="profile" />
 
     <!-- Combined Container with Border -->
@@ -17,7 +17,7 @@
                 v-for="tab in tabs"
                 :key="tab.name"
                 @click="activeTab = tab.name"
-                class="flex-1 px-2 xs:px-3 sm:px-4 py-2 sm:py-3 text-xs xs:text-sm sm:text-sm text-center transition-colors whitespace-nowrap"
+                class="flex-1 px-2 xs:px-3 sm:px-4 py-2 sm:py-2 text-xs xs:text-sm sm:text-base text-center transition-colors whitespace-nowrap"
                 :class="{
                   'bg-black text-white': activeTab === tab.name,
                   'text-black bg-white hover:bg-gray-50': activeTab !== tab.name
@@ -27,15 +27,14 @@
               </button>
             </nav>
           </div>
-
           <!-- Search and Filter Container -->
-          <div class="flex flex-col md:flex-row lg:flex-row gap-3 sm:gap-4 w-full md:w-full lg:w-[500px]">
+          <div class="flex flex-col md:flex-row lg:flex-row gap-3 sm:gap-4 w-full md:w-full lg:w-[450px]">
             <!-- Search Bar -->
             <div class="relative flex-1">
               <input 
                 type="text" 
                 :placeholder="getSearchPlaceholder()"
-                class="w-full pl-3 sm:pl-4 md:pl-4 pr-9 sm:pr-10 py-2 sm:py-3 border border-[#f7f7f7] bg-[#f7f7f7] text-xs sm:text-sm md:text-sm font-geist-regular"
+                class="w-full pl-3 sm:pl-4 md:pl-4 pr-9 sm:pr-10 py-2 sm:py-2.5 border border-[#f7f7f7] bg-[#f7f7f7] text-xs sm:text-sm md:text-sm font-geist-regular"
                 v-model="searchQuery"
               >
               <div class="absolute right-2 sm:right-3 md:right-3 top-1/2 transform -translate-y-1/2 text-black">
@@ -56,12 +55,14 @@
           v-if="activeTab === 'transaction-history'" 
           :search-query="searchQuery"
         />
-        <div v-else-if="activeTab === 'owned-mixtapes'" class="p-4 sm:p-6">
-          <p class="text-sm sm:text-base text-gray-500">Owned Mixtapes & Albums content will be displayed here</p>
-        </div>
-        <div v-else-if="activeTab === 'liked-mixtapes'" class="p-4 sm:p-6">
-          <p class="text-sm sm:text-base text-gray-500">Liked Mixtapes & Albums content will be displayed here</p>
-        </div>
+        <OwnedMixtapeAlbumSection 
+          v-else-if="activeTab === 'owned-mixtapes'"
+          :search-query="searchQuery"
+        />
+        <LikedMixtapeAlbumSection
+          v-else-if="activeTab === 'liked-mixtapes'"
+          :search-query="searchQuery"
+        />
       </div>
     </div>
   </div>
@@ -71,6 +72,8 @@
 import { profileData } from '~/data/profile'
 import ProfileCard from '../ProfileCard/ProfileCard.vue'
 import TransactionHistorySection from '../TrasactionHistory/TransactionHistorySection.vue'
+import OwnedMixtapeAlbumSection from '../OwnedMixtapeAlbum/OwnedMixtapeAlbumSection.vue'
+import LikedMixtapeAlbumSection from '../LikedMixtapeAlbum/LikedMixtapeAlbumSection.vue'
 import Filter from '../Filter/FilterSection.vue'
 
 const profile = profileData
@@ -97,3 +100,7 @@ const getSearchPlaceholder = () => {
   }
 }
 </script>
+
+<style scoped>
+/* Add any custom styles here if needed */
+</style>
