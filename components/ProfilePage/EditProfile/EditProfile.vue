@@ -16,7 +16,7 @@
             <img 
               :src="profile.imageUrl" 
               alt="Profile Image" 
-              class="w-20 h-20 sm:w-28 sm:h-28 md:w-32 md:h-32 rounded-full object-cover border-2 border-gray-200"
+              class="w-20 h-20 sm:w-28 sm:h-28 md:w-32 md:h-32 rounded-full object-cover"
             >
           </div>
 
