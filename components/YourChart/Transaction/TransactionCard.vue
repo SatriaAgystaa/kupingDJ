@@ -1,6 +1,6 @@
 <template>
   <div class="bg-white p-4 md:p-5 lg:p-6 shadow-sm border border-gray-200">
-    <h3 class="text-lg md:text-xl lg:text-xl font-glancyr-medium mb-3 md:mb-4 lg:mb-4">
+    <h3 class="text-lg md:text-xl lg:text-xl font-geist-semibold mb-3 md:mb-4 lg:mb-4">
       Transaction Review
     </h3>
     
@@ -13,8 +13,8 @@
       </span>
     </div>
     
-    <div class="bg-[#EEEEEE] p-2 md:p-3 lg:p-3 mb-3 md:mb-4 lg:mb-4">
-      <p class="text-black text-xs md:text-sm lg:text-sm leading-4 md:leading-5 lg:leading-5">
+    <div class="bg-[#EEEEEE] p-2 md:p-3 lg:p-3 mb-3 md:mb-4 lg:mb-4 font-geist-regular">
+      <p class="text-black text-sm md:text-sm lg:text-sm leading-4 md:leading-5 lg:leading-5">
         We will send download link to<br>
         <span class="font-geist-medium text-[#A10501]">{{ email }}</span> when payment<br>
         complete
