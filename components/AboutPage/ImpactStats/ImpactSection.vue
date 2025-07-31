@@ -2,6 +2,7 @@
 <template>
   <section class="bg-white overflow-hidden">
     <ImpactCarousel :carousel-items="data.carouselItems" />
+    <ImpactCarousel :carousel-items="data.carouselItems" />
     <ImpactData :stats="data.stats" />
   </section>
 </template>

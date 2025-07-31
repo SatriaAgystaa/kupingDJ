@@ -15,7 +15,7 @@
         <img
           :src="currentMixtape.image"
           :alt="currentMixtape.title"
-          class="w-16 h-16 object-cover rounded"
+          class="w-16 h-16 object-cover"
         />
 
         <div class="truncate flex-1 min-w-0">
