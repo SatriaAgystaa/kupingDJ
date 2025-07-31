@@ -130,7 +130,7 @@
                     transition-all duration-300 group-hover:bg-gray-900"
             >
               <img 
-                src="/icons/baseicons/arrow_white.svg" 
+                src="/icons/auth/google.svg" 
                 alt="arrow" 
                 class="w-4 h-4 transition-transform duration-300 group-hover:translate-x-1 group-active:translate-x-2"
               />
