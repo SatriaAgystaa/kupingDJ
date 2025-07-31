@@ -116,7 +116,7 @@
       >
         <!-- Overlay -->
         <div 
-          class="absolute inset-0 bg-black bg-opacity-30 transition-opacity duration-300"
+          class="absolute inset-0 transition-opacity duration-300"
           @click="closeMobileMenu"
         ></div>
         

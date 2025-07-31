@@ -37,7 +37,8 @@
         :rating="mixtape.rating"
         :bpm="mixtape.bpm"
         :date="mixtape.date"
-        :isCarousel="false"
+        :isFavorited="mixtape.isFavorited"
+        @play="handlePlay(mixtape.id)"
         class="w-full"
       />
     </div>
@@ -51,6 +52,21 @@ import MixtapeCard from './MixtapeCard.vue'
 
 const filters = ['Top Purchased', 'Highest Rated', 'Most Recent']
 const activeFilter = ref('Top Purchased')
+
+const currentlyPlayingId = ref(null)
+
+const handlePlay = (id) => {
+  if (currentlyPlayingId.value === id) {
+    currentlyPlayingId.value = null
+  } else {
+    currentlyPlayingId.value = id
+  }
+  
+  // Update all mixtapes to set isPlaying state
+  mixtapes.forEach(mixtape => {
+    mixtape.isPlaying = mixtape.id === currentlyPlayingId.value
+  })
+}
 </script>
 
 <style scoped>

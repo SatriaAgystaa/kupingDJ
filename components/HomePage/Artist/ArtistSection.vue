@@ -1,5 +1,5 @@
 <template>
-  <div class="artist-section bg-white text-gray-900">
+  <div class="artist-section bg-white text-black">
     <div class="mx-auto py-8 sm:py-10 md:py-12 lg:py-14 px-4 sm:px-5 md:px-6 lg:px-8 xl:px-12 relative z-10">
       <!-- Header Section -->
       <div class="flex flex-col lg:flex-row lg:items-start lg:justify-between mb-6 sm:mb-8 md:mb-10 lg:mb-12 pt-6 sm:pt-8 md:pt-10 lg:pt-12">
@@ -64,7 +64,7 @@
       </div>
 
       <!-- Explore Button Section -->
-      <div class="flex justify-center">
+      <NuxtLink to="/artist" class="flex justify-center">
         <div class="flex group font-glancyr-light hover:scale-105 transition-all duration-300">
           <!-- Red Button -->
           <button 
@@ -86,7 +86,7 @@
             />
           </div>
         </div>
-      </div>
+      </NuxtLink>
     </div>
   </div>
 </template>

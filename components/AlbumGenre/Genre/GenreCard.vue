@@ -28,7 +28,7 @@
         <h3 class="text-xl sm:text-2xl md:text-3xl text-black tracking-wide font-glancyr-regular">
           {{ genre.title }}
         </h3>
-        <div class="p-2 transition-colors cursor-pointer hover:bg-gray-100 rounded-full">
+        <div class="p-2 transition-colors cursor-pointer">
           <img 
             src="/icons/baseicons/arrow_black.svg" 
             alt="Arrow icon" 

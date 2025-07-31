@@ -3,7 +3,7 @@
     <div class="mx-auto py-8 sm:py-10 md:py-12 lg:py-14 px-4 sm:px-5 md:px-6 lg:px-8 xl:px-12 relative z-10">
       <!-- Section Header -->
       <div class="flex flex-col md:flex-row justify-between items-start md:items-center mb-6 sm:mb-8 md:mb-10 lg:mb-12">
-        <h2 class="text-2xl xs:text-3xl sm:text-4xl md:text-4xl lg:text-5xl xl:text-5xl font-glancyr-medium tracking-wide mb-3 sm:mb-4 md:mb-6 lg:mb-8">
+        <h2 class="text-2xl xs:text-3xl sm:text-4xl md:text-4xl lg:text-5xl xl:text-5xl font-glancyr-medium tracking-wide">
           NEW ARRIVAL MIXTAPE
         </h2>
         <div class="flex gap-2 xs:gap-3 sm:gap-4 self-end md:self-auto">
@@ -30,7 +30,7 @@
 
       <!-- Mixtape Cards Grid -->
       <div class="relative w-full overflow-hidden mb-6">
-        <div class="grid grid-cols-1 xs:grid-cols-2 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 xl:grid-cols-4 gap-3 xs:gap-4 sm:gap-5 md:gap-6 w-full">
+        <div class="grid grid-cols-1 xs:grid-cols-2 sm:grid-cols-2 md:grid-cols-2 lg:grid-cols-4 xl:grid-cols-4 gap-3 xs:gap-4 sm:gap-5 md:gap-6 w-full">
           <MixtapeCard
             v-for="mixtape in mixtapes"
             :key="mixtape.id"
@@ -44,21 +44,24 @@
             :rating="mixtape.rating"
             :bpm="mixtape.bpm"
             :date="mixtape.date"
-            :isCarousel="false"
+            v-bind="mixtape"
+             :is-playing="currentTrack?.id === mixtape.id && isPlaying"
+            @play="handlePlay(mixtape)"
+      @toggle-favorite="handleToggleFavorite"
             class="w-full h-auto"
           />
         </div>
       </div>
 
       <!-- Explore Button Section -->
-      <div class="flex justify-center">
+      <NuxtLink to="/mixtape" class="flex justify-center">
         <div class="flex group font-glancyr-light hover:scale-105 transition-all duration-300">
           <!-- Red Button -->
           <button 
             class="bg-red-800 text-white px-3 py-1.5 xs:px-4 xs:py-2 sm:px-5 sm:py-2.5 md:px-6 md:py-3 font-semibold tracking-wide text-xs xs:text-sm sm:text-base md:text-lg
                    transition-all duration-300 group-hover:bg-red-700"
           >
-            EXPLORE ALL ALBUM
+            EXPLORE ALL MIXTAPE
           </button>
 
           <!-- Black Icon Section -->
@@ -73,15 +76,24 @@
             />
           </div>
         </div>
-      </div>
+      </NuxtLink>
     </div>
   </div>
 </template>
 
 <script setup>
-import { ref, computed, onMounted, onUnmounted } from 'vue'
+import { ref, computed, onMounted, onUnmounted, inject } from 'vue'
 import { mixtapes } from '@/data/mixtapes'
 import MixtapeCard from './MixtapeCard.vue'
+
+const { currentTrack, isPlaying, play, pause } = inject('audioPlayer')
+
+const handleToggleFavorite = (id) => {
+  const index = mixtapes.findIndex(m => m.id === id)
+  if (index !== -1) {
+    mixtapes[index].isFavorited = !mixtapes[index].isFavorited
+  }
+}
 
 const props = defineProps({
   title: {
@@ -93,6 +105,7 @@ const props = defineProps({
 const currentIndex = ref(0)
 const windowWidth = ref(0)
 const isClient = typeof window !== 'undefined'
+const currentlyPlayingId = ref(null)
 
 const visibleCards = computed(() => {
   if (!isClient) return 2
@@ -102,6 +115,16 @@ const visibleCards = computed(() => {
   if (windowWidth.value >= 768) return 3
   return 2
 })
+
+
+const handlePlay = (mixtape) => {
+  play(mixtape)
+}
+
+// Tambahkan fungsi handlePause
+const handlePause = () => {
+  pause()
+}
 
 const slideLeft = () => {
   if (currentIndex.value > 0) currentIndex.value--

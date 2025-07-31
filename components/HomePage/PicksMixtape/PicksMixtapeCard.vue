@@ -1,13 +1,19 @@
 <template>
-  <div
-    class="picksMixtape-card bg-black overflow-hidden w-full flex-shrink-0"
-    :style="isCarousel ? { width: `calc(${100 / Math.min(visibleCards, 4)}% - 1rem)` } : {}"
-  >
+  <div class="mixtape-card bg-black overflow-hidden transition-all duration-300 w-full">
     <!-- Cover and Vinyl -->
-    <PicksMixtapeCover :image="image" @play="handlePlay" />
+    <div class="">
+      <PicksMixtapeCover 
+        :image="image" 
+        :title="title" 
+        :isFavorited="isFavorited"
+        :isPlaying="isPlaying"
+        @play="handlePlay"
+        @toggle-favorite="$emit('toggle-favorite')"
+      />
+    </div>
 
     <!-- Meta Information -->
-    <div class="py-4">
+    <div class="pt-3 pb-4 sm:pt-4 sm:pb-5 md:pt-5 md:pb-6">
       <PicksMixtapeMeta
         :artist="artist"
         :artistImage="artistImage"
@@ -18,13 +24,15 @@
         :likes="likes"
         :downloads="downloads"
         :rating="rating"
-        :vendors="vendors"
+        @buy-now="$emit('buy-now')"
+        @add-to-cart="$emit('add-to-cart')"
       />
     </div>
   </div>
 </template>
 
 <script setup>
+import { ref } from 'vue'
 import PicksMixtapeCover from './PicksMixtapeCover.vue'
 import PicksMixtapeMeta from './PicksMixtapeMeta.vue'
 
@@ -39,37 +47,27 @@ const props = defineProps({
   rating: String,
   bpm: String,
   date: String,
-  vendors: Array,
-  visibleCards: {
-    type: Number,
-    default: 4
-  },
-  isCarousel: {
-    type: Boolean,
-    default: false
-  }
+  isFavorited: Boolean
 })
 
-const emit = defineEmits(['play'])
+const emit = defineEmits(['play', 'toggle-favorite', 'buy-now', 'add-to-cart'])
+
+const isPlaying = ref(false)
 
 const handlePlay = () => {
-  emit('play')
+  isPlaying.value = !isPlaying.value
+  emit('play', isPlaying.value)
 }
 </script>
 
 <style scoped>
-.picksMixtape-card {
+.mixtape-card {
+  min-width: 0; /* Prevent text overflow */
+  max-width: 100%;
   transition: transform 0.3s ease;
-  min-width: 280px; /* Minimum width for mobile */
 }
 
-.picksMixtape-card:hover {
-  transform: translateY(-5px);
-}
-
-@media (max-width: 640px) {
-  .picksMixtape-card {
-    width: 100% !important; /* Full width on mobile */
-  }
+.mixtape-card:hover {
+  transform: translateY(-4px);
 }
 </style>

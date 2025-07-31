@@ -11,6 +11,7 @@ export interface Mixtape {
   rating: string;
   bpm: string;
   date: string;
+  music: string;
   isFavorited?: boolean;
 }
 
@@ -27,6 +28,7 @@ export const mixtapes: Mixtape[] = [
     rating: '4.5',
     bpm: '150',
     date: '02 July, 2025',
+    music: '/music/music1.mp3',
     isFavorited: false
   },
   {
@@ -41,6 +43,7 @@ export const mixtapes: Mixtape[] = [
     rating: '4.5',
     bpm: '150',
     date: '02 July, 2025',
+    music: '/music/music1.mp3',
     isFavorited: false
   },
   {
@@ -55,6 +58,7 @@ export const mixtapes: Mixtape[] = [
     rating: '4.5',
     bpm: '150',
     date: '02 July, 2025',
+    music: '/music/music1.mp3',
     isFavorited: false
   },
   {
@@ -69,6 +73,7 @@ export const mixtapes: Mixtape[] = [
     rating: '4.5',
     bpm: '150',
     date: '02 July, 2025',
+    music: '/music/music1.mp3',
     isFavorited: false
   },
 ];

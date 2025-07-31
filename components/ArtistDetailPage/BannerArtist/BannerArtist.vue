@@ -15,7 +15,7 @@
       <!-- Artist Info -->
       <div class="w-full mx-auto">
         <!-- Artist Name -->
-        <h1 class="text-2xl xs:text-3xl sm:text-4xl md:text-4xl lg:text-5xl xl:text-6xl 2xl:text-6xl font-glancyr-medium text-white tracking-wider leading-tight xs:leading-tight sm:leading-tight md:leading-tight lg:leading-tight xl:leading-tight">
+        <h1 class="text-2xl xs:text-3xl sm:text-4xl md:text-4xl lg:text-5xl xl:text-6xl 2xl:text-6xl font-glancyr-medium text-white tracking-wider leading-tight uppercase">
           {{ artist.name }}
         </h1>
 

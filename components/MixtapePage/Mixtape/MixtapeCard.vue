@@ -1,12 +1,13 @@
 <template>
-  <div class="mixtape-card bg-white rounded-lg overflow-hidden transition-all duration-300 w-full">
+  <div class="mixtape-card overflow-hidden transition-all duration-300 w-full">
     <!-- Cover and Vinyl -->
-    <div class="pt-3 sm:pt-4 md:pt-5 px-3 sm:px-4 md:px-5">
+    <div class="">
       <MixtapeCover 
         :image="image" 
         :title="title" 
         :isFavorited="isFavorited"
-        @play="$emit('play')"
+        :isPlaying="isPlaying"
+        @play="handlePlay"
         @toggle-favorite="$emit('toggle-favorite')"
       />
     </div>
@@ -31,6 +32,7 @@
 </template>
 
 <script setup>
+import { ref } from 'vue'
 import MixtapeCover from './MixtapeCover.vue'
 import MixtapeMeta from './MixtapeMeta.vue'
 
@@ -48,7 +50,14 @@ const props = defineProps({
   isFavorited: Boolean
 })
 
-defineEmits(['play', 'toggle-favorite', 'buy-now', 'add-to-cart'])
+const emit = defineEmits(['play', 'toggle-favorite', 'buy-now', 'add-to-cart'])
+
+const isPlaying = ref(false)
+
+const handlePlay = () => {
+  isPlaying.value = !isPlaying.value
+  emit('play', isPlaying.value)
+}
 </script>
 
 <style scoped>

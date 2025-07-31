@@ -6,7 +6,15 @@
       <NuxtPage />
     </main>
 
-    <!-- <PlaySong v-if="showPlayer" /> -->
+    <PlaySong 
+      v-if="showPlayer && currentTrack" 
+      :mixtape="currentTrack"
+      :is-playing="isPlaying"
+      @play="handlePlay"
+      @pause="handlePause"
+      @toggle-favorite="toggleFavorite"
+      @close="closePlayer"
+    />
 
     <LoginRequiredAlert v-if="showLoginAlert" @close="showLoginAlert = false" />
      
@@ -27,7 +35,39 @@ import LoginRequiredAlert from '~/components/Auth/LoginRequiredAlert.vue'
 import PlaySong from '~/components/Layout/PlaySong.vue'
 
 const showLoginAlert = ref(false)
-const showPlayer = ref(true)
+const showPlayer = ref(false)
+const currentTrack = ref(null)
+const isPlaying = ref(false)
+
+const handlePlay = (mixtape) => {
+  currentTrack.value = mixtape
+  isPlaying.value = true
+  showPlayer.value = true
+}
+
+const handlePause = () => {
+  isPlaying.value = false
+}
+
+const closePlayer = () => {
+  showPlayer.value = false
+  isPlaying.value = false
+  currentTrack.value = null
+}
+
+const toggleFavorite = (mixtape) => {
+  const index = mixtapes.findIndex(m => m.id === mixtape.id)
+  if (index !== -1) {
+    mixtapes[index].isFavorited = !mixtapes[index].isFavorited
+  }
+}
+
+provide('audioPlayer', {
+  play: handlePlay,
+  pause: handlePause,
+  currentTrack,
+  isPlaying
+})
 
 onMounted(() => {
   if (process.client) {
@@ -38,6 +78,3 @@ onMounted(() => {
   }
 })
 </script>
-
-<style>
-</style>

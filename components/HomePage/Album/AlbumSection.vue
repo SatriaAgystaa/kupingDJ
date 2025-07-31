@@ -21,7 +21,7 @@
       </div>
 
       <!-- Explore Button Section -->
-      <div class="flex justify-center">
+      <NuxtLink to="/album" class="flex justify-center">
         <div class="flex group font-glancyr-light hover:scale-105 transition-all duration-300">
           <!-- Red Button -->
           <button 
@@ -43,7 +43,7 @@
             />
           </div>
         </div>
-      </div>
+      </NuxtLink>
     </div>
   </div>
 </template>

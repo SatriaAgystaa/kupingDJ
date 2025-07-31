@@ -10,7 +10,7 @@
     </div>
 
     <!-- Content container with higher z-index -->
-    <div class="relative z-10 flex flex-col h-full">
+    <div class="relative flex flex-col h-full">
       <!-- Icon at top -->
       <div class="flex justify-start mb-4 sm:mb-5 md:mb-6">
         <img 
@@ -24,18 +24,18 @@
       <div class="flex-1"></div>
 
       <!-- Genre title and arrow -->
-      <div class="flex items-center justify-between mt-4 sm:mt-5 md:mt-6">
+      <NuxtLink to="/album-genre" class="flex items-center justify-between mt-4 sm:mt-5 md:mt-6">
         <h3 class="text-xl sm:text-2xl md:text-3xl text-black tracking-wide font-glancyr-regular">
           {{ genre.title }}
         </h3>
-        <div class="p-2 transition-colors cursor-pointer hover:bg-gray-100 rounded-full">
+        <div class="p-2 transition-colors cursor-pointer">
           <img 
             src="/icons/baseicons/arrow_black.svg" 
             alt="Arrow icon" 
             class="w-4 h-4 sm:w-5 sm:h-5"
           >
         </div>
-      </div>
+      </NuxtLink>
     </div>
   </div>
 </template>

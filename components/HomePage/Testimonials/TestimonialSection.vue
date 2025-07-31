@@ -9,7 +9,7 @@
           </h2>
         </div>
         <div class="lg:max-w-md">
-          <p class="text-gray-800 text-xs xs:text-sm sm:text-base md:text-[15px] lg:text-base leading-relaxed font-geist-regular">
+          <p class="text-black text-xs xs:text-sm sm:text-base md:text-[15px] lg:text-base leading-relaxed font-geist-regular">
             Discover what our users are saying about Kuping DJ! From seamless music discovery to an extensive library of mixtapes and albums.
           </p>
         </div>

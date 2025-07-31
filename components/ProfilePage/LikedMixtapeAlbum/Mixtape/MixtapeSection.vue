@@ -26,6 +26,7 @@
           :rating="mixtape.rating"
           :bpm="mixtape.bpm"
           :date="mixtape.date"
+          @play="handlePlay(mixtape.id)"
           :isCarousel="false"
         />
       </div>
@@ -75,6 +76,21 @@
 import { ref, computed } from 'vue'
 import { mixtapes } from '@/data/mixtapesPopular'
 import MixtapeCard from './MixtapeCard.vue'
+
+const currentlyPlayingId = ref(null)
+
+const handlePlay = (id) => {
+  if (currentlyPlayingId.value === id) {
+    currentlyPlayingId.value = null
+  } else {
+    currentlyPlayingId.value = id
+  }
+  
+  // Update all mixtapes to set isPlaying state
+  mixtapes.forEach(mixtape => {
+    mixtape.isPlaying = mixtape.id === currentlyPlayingId.value
+  })
+}
 
 // Pagination logic
 const itemsPerPage = 10

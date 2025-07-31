@@ -99,30 +99,38 @@
         </span>
         <div class="border-t border-gray-300 flex-grow ml-2"></div>
     </div>
-    <NuxtLink to="/transaction-detail" class="flex group font-glancyr-light hover:scale-[1.02] transition-all duration-300 active:scale-[0.98] w-full md:w-full lg:w-auto">
-      <div 
-        class="text-[#A10501] border border-[#A10501] bg-white py-2 px-3 xs:px-4 lg:px-6 lg:py-2 font-semibold tracking-wide text-xs 
-                transition-all duration-300 group-hover:bg-gray-50 shadow-md hover:shadow-lg flex-1 xs:flex-none"
+    <NuxtLink 
+        to="/transaction-detail" 
+        class="group flex w-full md:w-full lg:w-auto font-glancyr-light hover:scale-[1.02] active:scale-[0.98] transition-all duration-300"
       >
-        <span class="inline-block group-active:translate-y-0.5 transition-transform text-xs xs:text-sm">
-          DETAILS
-        </span>
-      </div>
-      <div 
-        class="bg-black px-3 py-2 flex items-center justify-center 
-                transition-all duration-300 group-hover:bg-gray-900 cursor-pointer w-8 xs:w-auto"
-      >
-        <img 
-          src="/icons/baseicons/arrow_white.svg" 
-          alt="arrow" 
-          class="w-3 h-3 transition-transform duration-300 
-              group-hover:translate-x-1 group-active:translate-x-2"
-          loading="lazy"
-          width="14"
-          height="14"
-        />
-      </div>
-    </NuxtLink>
+        <div 
+          class="flex items-center justify-between w-full bg-white shadow-md hover:shadow-lg 
+                transition-all duration-300 group-hover:bg-gray-50"
+        >
+          <!-- Text -->
+          <div 
+            class="flex-1 py-2.5 px-4 lg:px-6 font-semibold tracking-wide text-[#A10501] text-xs xs:text-sm border border-[#A10501]"
+          >
+            DETAILS
+          </div>
+
+          <!-- Icon -->
+          <div 
+            class="min-w-[42px] px-3 py-3 bg-black flex items-center justify-center border border-black 
+                  transition-all duration-300 group-hover:bg-gray-900 cursor-pointer"
+          >
+            <img 
+              src="/icons/baseicons/arrow_white.svg" 
+              alt="arrow" 
+              class="w-3 h-3 transition-transform duration-300 
+                    group-hover:translate-x-1 group-active:translate-x-2"
+              loading="lazy"
+              width="20"
+              height="20"
+            />
+          </div>
+        </div>
+      </NuxtLink>
     </div>
   </div>
 </template>

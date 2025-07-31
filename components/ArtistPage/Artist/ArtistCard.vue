@@ -29,7 +29,7 @@
       <!-- Artist Name -->
       <div class="absolute bottom-0 left-0 p-3 sm:p-4 md:p-5 z-10 text-left w-full">
         <h3 
-          class="text-xl sm:text-2xl md:text-3xl lg:text-[34px] text-white italic tracking-wider transition-all duration-700"
+          class="text-xl sm:text-2xl md:text-3xl lg:text-[34px] text-white italic tracking-wider transition-all duration-700 uppercase"
           :class="{ 
             'font-glancyr-light': !isHovered,
             'font-glancyr-regular text-shadow-red': isHovered 

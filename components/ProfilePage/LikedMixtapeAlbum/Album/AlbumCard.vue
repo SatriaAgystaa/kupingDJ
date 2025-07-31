@@ -11,14 +11,14 @@
             class="absolute top-4 right-4 bg-white p-2 sm:p-3 rounded-full shadow-sm hover:bg-gray-50 transition-colors"
           >
             <img
-              src="/icons/baseicons/like_pink.svg"
+              src="/icons/baseicons/like_black.svg"
               class="w-4 h-4 sm:w-5 sm:h-5"
               alt="Like Icon"
             />
           </button>
         </div>
 
-        <h3 class="text-xl sm:text-2xl md:text-2xl font-geist-semibold text-gray-900 mb-2 sm:mb-3">
+        <h3 class="text-xl sm:text-2xl md:text-2xl font-geist-semibold text-black mb-2 sm:mb-3">
           {{ title }}
         </h3>
         <div class="flex items-center text-gray-500 text-xs sm:text-sm mb-1">
@@ -66,7 +66,7 @@
                   </div>
                   
                   <div class="mt-auto">
-                    <h4 class="font-geist-semibold text-sm sm:text-md text-gray-900 mb-1">{{ track.title }}</h4>
+                    <h4 class="font-geist-semibold text-sm sm:text-md text-black mb-1">{{ track.title }}</h4>
                   </div>
                 </div>
               </template>
@@ -90,7 +90,7 @@
                   </div>
                   
                   <div class="mt-auto">
-                    <h4 class="font-geist-semibold text-sm sm:text-md text-gray-900 mb-1">{{ track.title }}</h4>
+                    <h4 class="font-geist-semibold text-sm sm:text-md text-black mb-1">{{ track.title }}</h4>
                     <p class="text-xs sm:text-xs text-gray-500">{{ track.date }} • {{ track.size }}</p>
                   </div>
                 </div>

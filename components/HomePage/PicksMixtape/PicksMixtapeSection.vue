@@ -25,6 +25,7 @@
             :rating="picksMixtape.rating"
             :bpm="picksMixtape.bpm"
             :date="picksMixtape.date"
+            @play="handlePlay(picksMixtape.id)"
             :isCarousel="false"
             class="w-full"
           />
@@ -44,6 +45,21 @@ const props = defineProps({
     default: 'NEW ARRIVAL PICKS MIXTAPE'
   }
 })
+
+const currentlyPlayingId = ref(null)
+
+const handlePlay = (id) => {
+  if (currentlyPlayingId.value === id) {
+    currentlyPlayingId.value = null
+  } else {
+    currentlyPlayingId.value = id
+  }
+  
+  // Update all mixtapes to set isPlaying state
+  mixtapes.forEach(mixtape => {
+    mixtape.isPlaying = mixtape.id === currentlyPlayingId.value
+  })
+}
 </script>
 
 <style scoped>

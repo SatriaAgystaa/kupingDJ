@@ -21,10 +21,10 @@
     <div class="mx-auto py-8 sm:py-10 md:py-12 lg:py-14 px-4 sm:px-5 md:px-6 lg:px-8 xl:px-12 relative z-10">
       <div class="grid lg:grid-cols-2 gap-6 sm:gap-8 md:gap-10 lg:gap-12 items-center pb-0">
         <!-- Left Content -->
-        <div class="space-y-6 sm:space-y-8 md:space-y-10 lg:space-y-12 font-glancyr-medium">
+        <div class="space-y-6 sm:space-y-8 md:space-y-10 lg:space-y-12 font-glancyr-regular">
           <!-- Main Heading -->
           <div class="space-y-3 sm:space-y-4 md:space-y-5 lg:space-y-6">
-            <h1 class="text-3xl xs:text-4xl sm:text-5xl md:text-6xl lg:text-7xl text-gray-900 leading-tight">
+            <h1 class="text-3xl xs:text-4xl sm:text-5xl md:text-6xl lg:text-7xl text-black leading-tight">
               <span class="block">DISCOVER THE</span>
               <span class="block mt-1 sm:mt-2">ULTIMATE</span>
               <span class="block mt-1 sm:mt-2">DJ MARKETPLACE</span>
@@ -33,17 +33,17 @@
           </div>
 
           <!-- Statistics -->
-          <div class="grid grid-cols-3 pt-1 sm:pt-2 md:pt-3 lg:pt-4 font-geist-medium">
+          <div class="grid grid-cols-3 pt-1 sm:pt-2 md:pt-3 lg:pt-4 font-geist-regular">
             <div class="text-center lg:text-left">
-              <div class="text-2xl sm:text-3xl md:text-4xl lg:text-5xl text-gray-900 tracking-wide font-glancyr-regular">70</div>
+              <div class="text-2xl sm:text-3xl md:text-4xl lg:text-5xl text-black tracking-wide font-glancyr-light">70</div>
               <div class="text-sm sm:text-base md:text-lg text-black tracking-wide">Best Artist</div>
             </div>
             <div class="text-center lg:text-left">
-              <div class="text-2xl sm:text-3xl md:text-4xl lg:text-5xl text-gray-900 tracking-wide font-glancyr-regular">2413</div>
+              <div class="text-2xl sm:text-3xl md:text-4xl lg:text-5xl text-black tracking-wide font-glancyr-light">2413</div>
               <div class="text-sm sm:text-base md:text-lg text-black tracking-wide">Mix Tapes</div>
             </div>
             <div class="text-center lg:text-left">
-              <div class="text-2xl sm:text-3xl md:text-4xl lg:text-5xl text-gray-900 tracking-wide font-glancyr-regular">4412</div>
+              <div class="text-2xl sm:text-3xl md:text-4xl lg:text-5xl text-black tracking-wide font-glancyr-light">4412</div>
               <div class="text-sm sm:text-base md:text-lg text-black tracking-wide">Albums</div>
             </div>
           </div>

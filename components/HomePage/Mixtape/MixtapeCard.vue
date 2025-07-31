@@ -1,21 +1,22 @@
 <template>
   <div class="mixtape-card overflow-hidden transition-all duration-300 w-full">
-    <!-- Cover and Vinyl -->
     <div class="">
       <MixtapeCover 
         :image="image" 
         :title="title" 
-        :isFavorited="isFavorited"
-        @play="$emit('play')"
-        @toggle-favorite="$emit('toggle-favorite')"
+        :is-favorited="isFavorited"
+        :is-playing="isPlaying"
+        :mixtape="mixtapeData"
+        @play="$emit('play', mixtapeData)"
+        @pause="$emit('pause')"
+        @toggle-favorite="$emit('toggle-favorite', id)"
       />
     </div>
 
-    <!-- Meta Information -->
     <div class="pt-3 pb-4 sm:pt-4 sm:pb-5 md:pt-5 md:pb-6">
       <MixtapeMeta
         :artist="artist"
-        :artistImage="artistImage"
+        :artist-image="artistImage"
         :title="title"
         :date="date"
         :bpm="bpm"
@@ -35,6 +36,7 @@ import MixtapeCover from './MixtapeCover.vue'
 import MixtapeMeta from './MixtapeMeta.vue'
 
 const props = defineProps({
+  id: Number,
   artist: String,
   artistImage: String,
   title: String,
@@ -45,15 +47,33 @@ const props = defineProps({
   rating: String,
   bpm: String,
   date: String,
-  isFavorited: Boolean
+  music: String,
+  isFavorited: Boolean,
+  isPlaying: Boolean
 })
 
-defineEmits(['play', 'toggle-favorite', 'buy-now', 'add-to-cart'])
+const mixtapeData = computed(() => ({
+  id: props.id,
+  artist: props.artist,
+  artistImage: props.artistImage,
+  title: props.title,
+  price: props.price,
+  image: props.image,
+  likes: props.likes,
+  downloads: props.downloads,
+  rating: props.rating,
+  bpm: props.bpm,
+  date: props.date,
+  music: props.music,
+  isFavorited: props.isFavorited
+}))
+
+defineEmits(['play', 'toggle-favorite', 'buy-now', 'add-to-cart', 'pause'])
 </script>
 
 <style scoped>
 .mixtape-card {
-  min-width: 0; /* Prevent text overflow */
+  min-width: 0;
   max-width: 100%;
   transition: transform 0.3s ease;
 }
