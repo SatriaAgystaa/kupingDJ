@@ -72,17 +72,32 @@
 
 <script setup lang="ts">
 import { cartItems } from '~/data/cart';
-import { ref } from 'vue';
+import { ref, watch } from 'vue';
+import { useDropdownState } from '~/composables/useDropdownState';
 
+const { activeDropdown, setActiveDropdown, closeAllDropdowns } = useDropdownState();
 const isOpen = ref(false);
 
 const toggleDropdown = () => {
-  isOpen.value = !isOpen.value;
+  if (isOpen.value) {
+    closeDropdown();
+  } else {
+    closeAllDropdowns();
+    setActiveDropdown('cart');
+    isOpen.value = true;
+  }
 };
 
 const closeDropdown = () => {
   isOpen.value = false;
+  setActiveDropdown(null);
 };
+
+watch(activeDropdown, (newVal) => {
+  if (newVal !== 'cart') {
+    isOpen.value = false;
+  }
+});
 </script>
 
 <style scoped>

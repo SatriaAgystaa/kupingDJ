@@ -63,22 +63,23 @@
           </template>
           
           <!-- Show these when logged in -->
-          <template v-else>
-            <!-- Cart Icon -->
-            <div class="relative">
-              <CartSection/>
-            </div>
-            
-            <!-- Notification -->
-            <div class="relative">
-              <NotificationSection/>
-            </div>
-            
-            <!-- Profile Section -->
-            <div class="relative">
-              <ProfileSection/>
-            </div>
-          </template>
+          <!-- Show these when logged in -->
+<template v-else>
+    <!-- Cart Icon -->
+    <div class="relative">
+        <CartSection/>
+    </div>
+    
+    <!-- Notification -->
+    <div class="relative">
+        <NotificationSection/>
+    </div>
+    
+    <!-- Profile Section -->
+    <div class="relative">
+        <ProfileSection/>
+    </div>
+</template>
 
           <!-- Mobile Menu Button with animation -->
           <button 

@@ -95,17 +95,26 @@
 
 <script setup lang="ts">
 import { notifications } from '~/data/notification';
-import { ref } from 'vue';
+import { ref, watch } from 'vue';
+import { useDropdownState } from '~/composables/useDropdownState';
 
+const { activeDropdown, setActiveDropdown, closeAllDropdowns } = useDropdownState();
 const isOpen = ref(false);
 const readNotifications = ref<string[]>([]);
 
 const toggleDropdown = () => {
-  isOpen.value = !isOpen.value;
+  if (isOpen.value) {
+    closeDropdown();
+  } else {
+    closeAllDropdowns();
+    setActiveDropdown('notification');
+    isOpen.value = true;
+  }
 };
 
 const closeDropdown = () => {
   isOpen.value = false;
+  setActiveDropdown(null);
 };
 
 const markAsRead = (id: string) => {
@@ -123,6 +132,12 @@ const markAllAsRead = () => {
   });
   readNotifications.value = newReadNotifications;
 };
+
+watch(activeDropdown, (newVal) => {
+  if (newVal !== 'notification') {
+    isOpen.value = false;
+  }
+});
 </script>
 
 <style scoped>

@@ -110,18 +110,27 @@
 <script setup lang="ts">
 import { profileData } from '~/data/profile';
 import { useRouter } from 'vue-router';
-import { ref } from 'vue';
+import { ref, watch } from 'vue';
+import { useDropdownState } from '~/composables/useDropdownState';
 
 const router = useRouter();
 const profile = profileData;
+const { activeDropdown, setActiveDropdown, closeAllDropdowns } = useDropdownState();
 const isOpen = ref(false);
 
 const toggleDropdown = () => {
-  isOpen.value = !isOpen.value;
+  if (isOpen.value) {
+    closeDropdown();
+  } else {
+    closeAllDropdowns();
+    setActiveDropdown('profile');
+    isOpen.value = true;
+  }
 };
 
 const closeDropdown = () => {
   isOpen.value = false;
+  setActiveDropdown(null);
 };
 
 const logout = () => {
@@ -138,6 +147,12 @@ const logout = () => {
     closeDropdown();
   }
 };
+
+watch(activeDropdown, (newVal) => {
+  if (newVal !== 'profile') {
+    isOpen.value = false;
+  }
+});
 </script>
 
 <style scoped>
