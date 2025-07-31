@@ -1,17 +1,18 @@
 <template>
-  <section class="bg-white mx-auto py-6 xs:py-7 sm:py-8 md:py-10 lg:py-12 xl:py-12 2xl:py-12 px-4 xs:px-5 sm:px-6 md:px-10 lg:px-10 xl:px-12 2xl:px-12">
+  <section class="bg-white mx-auto py-8 sm:py-10 md:py-12 lg:py-14 px-4 sm:px-5 md:px-6 lg:px-8 xl:px-12 relative z-10">
     <!-- Section Title -->
-    <div class="mb-6 sm:mb-8 lg:mb-10">
-      <h2 class="text-xl xs:text-2xl sm:text-2xl md:text-2xl lg:text-3xl xl:text-3xl 2xl:text-4xl font-glancyr-medium">
+    <div class="mb-6 sm:mb-8 md:mb-10 lg:mb-12">
+      <h2 class="text-xl xs:text-2xl sm:text-2xl md:text-3xl lg:text-3xl xl:text-4xl 2xl:text-4xl font-glancyr-medium tracking-tight">
         TOP GROSSING MIXTAPE
       </h2>
     </div>
 
     <!-- Mixtape Grid -->
-    <div class="grid grid-cols-2 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 xl:grid-cols-5 gap-x-4 sm:gap-x-6 md:gap-x-8 gap-y-6 sm:gap-y-8 lg:gap-y-12">
+    <div class="grid grid-cols-2 xs:grid-cols-2 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 xl:grid-cols-5 gap-4 xs:gap-5 sm:gap-6 md:gap-6 lg:gap-8 xl:gap-8">
       <div
         v-for="mixtape in displayedMixtapes"
         :key="mixtape.id"
+        class="w-full"
       >
         <MixtapeCard
           :artist="mixtape.artist"
@@ -29,7 +30,7 @@
       </div>
     </div>
 
-    <!-- Pagination -->
+    <!-- Pagination (EXACTLY AS YOU WANT IT) -->
     <div class="flex flex-col sm:flex-row justify-between items-center mt-8 sm:mt-10 gap-4 font-geist-regular">
       <div class="text-sm text-gray-600 font-geist-regular">
         Showing {{ startItem }}-{{ endItem }} of {{ mixtapes.length }} items
@@ -106,22 +107,17 @@ const prevPage = () => {
 /* Responsive adjustments for very small screens */
 @media (max-width: 360px) {
   .grid {
-    grid-template-columns: repeat(1, minmax(0, 1fr));
-    gap: 1.5rem;
+    gap: 1rem;
   }
-
+  
   h2 {
     font-size: 1.5rem;
     line-height: 1.2;
   }
+}
 
-  /* Stack pagination buttons on small screens */
-  .flex-col {
-    align-items: stretch;
-  }
-  
-  .flex-row {
-    flex-wrap: wrap;
-  }
+/* Ensure consistent card sizing */
+.w-full {
+  min-width: 0;
 }
 </style>

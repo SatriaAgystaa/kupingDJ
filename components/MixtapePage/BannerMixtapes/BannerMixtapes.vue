@@ -1,7 +1,7 @@
 <template>
-  <div v-if="featuredMixtape" class="relative w-full h-[250px] xs:h-[300px] sm:h-[350px] md:h-[400px] lg:h-[450px] xl:h-[500px] 2xl:h-[550px]">
+  <div v-if="featuredMixtape" class="relative w-full h-[300px] xs:h-[350px] sm:h-[400px] md:h-[450px] lg:h-[500px] xl:h-[500px] 2xl:h-[500px] overflow-hidden">
     <!-- Background Image with Overlay -->
-    <div class="absolute inset-0 z-0 group h-full">
+    <div class="absolute inset-0 z-0 group h-full bg-black/50">
       <img 
         :src="featuredMixtape.image" 
         :alt="featuredMixtape.title"
@@ -10,36 +10,29 @@
       <div class="absolute inset-0 bg-gradient-to-t from-black/80 via-black/40 to-transparent"></div>
     </div>
 
-    <!-- Aura SVG positioned near the title -->
-    <img
-      src="/icons/baseicons/aura.svg"
-      alt="Aura Background"
-      class="absolute bottom-0 left-0 w-[150px] xs:w-[180px] sm:w-[220px] md:w-[350px] lg:w-[450px] xl:w-[550px] 2xl:w-[650px] opacity-80 mix-blend-lighten pointer-events-none z-10"
-    />
-
     <!-- Content - Aligned to left -->
-    <div class="absolute inset-0 flex items-center mx-auto px-4 xs:px-5 sm:px-6 md:px-10 lg:px-10 xl:px-12 2xl:px-12  z-10">
+    <div class="mx-auto py-8 sm:py-10 md:py-12 lg:py-14 px-4 sm:px-5 md:px-6 lg:px-8 xl:px-12 relative z-10 h-full flex flex-col justify-center">
       <div class="w-full max-w-4xl">
         <!-- Trending Now Text -->
-        <h3 class="text-sm xs:text-lg sm:text-xl md:text-xl lg:text-2xl font-glancyr-regular text-white uppercase tracking-wider mb-3 sm:mb-4 md:mb-6 lg:mb-10">
+        <h3 class="text-sm xs:text-sm sm:text-base md:text-base lg:text-lg font-glancyr-regular text-white uppercase tracking-wider mb-2 sm:mb-3 md:mb-4">
           TRENDING NOW
         </h3>
         
         <!-- Mixtape Title - Split into multiple lines -->
-        <div class="flex flex-col gap-1 sm:gap-2 mb-2 sm:mb-2 md:mb-2">
-          <span class="text-2xl xs:text-2.5xl sm:text-3xl md:text-4xl lg:text-4xl xl:text-5xl 2xl:text-6xl font-glancyr-medium text-white tracking-wide">CARTEL MIXTAPE</span>
-          <span class="text-2xl xs:text-2.5xl sm:text-3xl md:text-4xl lg:text-4xl xl:text-5xl 2xl:text-6xl font-glancyr-medium text-white tracking-wide">EXCLUSIVE ON KUPING DJ</span>
+        <div class="flex flex-col gap-1 sm:gap-2 mb-2 sm:mb-3 md:mb-4">
+          <span class="text-2xl xs:text-3xl sm:text-4xl md:text-4xl lg:text-5xl xl:text-6xl font-glancyr-medium text-white tracking-wide">CARTEL MIXTAPE</span>
+          <span class="text-2xl xs:text-3xl sm:text-4xl md:text-4xl lg:text-5xl xl:text-6xl font-glancyr-medium text-white tracking-wide">EXCLUSIVE ON KUPING DJ</span>
         </div>
         
         <!-- Artist Name -->
-        <p class="text-white font-glancyr-regular text-sm xs:text-base sm:text-md md:text-lg lg:text-2xl mb-3 sm:mb-4 md:mb-6 lg:mb-10">
+        <p class="text-white font-glancyr-regular text-xs xs:text-sm sm:text-sm md:text-base lg:text-lg mb-3 sm:mb-4 md:mb-5">
           {{ featuredMixtape.artist }}
         </p>
         
         <!-- Play Demo Button (inline with icon) -->
-        <div class="flex items-center gap-2 mb-4 sm:mb-5 md:mb-6 lg:mb-10">
-          <img src="/icons/baseicons/play.svg" alt="Play" class="w-3 h-3 xs:w-6 xs:h-6 sm:w-6 sm:h-6 md:w-4 md:h-4 lg:w-5 lg:h-5 xl:w-6 xl:h-6" />
-          <button class="text-white font-geist-medium text-sm xs:text-base sm:text-lg md:text-lg hover:underline transition-all duration-200">
+        <div class="flex items-center gap-2 mb-4 sm:mb-5 md:mb-6">
+          <img src="/icons/baseicons/play.svg" alt="Play" class="w-3 h-3 xs:w-4 xs:h-4 sm:w-4 sm:h-4 md:w-4 md:h-4" />
+          <button class="text-white font-geist-medium text-xs xs:text-sm sm:text-sm md:text-base hover:underline transition-all duration-200">
             Play Demo
           </button>
         </div>
@@ -48,26 +41,26 @@
         <div class="flex gap-2 sm:gap-3 w-full max-w-[300px]">
           <button 
             @click="$emit('buy-now')"
-            class="flex-1 bg-white text-[#A10501] py-2 sm:py-2.5 px-4 sm:px-5 text-xs xs:text-sm sm:text-base font-glancyr-medium 
+            class="flex-1 bg-white text-[#A10501] py-2 sm:py-2.5 px-4 sm:px-5 text-xs xs:text-sm sm:text-sm font-glancyr-medium 
                   transition-all duration-200 hover:bg-[#A10501] hover:text-white active:scale-95 whitespace-nowrap"
           >
             BUY NOW
           </button>
           <button 
             @click="$emit('add-to-cart')"
-            class="w-12 sm:w-12 bg-white text-black p-2 sm:p-2.5 transition-all duration-200 
+            class="w-10 sm:w-12 bg-white text-black p-2 sm:p-2 transition-all duration-200 
                     hover:bg-black hover:text-white active:scale-95 group flex items-center justify-center"
             aria-label="Add to cart"
           >
             <img 
               src="/icons/baseicons/cart_black.svg" 
               alt="Cart" 
-              class="w-4 h-4 xs:w-5 xs:h-5 sm:w-5 sm:h-5 group-hover:hidden"
+              class="w-4 h-4 xs:w-4 xs:h-4 sm:w-4 sm:h-4 group-hover:hidden"
             >
             <img 
               src="/icons/baseicons/cart_white.svg" 
               alt="Cart" 
-              class="w-4 h-4 xs:w-5 xs:h-5 sm:w-5 sm:h-5 hidden group-hover:block"
+              class="w-4 h-4 xs:w-4 xs:h-4 sm:w-4 sm:h-4 hidden group-hover:block"
             >
           </button>
         </div>
@@ -89,21 +82,17 @@ img {
   transition: filter 500ms ease-in-out;
 }
 
-/* Custom text sizes for better scaling */
-.text-2\.5xl {
-  font-size: 1.75rem;
-  line-height: 2.25rem;
+/* Performance optimization for background image */
+.absolute.inset-0.z-0 {
+  will-change: transform;
+  backface-visibility: hidden;
+  transform: translate3d(0,0,0);
 }
-.text-3\.5xl {
-  font-size: 2rem;
-  line-height: 2.5rem;
-}
-.text-4\.5xl {
-  font-size: 2.5rem;
-  line-height: 1;
-}
-.text-5\.5xl {
-  font-size: 3.25rem;
-  line-height: 1;
+
+/* Optimized for mobile touch targets */
+@media (max-width: 640px) {
+  .flex.items-center {
+    min-height: 24px; /* Ensure proper touch target size */
+  }
 }
 </style>

@@ -12,7 +12,7 @@
     </div>
 
     <!-- Meta Information -->
-    <div class="pt-3 sm:pt-4 md:pt-5">
+    <div class="pt-3 sm:pt-4 md:pt-5 pb-1">
       <MixtapeMeta
         :artist="artist"
         :artistImage="artistImage"

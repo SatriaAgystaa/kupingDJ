@@ -99,32 +99,30 @@
         </span>
         <div class="border-t border-gray-300 flex-grow ml-2"></div>
     </div>
-    <div class="flex group font-glancyr-light hover:scale-[1.02] transition-all duration-300 active:scale-[0.98] w-full md:w-full lg:w-auto">
-        <button 
-          class="text-[#A10501] border border-[#A10501] bg-white py-2 px-3 xs:px-4 lg:px-6 lg:py-2 font-semibold tracking-wide text-xs 
-                  transition-all duration-300 group-hover:bg-gray-50 shadow-md hover:shadow-lg flex-1 xs:flex-none"
-          @click="$emit('view-details')"
-        >
-          <span class="inline-block group-active:translate-y-0.5 transition-transform text-xs xs:text-sm">
-            DETAILS
-          </span>
-        </button>
-        <div 
-          class="bg-black px-2 py-1 flex items-center justify-center 
-                  transition-all duration-300 group-hover:bg-gray-900 cursor-pointer w-8 xs:w-auto"
-          @click="$emit('view-details')"
-        >
-          <img 
-            src="/icons/baseicons/arrow_white.svg" 
-            alt="arrow" 
-            class="w-3 h-3 transition-transform duration-300 
-                group-hover:translate-x-1 group-active:translate-x-2"
-            loading="lazy"
-            width="14"
-            height="14"
-          />
-        </div>
-    </div>
+    <NuxtLink to="/transaction-detail" class="flex group font-glancyr-light hover:scale-[1.02] transition-all duration-300 active:scale-[0.98] w-full md:w-full lg:w-auto">
+      <div 
+        class="text-[#A10501] border border-[#A10501] bg-white py-2 px-3 xs:px-4 lg:px-6 lg:py-2 font-semibold tracking-wide text-xs 
+                transition-all duration-300 group-hover:bg-gray-50 shadow-md hover:shadow-lg flex-1 xs:flex-none"
+      >
+        <span class="inline-block group-active:translate-y-0.5 transition-transform text-xs xs:text-sm">
+          DETAILS
+        </span>
+      </div>
+      <div 
+        class="bg-black px-3 py-2 flex items-center justify-center 
+                transition-all duration-300 group-hover:bg-gray-900 cursor-pointer w-8 xs:w-auto"
+      >
+        <img 
+          src="/icons/baseicons/arrow_white.svg" 
+          alt="arrow" 
+          class="w-3 h-3 transition-transform duration-300 
+              group-hover:translate-x-1 group-active:translate-x-2"
+          loading="lazy"
+          width="14"
+          height="14"
+        />
+      </div>
+    </NuxtLink>
     </div>
   </div>
 </template>
@@ -135,8 +133,6 @@ import type { Transaction } from '~/data/transaction'
 defineProps<{
   transaction: Transaction
 }>()
-
-defineEmits(['view-details'])
 </script>
 
 <style scoped>

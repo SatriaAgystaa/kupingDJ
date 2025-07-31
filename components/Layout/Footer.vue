@@ -10,15 +10,15 @@
                xs:w-[180px] sm:w-[220px] 
                md:w-[1100px] md:left-0
                lg:w-[1100px] 
-               xl:w-[1100px] 
-               2xl:w-[1100px]"
+               xl:w-[1200px] 
+               2xl:w-[1200px]"
       />
     </div>
 
-    <div class="mx-auto py-6 xs:py-7 sm:py-8 md:py-10 lg:py-12 xl:py-12 2xl:py-12 px-4 xs:px-5 sm:px-6 md:px-10 lg:px-10 xl:px-12 2xl:px-12  relative z-10">
+    <div class="mx-auto py-8 sm:py-10 md:py-12 lg:py-14 px-4 sm:px-5 md:px-6 lg:px-8 xl:px-12 relative z-10">
       <div class="flex flex-col md:flex-row justify-between gap-8">
         <!-- Left section - Main heading -->
-        <div class="space-y-6 md:w-1/2 z-10">
+        <div class="space-y-6 md:w-1/2 z-10 text-center md:text-left">
           <h1 class="text-2xl xs:text-2.5xl sm:text-3xl md:text-4xl lg:text-5xl mb-4 sm:mb-5 md:mb-6 lg:mb-8 font-glancyr-regular">
             <span class="block">EXPERIENCE THE RHYTHM</span>
             <span class="block mt-1 sm:mt-2 md:mt-2 lg:mt-3">OF YOUR LIFE WITH</span>
@@ -27,25 +27,25 @@
         </div>  
 
         <!-- Right section - Navigation -->
-        <div class="flex flex-col sm:flex-row gap-6 sm:gap-8 md:gap-10 lg:gap-12 xl:gap-16 font-geist-regular z-10">
+        <div class="flex flex-col sm:flex-row gap-6 sm:gap-8 md:gap-10 lg:gap-12 xl:gap-16 font-geist-regular z-10 justify-center md:justify-start">
           <!-- About us links -->
-          <div class="mb-4 sm:mb-5 md:mb-6 lg:mb-8">
+          <div class="mb-4 sm:mb-5 md:mb-6 lg:mb-8 text-center md:text-left">
             <h2 class="text-lg sm:text-xl md:text-xl lg:text-2xl mb-2 sm:mb-3 md:mb-3 lg:mb-4 font-geist-medium">About us</h2>
             <div class="flex flex-col gap-1 sm:gap-1.5 md:gap-2">
-              <a href="#" class="hover:text-gray-600 transition text-xs xs:text-sm sm:text-sm md:text-base">The Artist</a>
-              <a href="#" class="hover:text-gray-600 transition text-xs xs:text-sm sm:text-sm md:text-base">About Kuping DJ</a>
-              <a href="#" class="hover:text-gray-600 transition text-xs xs:text-sm sm:text-sm md:text-base">Contact Us</a>
-              <a href="#" class="hover:text-gray-600 transition text-xs xs:text-sm sm:text-sm md:text-base">FAQ</a>
-              <a href="#" class="hover:text-gray-600 transition text-xs xs:text-sm sm:text-sm md:text-base">Terms & Conditions</a>
+              <NuxtLink to="/artist" class="hover:text-[#a10501] transition-all text-xs xs:text-sm sm:text-sm md:text-base transform hover:scale-105">The Artist</NuxtLink>
+              <NuxtLink to="/about" class="hover:text-[#a10501] transition-all text-xs xs:text-sm sm:text-sm md:text-base transform hover:scale-105">About Kuping DJ</NuxtLink>
+              <NuxtLink to="#" class="hover:text-[#a10501] transition-all text-xs xs:text-sm sm:text-sm md:text-base transform hover:scale-105">Contact Us</NuxtLink>
+              <NuxtLink to="#" class="hover:text-[#a10501] transition-all text-xs xs:text-sm sm:text-sm md:text-base transform hover:scale-105">FAQ</NuxtLink>
+              <NuxtLink to="#" class="hover:text-[#a10501] transition-all text-xs xs:text-sm sm:text-sm md:text-base transform hover:scale-105">Terms & Conditions</NuxtLink>
             </div>
           </div>
 
           <!-- Marketplace links -->
-          <div class="mb-4 sm:mb-5 md:mb-6 lg:mb-8">
+          <div class="mb-4 sm:mb-5 md:mb-6 lg:mb-8 text-center md:text-left">
             <h2 class="text-lg sm:text-xl md:text-xl lg:text-2xl mb-2 sm:mb-3 md:mb-3 lg:mb-4 font-geist-medium">Marketplace</h2>
             <div class="flex flex-col gap-1 sm:gap-1.5 md:gap-2">
-              <a href="#" class="hover:text-gray-600 transition text-xs xs:text-sm sm:text-sm md:text-base">Mixtape</a>
-              <a href="#" class="hover:text-gray-600 transition text-xs xs:text-sm sm:text-sm md:text-base">Album</a>
+              <NuxtLink to="/mixtape" class="hover:text-[#a10501] transition-all text-xs xs:text-sm sm:text-sm md:text-base transform hover:scale-105">Mixtape</NuxtLink>
+              <NuxtLink to="/album" class="hover:text-[#a10501] transition-all text-xs xs:text-sm sm:text-sm md:text-base transform hover:scale-105">Album</NuxtLink>
             </div>
           </div>
         </div>
@@ -56,7 +56,7 @@
         <!-- Logo -->
         <div class="flex-1 flex justify-center sm:justify-start order-2 sm:order-1">
           <img src="/icons/baseicons/logo.svg" alt="Kuping DJ Logo" 
-               class="h-8 xs:h-9 sm:h-10 md:h-11 lg:h-12 transition-all duration-200">
+               class="h-8 xs:h-9 sm:h-10 md:h-11 lg:h-12 transition-all duration-200 hover:scale-110">
         </div>
 
         <!-- Copyright -->
@@ -66,22 +66,22 @@
 
         <!-- Socials -->
         <div class="flex-1 flex justify-center sm:justify-end space-x-3 sm:space-x-4 md:space-x-5 lg:space-x-6 order-3">
-          <a href="#" class="inline-flex items-center justify-center hover:opacity-80 transition-opacity">
+          <NuxtLink to="#" class="inline-flex items-center justify-center hover:opacity-80 transition-all transform hover:scale-110">
             <img src="/icons/footer/facebook_line.svg" alt="Facebook" 
                  class="h-5 xs:h-6 sm:h-6 md:h-7 lg:h-8 w-auto">
-          </a>
-          <a href="#" class="inline-flex items-center justify-center hover:opacity-80 transition-opacity">
+          </NuxtLink>
+          <NuxtLink to="#" class="inline-flex items-center justify-center hover:opacity-80 transition-all transform hover:scale-110">
             <img src="/icons/footer/instagram_line.svg" alt="Instagram" 
                  class="h-5 xs:h-6 sm:h-6 md:h-7 lg:h-8 w-auto">
-          </a>
-          <a href="#" class="inline-flex items-center justify-center hover:opacity-80 transition-opacity">
+          </NuxtLink>
+          <NuxtLink to="#" class="inline-flex items-center justify-center hover:opacity-80 transition-all transform hover:scale-110">
             <img src="/icons/footer/linkedin_line.svg" alt="LinkedIn" 
                  class="h-5 xs:h-6 sm:h-6 md:h-7 lg:h-8 w-auto">
-          </a>
-          <a href="#" class="inline-flex items-center justify-center hover:opacity-80 transition-opacity">
+          </NuxtLink>
+          <NuxtLink to="#" class="inline-flex items-center justify-center hover:opacity-80 transition-all transform hover:scale-110">
             <img src="/icons/footer/youtube_line.svg" alt="YouTube" 
                  class="h-5 xs:h-6 sm:h-6 md:h-7 lg:h-8 w-auto">
-          </a>
+          </NuxtLink>
         </div>
       </div>
     </div>
@@ -101,7 +101,7 @@ img {
 }
 
 a {
-  transition: color 0.2s cubic-bezier(0.4, 0, 0.2, 1);
+  transition: all 0.2s cubic-bezier(0.4, 0, 0.2, 1);
 }
 
 /* Custom text sizes */

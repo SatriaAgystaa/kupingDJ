@@ -21,7 +21,7 @@
             <img
               :src="item.image"
               :alt="`DJ ${item.id}`"
-              class="w-full h-full object-cover rounded-xl shadow-xl pointer-events-none select-none"
+              class="w-full h-full object-cover shadow-xl pointer-events-none select-none"
               :class="{ 'transition-all duration-300': !isResetting }"
               draggable="false"
             />

@@ -3,12 +3,12 @@
     class="relative bg-white p-3 sm:p-5 md:p-5 shadow-sm border border-gray-200 hover:shadow-md transition-shadow duration-300 w-full aspect-square flex flex-col overflow-hidden cursor-pointer"
     @click="redirectToUrl"
   >
-    <!-- Background effect -->
+    <!-- Background effect - Fixed to right -->
     <div class="absolute inset-0 overflow-hidden z-0">
       <img
         src="/icons/genre/effect.svg"
         alt="Effect"
-        class="absolute bottom-0 left-16 transform w-[240px] sm:w-[280px] md:w-[300px] h-[240px] sm:h-[280px] md:h-[300px] pointer-events-none"
+        class="absolute bottom-0 right-0 translate-x-[0%] translate-y-[0%] w-[100%] h-[100%] min-w-[240px] min-h-[240px] pointer-events-none object-contain object-right-bottom"
       />
     </div>
 

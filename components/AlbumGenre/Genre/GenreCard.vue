@@ -24,7 +24,7 @@
       <div class="flex-1"></div>
 
       <!-- Genre title and arrow -->
-      <div class="flex items-center justify-between mt-4 sm:mt-5 md:mt-6">
+      <NuxtLink to="/album-genre" class="flex items-center justify-between mt-4 sm:mt-5 md:mt-6">
         <h3 class="text-xl sm:text-2xl md:text-3xl text-black tracking-wide font-glancyr-regular">
           {{ genre.title }}
         </h3>
@@ -35,7 +35,7 @@
             class="w-4 h-4 sm:w-5 sm:h-5"
           >
         </div>
-      </div>
+      </NuxtLink>
     </div>
   </div>
 </template>

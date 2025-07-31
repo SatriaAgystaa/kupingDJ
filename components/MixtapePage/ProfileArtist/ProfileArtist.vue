@@ -1,9 +1,9 @@
 <template>
   <div class="artist-section w-full overflow-hidden bg-white">
-    <div class="container mx-auto py-6 xs:py-7 sm:py-8 md:py-10 lg:py-12 xl:py-12 2xl:py-12 px-4 xs:px-5 sm:px-6 md:px-10 lg:px-10 xl:px-12 2xl:px-12 relative z-10">
+    <div class="container mx-auto py-8 sm:py-10 md:py-12 lg:py-14 px-4 sm:px-5 md:px-6 lg:px-8 xl:px-12 relative z-10">
       <!-- Section Header -->
       <div class="flex flex-row md:flex-row justify-between items-start md:items-center mb-6 sm:mb-8 md:mb-12">
-        <h2 class="text-xl xs:text-2xl sm:text-2xl md:text-2xl lg:text-3xl xl:text-3xl 2xl:text-4xl mb-0 sm:mb-4 md:mb-0 font-glancyr-medium">TOP GROSSING ARTIST</h2>
+        <h2 class="text-xl xs:text-2xl sm:text-2xl md:text-3xl lg:text-3xl xl:text-4xl 2xl:text-4xl mb-0 sm:mb-4 md:mb-0 font-glancyr-medium">TOP GROSSING ARTIST</h2>
         <div class="flex gap-2 sm:gap-3 md:gap-4 self-end md:self-auto">
           <button 
             @click="slideLeft" 
@@ -41,7 +41,7 @@
                 class="w-full h-full object-cover object-center group-hover:scale-105 transition-transform duration-300"
               />
             </div>
-            <h3 class="text-black font-geist-semibold text-center text-lg sm:text-xl md:text-xl lg:text-2xl w-full">
+            <h3 class="text-black font-geist-medium text-center text-lg sm:text-xl md:text-xl lg:text-2xl w-full">
               {{ artist.name }}
             </h3>
           </div>

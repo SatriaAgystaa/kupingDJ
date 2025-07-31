@@ -1,7 +1,7 @@
 <template>
-  <div class="mixtape-card bg-white overflow-hidden transition-all duration-300 w-full">
+  <div class="mixtape-card bg-[#f7f7f7] overflow-hidden transition-all duration-300 w-full">
     <!-- Cover and Vinyl -->
-    <div class="pt-3 sm:pt-4 md:pt-5 px-3 sm:px-4 md:px-5">
+    <div class="">
       <MixtapeCover 
         :image="image" 
         :title="title" 

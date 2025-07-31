@@ -9,7 +9,7 @@
     </div>
     
     <!-- Title -->
-    <h3 class="text-sm sm:text-[15px] md:text-base lg:text-[17px] xl:text-lg font-bold text-black mb-1 sm:mb-1.5 leading-tight line-clamp-2">{{ title }}</h3>
+    <h3 class="text-sm sm:text-[15px] md:text-base lg:text-[17px] xl:text-2xl font-bold text-black mb-1 sm:mb-1.5 leading-tight line-clamp-2">{{ title }}</h3>
 
     <!-- Date and BPM -->
     <div class="flex items-center justify-between text-[10px] sm:text-[11px] md:text-xs lg:text-[13px] text-gray-500 mb-2 sm:mb-2.5 md:mb-3">
@@ -43,26 +43,26 @@
     <div class="flex gap-2 sm:gap-2 md:gap-2 font-glancyr-regular">
       <button 
         @click="$emit('buy-now')"
-        class="flex-1 bg-white border border-[#A10501] text-[#A10501] py-1.5 sm:py-2 px-2 sm:px-3 text-xs sm:text-[13px] md:text-sm lg:text-[15px] font-bold 
+        class="flex-1 bg-white border border-[#A10501] text-[#A10501] py-2 sm:py-2 px-2 sm:px-3 text-sm sm:text-md md:text-lg lg:text-lg font-bold 
               transition-all duration-200 hover:bg-[#A10501] hover:text-white active:scale-95"
       >
         BUY NOW
       </button>
       <button 
         @click="$emit('add-to-cart')"
-        class="bg-white border border-black text-black p-1 sm:p-1.5 transition-all duration-200 
+        class="bg-white border border-black text-black py-2 sm:py-2 px-2 sm:px-3 transition-all duration-200 
                 hover:bg-black hover:text-white active:scale-95 group"
         aria-label="Add to cart"
       >
         <img 
           src="/icons/baseicons/cart_black.svg" 
           alt="Cart" 
-          class="w-3 sm:w-3.5 h-3 sm:h-3.5 group-hover:hidden"
+          class="w-4 sm:w-6 h-6 sm:h-6 group-hover:hidden"
         >
         <img 
           src="/icons/baseicons/cart_white.svg" 
           alt="Cart" 
-          class="w-3 sm:w-3.5 h-3 sm:h-3.5 hidden group-hover:block"
+          class="w-4 sm:w-6 h-6 sm:h-6 hidden group-hover:block"
         >
       </button>
     </div>

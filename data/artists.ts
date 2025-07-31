@@ -12,7 +12,7 @@ export interface Artist {
 export const artists: Artist[] = [
   {
     id: "wishnu-santika",
-    name: "WISHNU SANTIKA",
+    name: "Whisnu Santika",
     image: "/icons/artists/wishnu_santika.jpg",
     mintageSold: 15000,
     story: {
@@ -22,55 +22,55 @@ export const artists: Artist[] = [
   },
   {
      id: "eka-gustiwana",
-    name: "EKA GUSTIWANA", 
+    name: "Eka Gustiwana", 
     image: "/icons/artists/eka_gustiwana.jpg",
     mintageSold: 12000
   },
   {
      id: "weird-genius",
-    name: "WEIRD GENIUS",
+    name: "Weird Genius",
     image: "/icons/artists/weird_genius.jpeg",
     mintageSold: 18000
   },
   {
      id: "dipha-barus",
-    name: "DIPHA BARUS",
+    name: "Dipha Barus",
     image: "/icons/artists/dipha_barus.jpeg",
     mintageSold: 9000
   },
   {
      id: "midnight-quickie",
-    name: "MIDNIGHT QUICKIE",
+    name: "Midnight Quickie",
     image: "/icons/artists/midnight_quicke.jpeg",
     mintageSold: 7500
   },
   {
      id: "reza-oktovian",
-    name: "REZA OKTOVIAN",
+    name: "Reza Oktovian",
     image: "/icons/artists/reza_oktovian.jpg",
     mintageSold: 11000
   },
   {
      id: "roy-cdc",
-    name: "ROY CDC",
+    name: "Roy CDC",
     image: "/icons/artists/roy_cdc.jpeg",
     mintageSold: 8000
   },
   {
      id: "winky-wirawan",
-    name: "WINKY WIRAWAN",
+    name: "Winky Wirawan",
     image: "/icons/artists/winky_wirawan.jpeg",
     mintageSold: 6000
   },
   {
      id: "angger-dimas",
-    name: "ANGGER DIMAS",
+    name: "Angger Dimas",
     image: "/icons/artists/angger_dimas.jpg",
     mintageSold: 10000
   },
   {
      id: "bleu-clair",
-    name: "BLEU CLAIR",
+    name: "Bleu Clair",
     image: "/icons/artists/bleu_clair.jpg",
     mintageSold: 13000
   },

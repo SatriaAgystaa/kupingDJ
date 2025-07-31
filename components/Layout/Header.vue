@@ -1,6 +1,6 @@
 <template>
   <header class="w-full bg-white shadow-sm sticky top-0 z-50 border-b border-gray-100">
-    <div class="mx-auto py-3 sm:py-4 md:py-5 lg:py-6 px-4 xs:px-5 sm:px-6 md:px-10 lg:px-10 xl:px-12 2xl:px-12 relative z-10">
+    <div class="mx-auto py-3 sm:py-4 md:py-5 lg:py-6 px-4 sm:px-5 md:px-6 lg:px-8 xl:px-12 relative z-10">
       <div class="flex items-center justify-between">
         <!-- Left Section: Logo + Navigation -->
         <div class="flex items-center gap-3 xs:gap-4 sm:gap-5 md:gap-6 lg:gap-8 xl:gap-10">
@@ -24,10 +24,10 @@
               v-for="(link, index) in navLinks" 
               :key="index"
               :href="link.href" 
-              class="relative text-black hover:text-red-800 transition-all duration-300 py-1 md:py-1.5 lg:py-2 group"
+              class="relative py-1 md:py-1.5 lg:py-2 transform hover:scale-105 transition-all duration-300"
+              :class="{'text-[#a10501]': currentPath === link.href, 'text-black hover:text-[#a10501]': currentPath !== link.href}"
             >
               {{ link.text }}
-              <span class="absolute bottom-0 left-0 w-0 h-0.5 bg-red-800 transition-all duration-500 group-hover:w-full"></span>
             </a>
           </nav>
         </div>
@@ -43,7 +43,7 @@
                 class="flex group font-glancyr-light hover:scale-105 transition-all duration-300 min-w-0"
                 @click="closeAlert"
               >
-                <div class="flex-1 bg-red-800 text-white border-2 border-red-800 px-2 xs:px-2.5 sm:px-3 md:px-3 lg:px-4 xl:px-5 py-1 xs:py-1.5 sm:py-1.5 md:py-1.5 lg:py-2 tracking-wide text-xs xs:text-xs sm:text-xs md:text-xs lg:text-sm xl:text-sm transition-all duration-300 group-hover:bg-red-700 text-center flex items-center justify-center truncate">
+                <div class="flex-1 bg-[#a10501] text-white border-2 border-[#a10501] px-2 xs:px-2.5 sm:px-3 md:px-3 lg:px-4 xl:px-5 py-1 xs:py-1.5 sm:py-1.5 md:py-1.5 lg:py-2 tracking-wide text-xs xs:text-xs sm:text-xs md:text-xs lg:text-sm xl:text-sm transition-all duration-300 group-hover:bg-[#8a0400] text-center flex items-center justify-center truncate">
                   REGISTER NOW
                 </div>
                 <div class="bg-black border-2 border-black px-1.5 xs:px-2 sm:px-2 md:px-2 lg:px-3 xl:px-3 py-1 xs:py-1.5 sm:py-1.5 md:py-1.5 lg:py-2 flex items-center justify-center transition-all duration-300 group-hover:bg-gray-900 flex-shrink-0">
@@ -83,12 +83,12 @@
           <!-- Mobile Menu Button with animation -->
           <button 
             aria-label="Mobile Menu" 
-            class="md:hidden text-gray-600 hover:text-red-800 transition-all duration-500 p-1 xs:p-1 sm:p-1.5 transform hover:scale-110 active:scale-95"
+            class="md:hidden text-gray-600 hover:text-[#a10501] transition-all duration-300 p-1 xs:p-1 sm:p-1.5 transform hover:scale-110 active:scale-95"
             @click="toggleMobileMenu"
           >
             <svg 
               xmlns="http://www.w3.org/2000/svg" 
-              class="w-4 h-4 xs:w-5 xs:h-5 sm:w-6 sm:h-6 transition-transform duration-500"
+              class="w-4 h-4 xs:w-5 xs:h-5 sm:w-6 sm:h-6 transition-transform duration-300"
               :class="{'rotate-90': isMobileMenuOpen}"
               fill="none" 
               viewBox="0 0 24 24" 
@@ -116,12 +116,12 @@
       >
         <!-- Overlay -->
         <div 
-          class="absolute inset-0"
+          class="absolute inset-0 bg-black bg-opacity-30 transition-opacity duration-300"
           @click="closeMobileMenu"
         ></div>
         
         <!-- Sidebar Content -->
-        <div class="relative flex flex-col w-4/5 max-w-xs h-full bg-white shadow-2xl">
+        <div class="relative flex flex-col w-4/5 max-w-xs h-full bg-white shadow-2xl transform transition-transform duration-300">
           <div class="flex items-center justify-between px-4 py-3 border-b border-gray-200">
             <NuxtLink 
               to="/" 
@@ -131,12 +131,12 @@
               <img 
                 src="/icons/baseicons/logo.svg" 
                 alt="Kuping DJ Logo" 
-                class="w-8 h-8"
+                class="w-8 h-8 transform hover:scale-105 transition-transform duration-300"
               >
             </NuxtLink>
             <button 
               @click="closeMobileMenu"
-              class="p-1 text-gray-500 hover:text-red-800 transition-colors"
+              class="p-1 text-gray-500 hover:text-[#a10501] transition-colors duration-300 transform hover:scale-110"
             >
               <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
                 <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12" />
@@ -146,17 +146,18 @@
           
           <div class="flex-1 overflow-y-auto py-4 px-4">
             <!-- Navigation Items -->
-            <div class="space-y-2">
+            <div class="space-y-1">
               <a 
                 v-for="(link, index) in navLinks" 
                 :key="index"
                 :href="link.href" 
-                class="block py-3 px-3 text-gray-900 hover:bg-gray-50 rounded-md transition-colors duration-300 text-sm sm:text-base"
+                class="block py-3 px-4 transition-all duration-300 text-sm sm:text-base hover:bg-gray-50 transform hover:scale-[1.02] active:scale-95"
+                :class="{'text-[#a10501]': currentPath === link.href, 'text-gray-900 hover:text-[#a10501]': currentPath !== link.href}"
                 @click="closeMobileMenu"
               >
-                <div class="flex items-center">
+                <div class="flex items-center transition-all duration-300">
                   <span class="flex-1 font-medium">{{ link.text }}</span>
-                  <svg xmlns="http://www.w3.org/2000/svg" class="w-4 h-4 ml-2 text-gray-400" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                  <svg xmlns="http://www.w3.org/2000/svg" class="w-4 h-4 ml-2 text-gray-400 transition-transform duration-300 group-hover:translate-x-1" fill="none" viewBox="0 0 24 24" stroke="currentColor">
                     <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7" />
                   </svg>
                 </div>
@@ -169,10 +170,10 @@
                 <!-- Register Button -->
                 <NuxtLink 
                   to="/register" 
-                  class="flex items-center justify-between group font-glancyr-light transition-all duration-300 w-full rounded-md overflow-hidden"
+                  class="flex items-center justify-between group font-glancyr-light transition-all duration-300 w-full overflow-hidden transform hover:scale-[1.02] active:scale-95"
                   @click="closeMobileMenu"
                 >
-                  <div class="flex-1 bg-red-800 text-white border-2 border-red-800 px-4 py-3 tracking-wide text-sm transition-all duration-300 group-hover:bg-red-700 text-center">
+                  <div class="flex-1 bg-[#a10501] text-white border-2 border-[#a10501] px-4 py-3 tracking-wide text-sm transition-all duration-300 group-hover:bg-[#8a0400] text-center">
                     REGISTER NOW
                   </div>
                   <div class="bg-black border-2 border-black px-4 py-3 flex items-center justify-center transition-all duration-300 group-hover:bg-gray-900">
@@ -183,7 +184,7 @@
                 <!-- Login Button -->
                 <NuxtLink 
                   to="/login" 
-                  class="block w-full bg-white text-center text-black border-2 border-black px-6 py-3 tracking-wide text-sm transition-colors duration-300 hover:bg-gray-50 rounded-md"
+                  class="block w-full bg-white text-center text-black border-2 border-black px-6 py-3 tracking-wide text-sm transition-all duration-300 hover:bg-gray-50 transform hover:scale-[1.02] active:scale-95"
                   @click="closeMobileMenu"
                 >
                   LOGIN
@@ -198,13 +199,14 @@
 </template>
 
 <script setup>
-import { ref, onMounted } from 'vue'
-import { useRouter } from 'vue-router'
+import { ref, onMounted, computed } from 'vue'
+import { useRouter, useRoute } from 'vue-router'
 import CartSection from './Cart/CartSection.vue'
 import NotificationSection from './Notification/NotificationSection.vue'
 import ProfileSection from './Profile/ProfileSection.vue'
 
 const router = useRouter()
+const route = useRoute()
 const isMobileMenuOpen = ref(false)
 const isLoggedIn = ref(false)
 const username = ref('')
@@ -216,6 +218,9 @@ const navLinks = [
   { text: 'Artists', href: '/artist' },
   { text: 'About', href: '/about' }
 ]
+
+// Get current path for active state
+const currentPath = computed(() => route.path)
 
 // Check auth status when component mounts
 onMounted(() => {
@@ -279,17 +284,23 @@ html {
   transform: scale(0.95);
 }
 
-/* Ensure smooth hover on mobile devices */
-@media (hover: hover) {
-  nav a:hover {
-    transform: translateX(4px);
-  }
-}
-
 /* Touch feedback for mobile */
-nav a:active {
+a:active, button:active {
   transform: scale(0.98);
   transition-duration: 200ms;
 }
 
+/* Mobile menu item animation */
+.mobile-menu-item {
+  transition: all 0.3s ease;
+}
+
+.mobile-menu-item:hover {
+  transform: scale(1.02);
+}
+
+/* Smooth overlay transition */
+.bg-opacity-30 {
+  transition: opacity 0.3s ease;
+}
 </style>

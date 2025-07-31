@@ -1,11 +1,11 @@
 <template>
   <section class="w-full bg-white">
-    <div class="mx-auto mx-auto py-6 xs:py-7 sm:py-8 md:py-10 lg:py-12 xl:py-12 2xl:py-12 px-4 xs:px-5 sm:px-6 md:px-10 lg:px-10 xl:px-12 2xl:px-12 relative z-10">
+    <div class="mx-auto py-8 sm:py-10 md:py-12 lg:py-14 px-4 sm:px-5 md:px-6 lg:px-8 xl:px-12 relative z-10">
       <div class="flex flex-col lg:flex-row gap-6 sm:gap-8 md:gap-10 lg:gap-12 xl:gap-14">
         <!-- Left side - Title -->
         <div class="lg:w-1/4 lg:sticky lg:top-8 xl:top-10">
           <div class="space-y-4 sm:space-y-5 md:space-y-6">
-            <h2 class="text-2xl xs:text-2.5xl sm:text-3xl md:text-3.5xl lg:text-4xl font-glancyr-regular text-black leading-tight tracking-tight">
+            <h2 class="text-xl sm:text-2xl md:text-2xl lg:text-3xl xl:text-3xl font-glancyr-regular text-black leading-tight tracking-tight">
               OUR STORY
             </h2>
           </div>

@@ -1,6 +1,6 @@
 <template>
   <div class="relative overflow-hidden bg-[#A10501]">
-    <div class="mx-auto pt-6 xs:pt-7 sm:pt-8 md:pt-10 lg:pt-12 xl:pt-12 2xl:pt-12 px-4 xs:px-5 sm:px-6 md:px-10 lg:px-10 xl:px-12 2xl:px-12 relative z-10">
+    <div class="mx-auto pt-8 sm:pt-10 md:pt-12 lg:pt-14 px-4 sm:px-5 md:px-6 lg:px-8 xl:px-12 relative z-10">
       <!-- Background pattern - responsive positioning -->
       <img
         src="/icons/footer/wavy_lines.svg"

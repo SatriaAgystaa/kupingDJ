@@ -3,11 +3,11 @@
     <div class="mx-auto py-8 sm:py-10 md:py-12 lg:py-14 px-4 sm:px-5 md:px-6 lg:px-8 xl:px-12 relative">
       <!-- Header Section -->
       <div class="flex flex-col lg:flex-row lg:items-start lg:justify-between mb-8 sm:mb-10 md:mb-12">
-        <h2 class="text-3xl xs:text-3.5xl sm:text-4xl md:text-4.5xl lg:text-5xl xl:text-5.5xl font-glancyr-medium tracking-wide mb-4 sm:mb-6">
+        <h2 class="text-2xl xs:text-3xl sm:text-4xl md:text-4xl lg:text-5xl xl:text-5xl font-glancyr-medium tracking-wide mb-4 sm:mb-6">
           THE ARTIST
         </h2>
         <div class="lg:max-w-md">
-          <p class="text-black leading-relaxed sm:leading-loose font-geist-regular text-sm xs:text-base sm:text-lg md:text-base">
+          <p class="text-black leading-relaxed sm:leading-loose font-geist-regular text-xs xs:text-sm sm:text-md md:text-base">
             Most the talented artists featured on Kuejing DJ. Discover their latest mixtapes and albums, and immerse yourself in their creative journeys.
           </p>
         </div>
@@ -31,7 +31,7 @@
           <button
             @click="prevPage"
             :disabled="currentPage === 1"
-            class="p-2 border border-gray-300 hover:bg-gray-100 disabled:opacity-50 disabled:cursor-not-allowed transition-colors duration-200"
+            class="p-2 hover:bg-gray-100 disabled:opacity-50 disabled:cursor-not-allowed transition-colors duration-200"
             aria-label="Previous page"
           >
             <img src="/icons/baseicons/bulk_left.svg" alt="Previous" class="w-4 h-4 xs:w-5 xs:h-5" />
@@ -52,7 +52,7 @@
           <button
             @click="nextPage"
             :disabled="currentPage === totalPages"
-            class="p-2 border border-gray-300 hover:bg-gray-100 disabled:opacity-50 disabled:cursor-not-allowed transition-colors duration-200"
+            class="p-2 hover:bg-gray-100 disabled:opacity-50 disabled:cursor-not-allowed transition-colors duration-200"
             aria-label="Next page"
           >
             <img src="/icons/baseicons/bulk_right.svg" alt="Next" class="w-4 h-4 xs:w-5 xs:h-5" />

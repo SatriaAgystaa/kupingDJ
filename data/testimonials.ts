@@ -20,4 +20,32 @@ export const testimonials: Testimonial[] = [
       'Sebagai DJ, saya sangat menghargai koleksi mixtape dan album yang ada di Kuping DJ. Ini adalah sumber inspirasi yang tak ternilai untuk set saya. Sangat direkomendasikan!',
     image: '/icons/testimoni/bagas.svg',
   },
+  {
+    name: 'BAGAS WIRANTO',
+    role: 'DJ BAYKILA',
+    message:
+      'Sebagai DJ, saya sangat menghargai koleksi mixtape dan album yang ada di Kuping DJ. Ini adalah sumber inspirasi yang tak ternilai untuk set saya. Sangat direkomendasikan!',
+    image: '/icons/testimoni/bagas.svg',
+  },
+  {
+    name: 'BAGAS WIRANTO',
+    role: 'DJ BAYKILA',
+    message:
+      'Sebagai DJ, saya sangat menghargai koleksi mixtape dan album yang ada di Kuping DJ. Ini adalah sumber inspirasi yang tak ternilai untuk set saya. Sangat direkomendasikan!',
+    image: '/icons/testimoni/bagas.svg',
+  },
+  {
+    name: 'BAGAS WIRANTO',
+    role: 'DJ BAYKILA',
+    message:
+      'Sebagai DJ, saya sangat menghargai koleksi mixtape dan album yang ada di Kuping DJ. Ini adalah sumber inspirasi yang tak ternilai untuk set saya. Sangat direkomendasikan!',
+    image: '/icons/testimoni/bagas.svg',
+  },
+  {
+    name: 'BAGAS WIRANTO',
+    role: 'DJ BAYKILA',
+    message:
+      'Sebagai DJ, saya sangat menghargai koleksi mixtape dan album yang ada di Kuping DJ. Ini adalah sumber inspirasi yang tak ternilai untuk set saya. Sangat direkomendasikan!',
+    image: '/icons/testimoni/bagas.svg',
+  },
 ];

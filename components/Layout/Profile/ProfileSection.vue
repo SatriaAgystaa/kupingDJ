@@ -2,7 +2,6 @@
 <template>
   <div class="relative">
     <!-- Trigger Button - Desktop -->
-    <!-- User Profile Button - Desktop -->
     <div class="hidden sm:block">
       <button 
         @click="toggleDropdown"
@@ -36,7 +35,7 @@
       <img 
         :src="profile.imageUrl" 
         alt="User Profile" 
-        class="w-6 h-6 sm:w-7 sm:h-7 md:w-8 md:h-8 rounded-full object-cover"
+        class="w-6 h-6 rounded-full object-cover"
       >
     </button>
 
@@ -51,22 +50,22 @@
     >
       <div 
         v-if="isOpen"
-        class="absolute right-0 mt-2 w-56 bg-white shadow-xl z-50 border border-gray-200 origin-top-right"
+        class="absolute right-0 mt-1 w-56 sm:w-64 md:w-72 bg-white shadow-xl z-50 border border-gray-200 origin-top-right"
         v-click-outside="closeDropdown"
       >
         <div class="">
-          <div class="flex items-center justify-between p-4 border-b border-gray-200 border-t-4 border-t-[#A10501]">
-            <h2 class="text-lg sm:text-xl font-glancyr-medium text-black">YOUR PROFILE</h2>
+          <div class="flex items-center justify-between p-2 sm:p-3 sm:p-4 border-b border-gray-200 border-t-4 border-t-[#A10501]">
+            <h2 class="text-sm sm:text-base md:text-lg font-glancyr-medium text-black">YOUR PROFILE</h2>
             <button @click="closeDropdown" class="text-black hover:text-gray-500 transition-colors duration-200">
-              <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+              <svg xmlns="http://www.w3.org/2000/svg" class="h-4 w-4 sm:h-5 sm:w-5" fill="none" viewBox="0 0 24 24" stroke="currentColor">
                 <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12" />
               </svg>
             </button>
           </div>
           
-          <div class="flex items-center justify-between gap-2 p-4 hover:bg-gray-50 transition-colors duration-200">
-            <div class="flex items-center gap-3">
-              <div class="h-10 w-10 rounded-full bg-gray-200 flex items-center justify-center overflow-hidden">
+          <NuxtLink to="/profile" class="flex items-center justify-between gap-2 p-3 sm:p-4 hover:bg-gray-50 transition-colors duration-200">
+            <div class="flex items-center gap-2 sm:gap-3">
+              <div class="h-10 w-10 sm:h-10 sm:w-10 rounded-full bg-gray-200 flex items-center justify-center overflow-hidden">
                 <img 
                   :src="profile.imageUrl" 
                   alt="Profile" 
@@ -76,7 +75,7 @@
                 <svg 
                   v-else
                   xmlns="http://www.w3.org/2000/svg" 
-                  class="h-5 w-5 text-gray-500" 
+                  class="h-4 w-4 sm:h-5 sm:w-5 text-gray-500" 
                   fill="none" 
                   viewBox="0 0 24 24" 
                   stroke="currentColor"
@@ -85,21 +84,21 @@
                 </svg>
               </div>
               <div>
-                <h3 class="text-sm font-medium text-gray-900">{{ profile.name }}</h3>
-                <p class="text-xs text-gray-500 flex items-center gap-1">
-                  <img src="/icons/baseicons/facebook.svg" alt="Facebook" class="w-3 h-3">
+                <h3 class="text-xs sm:text-sm font-medium text-gray-900">{{ profile.name }}</h3>
+                <p class="text-[10px] sm:text-xs text-gray-500 flex items-center gap-1">
+                  <img src="/icons/baseicons/facebook.svg" alt="Facebook" class="w-2.5 h-2.5 sm:w-3 sm:h-3">
                   {{ profile.username }}
                 </p>
               </div>
             </div>
-            <img src="/icons/baseicons/arrow_right.svg" alt="Arrow" class="w-5 h-5 text-gray-500">
-          </div>
+            <img src="/icons/baseicons/arrow_right.svg" alt="Arrow" class="w-4 h-4 sm:w-5 sm:h-5 text-gray-500">
+          </NuxtLink>
           
           <button 
             @click="logout"
-            class="w-full text-left border-t border-gray-200 p-4 text-xs font-medium text-[#A10501] hover:bg-gray-100 transition-colors duration-200 flex items-center gap-2"
+            class="w-full text-left border-t border-gray-200 p-3 sm:p-4 text-xs font-medium text-[#A10501] hover:bg-gray-100 transition-colors duration-200 flex items-center gap-2"
           >
-            <img src="/icons/baseicons/logout.svg" alt="Logout" class="w-5 h-5">
+            <img src="/icons/baseicons/logout.svg" alt="Logout" class="w-4 h-4 sm:w-5 sm:h-5">
             <span>Logout</span>
           </button>
         </div>
@@ -111,6 +110,7 @@
 <script setup lang="ts">
 import { profileData } from '~/data/profile';
 import { useRouter } from 'vue-router';
+import { ref } from 'vue';
 
 const router = useRouter();
 const profile = profileData;
@@ -139,3 +139,15 @@ const logout = () => {
   }
 };
 </script>
+
+<style scoped>
+/* Wave animation for desktop hover effect */
+@keyframes wave {
+  0% {
+    background-position: 200% 0;
+  }
+  100% {
+    background-position: -200% 0;
+  }
+}
+</style>

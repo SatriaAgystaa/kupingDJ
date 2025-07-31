@@ -41,13 +41,13 @@
       </div>
 
       <!-- Right side - Edit button -->
-      <button class="text-gray-400 hover:text-gray-600 transition-colors p-1">
+      <NuxtLink to="/edit-profile" class="text-gray-400 hover:text-gray-600 transition-colors p-1">
         <img 
           src="/icons/baseicons/pen.svg" 
           alt="Edit Profile"
           class="w-3.5 h-3.5 xs:w-4 xs:h-4 sm:w-5 sm:h-5"
         />
-      </button>
+      </NuxtLink>
     </div>
 
     <!-- Joined since -->

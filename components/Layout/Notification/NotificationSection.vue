@@ -2,7 +2,6 @@
 <template>
   <div class="relative">
     <!-- Trigger Button -->
-    <!-- Notification Button -->
     <button 
       @click="toggleDropdown"
       aria-label="Notifications" 
@@ -35,39 +34,39 @@
     >
       <div 
         v-if="isOpen"
-        class="absolute right-0 mt-2 w-72 bg-white shadow-xl z-50 border border-gray-200 origin-top-right"
+        class="absolute right-0 mt-2 w-56 sm:w-64 md:w-72 bg-white shadow-xl z-50 border border-gray-200 origin-top-right"
         v-click-outside="closeDropdown"
       >
         <div class="">
-          <div class="flex items-center justify-between p-4 border-b border-gray-200 border-t-4 border-t-[#A10501]">
-            <h2 class="text-lg sm:text-xl font-glancyr-medium text-black">NOTIFICATIONS</h2>
+          <div class="flex items-center justify-between p-2 sm:p-3 md:p-4 border-b border-gray-200 border-t-4 border-t-[#A10501]">
+            <h2 class="text-sm sm:text-base md:text-lg font-glancyr-medium text-black">NOTIFICATIONS</h2>
             <button @click="closeDropdown" class="text-black hover:text-gray-500 transition-colors duration-200">
-              <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+              <svg xmlns="http://www.w3.org/2000/svg" class="h-3.5 w-3.5 sm:h-4 sm:w-4 md:h-5 md:w-5" fill="none" viewBox="0 0 24 24" stroke="currentColor">
                 <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12" />
               </svg>
             </button>
           </div>
           
           <!-- Scrollable notifications list -->
-          <div class="max-h-64 overflow-y-auto">
-            <div class="space-y-3 p-4">
+          <div class="max-h-40 sm:max-h-48 md:max-h-64 overflow-y-auto">
+            <div class="space-y-1 sm:space-y-2 md:space-y-3 p-2 sm:p-3 md:p-4">
               <div 
                 v-for="notification in notifications" 
                 :key="notification.id" 
-                class="border-b border-gray-100 pb-3 last:border-0 relative hover:bg-gray-50 transition-colors duration-200 rounded"
+                class="border-b border-gray-100 pb-2 sm:pb-3 last:border-0 relative hover:bg-gray-50 transition-colors duration-200 rounded"
                 @click="markAsRead(notification.id)"
               >
                 <!-- Green dot in top right corner -->
                 <span 
                   v-if="!readNotifications.includes(notification.id)" 
-                  class="absolute top-0 right-0 w-2 h-2 bg-green-500 rounded-full"
+                  class="absolute top-0 right-0 w-1.5 h-1.5 sm:w-2 sm:h-2 bg-green-500 rounded-full"
                 ></span>
                 
-                <div class="flex items-start gap-3">
+                <div class="flex items-start gap-1.5 sm:gap-2 md:gap-3">
                   <div class="flex-1 min-w-0 flex-row">
-                    <h3 class="text-sm sm:text-md font-medium text-gray-900">{{ notification.title }}</h3>
-                    <p class="text-xs text-gray-500 mt-1 leading-snug">{{ notification.message }}</p>
-                    <p v-if="notification.code" class="text-xs text-gray-500">
+                    <h3 class="text-xs sm:text-sm md:text-sm font-medium text-gray-900">{{ notification.title }}</h3>
+                    <p class="text-[10px] sm:text-xs text-gray-500 mt-0.5 sm:mt-1 leading-snug">{{ notification.message }}</p>
+                    <p v-if="notification.code" class="text-[10px] sm:text-xs text-gray-500">
                       Redeem this code: <span class="font-medium text-[#A10501]"> {{ notification.code }}</span>
                     </p>
                   </div>
@@ -80,11 +79,11 @@
           <div class="border-t border-gray-200">
             <button 
               @click="markAllAsRead"
-              class="w-full p-4 text-xs sm:text-sm font-medium text-red-800 hover:text-red-700 transition-colors duration-200"
+              class="w-full p-2 sm:p-3 md:p-4 text-xs font-medium text-red-800 hover:text-red-700 transition-colors duration-200"
             >
-              <div class="flex items-center justify-center gap-2">
+              <div class="flex items-center justify-center gap-1 sm:gap-2">
                 <span>Read All Notification</span>
-                <img src="/icons/baseicons/checks.svg" alt="Check" class="w-4 h-4">
+                <img src="/icons/baseicons/checks.svg" alt="Check" class="w-3 h-3 sm:w-4 sm:h-4">
               </div>
             </button>
           </div>
@@ -129,7 +128,7 @@ const markAllAsRead = () => {
 <style scoped>
 /* Custom Scrollbar */
 .overflow-y-auto::-webkit-scrollbar {
-  width: 6px;
+  width: 3px;
 }
 
 .overflow-y-auto::-webkit-scrollbar-track {

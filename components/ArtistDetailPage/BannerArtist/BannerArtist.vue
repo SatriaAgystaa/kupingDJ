@@ -10,18 +10,21 @@
       <div class="absolute inset-0 bg-gradient-to-t from-black/80 via-black/40 to-transparent"></div>
     </div>
 
-    <!-- Content -->
-    <div class="relative z-10 h-full flex flex-col justify-end pb-6 xs:pb-6 sm:pb-8 md:pb-8 lg:pb-10 xl:pb-10 px-4 xs:px-5 sm:px-6 md:px-12 lg:px-12 xl:px-12 2xl:px-12">
-      <!-- Artist Name -->
-      <h1 class="text-3xl xs:text-4xl sm:text-4xl md:text-4xl lg:text-5xl xl:text-6xl 2xl:text-6xl font-glancyr-medium text-white tracking-wider">
-        {{ artist.name }}
-      </h1>
+    <!-- Content Container -->
+    <div class="mx-auto py-8 sm:py-10 md:py-12 lg:py-14 px-4 sm:px-5 md:px-6 lg:px-8 xl:px-12 relative z-10 h-full flex flex-col justify-end">
+      <!-- Artist Info -->
+      <div class="w-full mx-auto">
+        <!-- Artist Name -->
+        <h1 class="text-2xl xs:text-3xl sm:text-4xl md:text-4xl lg:text-5xl xl:text-6xl 2xl:text-6xl font-glancyr-medium text-white tracking-wider leading-tight xs:leading-tight sm:leading-tight md:leading-tight lg:leading-tight xl:leading-tight">
+          {{ artist.name }}
+        </h1>
 
-      <!-- Mintage Sold -->
-      <div class="flex items-center">
-        <p class="text-white text-xs xs:text-sm sm:text-md md:text-lg lg:text-xl font-glancyr-light">
-          {{ formatNumber(artist.mintageSold) }} Mixtape Sold
-        </p>
+        <!-- Mintage Sold -->
+        <div class="flex items-center mt-2 xs:mt-2 sm:mt-2 md:mt-2 lg:mt-2 xl:mt-2">
+          <p class="text-white text-xs xs:text-sm sm:text-sm md:text-base lg:text-lg xl:text-xl font-glancyr-light tracking-normal">
+            {{ formatNumber(artist.mintageSold) }} Mixtape Sold
+          </p>
+        </div>
       </div>
     </div>
   </div>
@@ -39,5 +42,22 @@ const formatNumber = (num) => {
 </script>
 
 <style scoped>
-/* No additional styles needed */
+/* Smooth transitions for responsive changes */
+img {
+  transition: all 0.3s ease;
+}
+
+/* Optimized for mobile touch targets */
+@media (max-width: 640px) {
+  .flex.items-center {
+    min-height: 24px; /* Ensure proper touch target size */
+  }
+}
+
+/* Performance optimization for background image */
+.absolute.inset-0.z-0 {
+  will-change: transform;
+  backface-visibility: hidden;
+  transform: translate3d(0,0,0);
+}
 </style>

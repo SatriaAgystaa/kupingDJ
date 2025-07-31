@@ -1,6 +1,6 @@
 <template>
   <div class="artist-card">
-    <div 
+    <NuxtLink to="/artist-detail"
       class="relative group cursor-pointer overflow-hidden"
       @mouseenter="isHovered = true"
       @mouseleave="isHovered = false"
@@ -45,7 +45,7 @@
           </span>
         </h3>
       </div>
-    </div>
+    </NuxtLink>
   </div>
 </template>
 

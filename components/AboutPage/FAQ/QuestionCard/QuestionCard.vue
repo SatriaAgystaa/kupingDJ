@@ -3,9 +3,9 @@
     <div class="border border-gray-200 overflow-hidden">
       <button 
         @click="isOpen = !isOpen"
-        class="flex items-center justify-between w-full text-left p-4 sm:p-5 md:p-6 focus:outline-none hover:bg-gray-50 transition-colors duration-200"
+        class="flex items-center justify-between w-full text-left p-4 sm:p-4 md:p-4 focus:outline-none hover:bg-gray-50 transition-colors duration-200"
       >
-        <h4 class="text-lg xs:text-xl sm:text-2xl md:text-2.5xl font-geist-medium text-black pr-4">
+        <h4 class="text-md xs:text-lg sm:text-xl md:text-xl lg:text-xl font-geist-medium text-black pr-4">
           {{ question }}
         </h4>
         <span class="flex-shrink-0 ml-2 transition-transform duration-200" :class="{'rotate-180': isOpen}">
@@ -24,8 +24,8 @@
         leave-to-class="transform scale-95 opacity-0"
       >
         <div v-show="isOpen" class="border-t border-gray-200">
-          <div class="p-4 sm:p-5 md:p-6 pt-2 sm:pt-3 md:pt-4">
-            <p class="text-black leading-relaxed sm:leading-loose font-geist-regular text-base xs:text-lg sm:text-xl md:text-xl">
+          <div class="p-4 sm:p-4 md:p-4 pt-2 sm:pt-3 md:pt-4">
+            <p class="text-black leading-relaxed sm:leading-loose font-geist-regular text-sm xs:text-base sm:text-base md:text-base">
               {{ answer }}
             </p>
           </div>

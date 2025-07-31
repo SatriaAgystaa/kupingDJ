@@ -1,34 +1,36 @@
 <template>
-  <div class="mixtape-section w-full overflow-hidden bg-[#f7f7f7]">
-    <div class="container mx-auto px-4 sm:px-8 lg:px-12 py-4 sm:py-6 lg:py-10 relative z-10">
+  <div class="mixtape-section w-full overflow-hidden">
+    <div class="mx-auto py-8 sm:py-10 md:py-12 lg:py-14 px-4 sm:px-5 md:px-6 lg:px-8 xl:px-12 relative z-10">
       <!-- Section Header -->
-      <div class="flex flex-col md:flex-row justify-between items-start md:items-center mb-6 sm:mb-8 md:mb-12">
-        <h2 class="text-2xl sm:text-3xl md:text-4xl lg:text-5xl mb-3 sm:mb-4 md:mb-0 font-glancyr-medium">{{ title }}</h2>
-        <div class="flex gap-2 sm:gap-3 md:gap-4 self-end md:self-auto">
+      <div class="flex flex-col md:flex-row justify-between items-start md:items-center mb-6 sm:mb-8 md:mb-10 lg:mb-12">
+        <h2 class="text-2xl xs:text-3xl sm:text-4xl md:text-4xl lg:text-5xl xl:text-5xl font-glancyr-medium tracking-wide mb-3 sm:mb-4 md:mb-6 lg:mb-8">
+          NEW ARRIVAL MIXTAPE
+        </h2>
+        <div class="flex gap-2 xs:gap-3 sm:gap-4 self-end md:self-auto">
           <button 
             @click="slideLeft" 
-            class="w-8 h-8 sm:w-10 sm:h-10 md:w-12 md:h-12 rounded-full bg-black flex items-center justify-center hover:bg-black/90 transition-all duration-300 group"
+            class="w-7 h-7 xs:w-8 xs:h-8 sm:w-10 sm:h-10 md:w-12 md:h-12 rounded-full bg-black flex items-center justify-center hover:bg-black/90 transition-all duration-300 group"
             :disabled="currentIndex === 0"
             :class="{ 'opacity-50 cursor-not-allowed': currentIndex === 0 }"
           >
             <img src="/icons/baseicons/arrow_right_line.svg" alt="Previous" 
-                 class="w-4 h-4 sm:w-5 sm:h-5 md:w-6 md:h-6 transition-all duration-300 group-hover:-translate-x-1" />
+                 class="w-3 h-3 xs:w-4 xs:h-4 sm:w-5 sm:h-5 md:w-6 md:h-6 transition-all duration-300 group-hover:-translate-x-0.5" />
           </button>
           <button 
             @click="slideRight" 
-            class="w-8 h-8 sm:w-10 sm:h-10 md:w-12 md:h-12 rounded-full bg-black flex items-center justify-center hover:bg-black/90 transition-all duration-300 group"
+            class="w-7 h-7 xs:w-8 xs:h-8 sm:w-10 sm:h-10 md:w-12 md:h-12 rounded-full bg-black flex items-center justify-center hover:bg-black/90 transition-all duration-300 group"
             :disabled="currentIndex >= mixtapes.length - visibleCards"
             :class="{ 'opacity-50 cursor-not-allowed': currentIndex >= mixtapes.length - visibleCards }"
           >
             <img src="/icons/baseicons/arrow_left_line.svg" alt="Next" 
-                 class="w-4 h-4 sm:w-5 sm:h-5 md:w-6 md:h-6 transition-all duration-300 group-hover:translate-x-1" />
+                 class="w-3 h-3 xs:w-4 xs:h-4 sm:w-5 sm:h-5 md:w-6 md:h-6 transition-all duration-300 group-hover:translate-x-0.5" />
           </button>
         </div>
       </div>
 
       <!-- Mixtape Cards Grid -->
-      <div class="relative w-full overflow-hidden">
-        <div class="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 xl:grid-cols-4 gap-4 sm:gap-5 md:gap-6 w-full">
+      <div class="relative w-full overflow-hidden mb-6">
+        <div class="grid grid-cols-1 xs:grid-cols-2 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 xl:grid-cols-4 gap-3 xs:gap-4 sm:gap-5 md:gap-6 w-full">
           <MixtapeCard
             v-for="mixtape in mixtapes"
             :key="mixtape.id"
@@ -45,6 +47,31 @@
             :isCarousel="false"
             class="w-full h-auto"
           />
+        </div>
+      </div>
+
+      <!-- Explore Button Section -->
+      <div class="flex justify-center">
+        <div class="flex group font-glancyr-light hover:scale-105 transition-all duration-300">
+          <!-- Red Button -->
+          <button 
+            class="bg-red-800 text-white px-3 py-1.5 xs:px-4 xs:py-2 sm:px-5 sm:py-2.5 md:px-6 md:py-3 font-semibold tracking-wide text-xs xs:text-sm sm:text-base md:text-lg
+                   transition-all duration-300 group-hover:bg-red-700"
+          >
+            EXPLORE ALL ALBUM
+          </button>
+
+          <!-- Black Icon Section -->
+          <div 
+            class="bg-black px-3 py-2 xs:px-4 xs:py-2 sm:px-5 sm:py-2.5 md:px-6 md:py-3 flex items-center justify-center 
+                   transition-all duration-300 group-hover:bg-gray-900"
+          >
+            <img 
+              src="/icons/baseicons/arrow_white.svg" 
+              alt="arrow" 
+              class="w-3 h-3 xs:w-4 xs:h-4 sm:w-5 sm:h-5 md:w-6 md:h-6 transition-transform duration-300 group-hover:translate-x-1" 
+            />
+          </div>
         </div>
       </div>
     </div>
@@ -105,40 +132,53 @@ onUnmounted(() => {
 </script>
 
 <style scoped>
-
-.container {
-  width: 100%;
-  max-width: 100%;
+/* Smooth transitions for all interactive elements */
+button, .group {
+  transition-property: all;
+  transition-timing-function: cubic-bezier(0.4, 0, 0.2, 1);
+  transition-duration: 300ms;
 }
 
-/* Responsive card sizing */
-.mixtape-card {
-  transition: all 0.3s ease;
+/* Perfectly aligned icons in buttons */
+button img {
+  display: block;
+  margin: auto;
 }
 
-.grid-cols-2 .mixtape-card {
-  min-width: calc(50% - 0.5rem);
+/* Responsive grid adjustments */
+@media (max-width: 479px) {
+  .grid-cols-1 .mixtape-card {
+    min-width: 100%;
+  }
 }
 
-.grid-cols-3 .mixtape-card {
-  min-width: calc(33.333% - 0.67rem);
-}
-
-.grid-cols-4 .mixtape-card {
-  min-width: calc(25% - 0.75rem);
-}
-
-.grid-cols-5 .mixtape-card {
-  min-width: calc(20% - 0.8rem);
-}
-
-.grid-cols-6 .mixtape-card {
-  min-width: calc(16.666% - 0.83rem);
-}
-
-@media (max-width: 640px) {
-  .grid-cols-2 .mixtape-card {
+@media (min-width: 480px) and (max-width: 639px) {
+  .xs\:grid-cols-2 .mixtape-card {
     min-width: calc(50% - 0.5rem);
+  }
+}
+
+@media (min-width: 640px) and (max-width: 767px) {
+  .sm\:grid-cols-2 .mixtape-card {
+    min-width: calc(50% - 0.625rem);
+  }
+}
+
+@media (min-width: 768px) and (max-width: 1023px) {
+  .md\:grid-cols-3 .mixtape-card {
+    min-width: calc(33.333% - 0.75rem);
+  }
+}
+
+@media (min-width: 1024px) and (max-width: 1279px) {
+  .lg\:grid-cols-4 .mixtape-card {
+    min-width: calc(25% - 0.9375rem);
+  }
+}
+
+@media (min-width: 1280px) {
+  .xl\:grid-cols-4 .mixtape-card {
+    min-width: calc(25% - 1.125rem);
   }
 }
 </style>

@@ -22,7 +22,7 @@
 
     <!-- Feature title -->
     <div class="flex items-center font-glancyr-regular justify-between mt-4 sm:mt-5 md:mt-6 z-10">
-      <h3 class="text-xl sm:text-2xl md:text-3xl lg:text-3xl text-black tracking-wide whitespace-pre-line">
+      <h3 class="text-xl sm:text-2xl md:text-2xl lg:text-2xl text-black tracking-wide whitespace-pre-line">
         {{ feature.title }}
       </h3>
     </div>

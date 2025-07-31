@@ -1,8 +1,8 @@
 <template>
   <div class="mx-auto py-8 sm:py-10 md:py-12 lg:py-14 px-4 sm:px-5 md:px-6 lg:px-8 xl:px-12 relative z-10">
-    <div class="mb-8 sm:mb-10 md:mb-12">
-      <h1 class="text-2xl sm:text-3xl md:text-4xl lg:text-4.5xl xl:text-5xl font-glancyr-medium">YOUR PROFILE</h1>
-    </div>
+    <h2 class="text-2xl xs:text-3xl sm:text-4xl md:text-4xl lg:text-5xl xl:text-5xl font-glancyr-medium tracking-wide mb-3 sm:mb-4 md:mb-6 lg:mb-8">
+      YOUR PROFILE
+    </h2>
     <ProfileCard :profile="profile" />
 
     <!-- Combined Container with Border -->

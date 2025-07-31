@@ -1,18 +1,18 @@
 <template>
   <div class="relative">
-    <section><HeroSection /></section>
+    <HeroSection />
     <BannerHero />
-    <section><ArtistSection /></section>
-    <section><MixtapeSection /></section>
+    <ArtistSection />
+    <MixtapeSection />
     <MixtapePopular />
-    <section><AlbumSection /></section>
+    <AlbumSection />
     <GenreSection />
     <PicksSection />
     <PicksMixtapeSection />
     <PicksAlbumSection />
     <FeatureSection />
     <MagicSection />
-    <section><TestimonialSection /></section>
+    <TestimonialSection />
   </div>
 </template>
 

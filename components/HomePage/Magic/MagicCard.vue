@@ -6,7 +6,7 @@
         color: [1, 4].includes(magic.id) ? '#ffffff' : '#000000'
       }"
     >
-      <h3 class="text-xl sm:text-2xl md:text-3xl lg:text-3xl leading-tight tracking-wide whitespace-pre-line">
+      <h3 class="text-xl sm:text-2xl md:text-2xl lg:text-2xl leading-tight tracking-wide whitespace-pre-line">
         {{ magic.title }}
       </h3>
     </div>

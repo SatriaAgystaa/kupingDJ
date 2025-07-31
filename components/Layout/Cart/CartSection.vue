@@ -29,37 +29,37 @@
     >
       <div 
         v-if="isOpen"
-        class="absolute right-0 mt-2 w-72 bg-white shadow-xl z-50 border border-gray-200 origin-top-right"
+        class="absolute right-0 mt-2 w-56 sm:w-64 md:w-72 bg-white shadow-xl z-50 border border-gray-200 origin-top-right"
         v-click-outside="closeDropdown"
       >
         <div class="">
-          <div class="flex items-center justify-between p-4 border-b border-gray-200 border-t-4 border-t-[#A10501]">
-            <h2 class="text-lg sm:text-xl font-glancyr-medium text-black">YOUR CART</h2>
+          <div class="flex items-center justify-between p-2 sm:p-3 md:p-4 border-b border-gray-200 border-t-4 border-t-[#A10501]">
+            <h2 class="text-sm sm:text-base md:text-lg font-glancyr-medium text-black">YOUR CART</h2>
             <button @click="closeDropdown" class="text-black hover:text-gray-500 transition-colors duration-200">
-              <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+              <svg xmlns="http://www.w3.org/2000/svg" class="h-3.5 w-3.5 sm:h-4 sm:w-4 md:h-5 md:w-5" fill="none" viewBox="0 0 24 24" stroke="currentColor">
                 <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12" />
               </svg>
             </button>
           </div>
           
-          <NuxtLink to="/your-chart" class="flex items-center justify-between p-4 border-b border-gray-200">
-            <button class="text-sm sm:text-md font-geist-medium text-black hover:text-red-800 transition-colors duration-200">See All</button>
+          <NuxtLink to="/your-chart" class="flex items-center justify-between p-2 sm:p-3 md:p-4 border-b border-gray-200">
+            <button class="text-xs sm:text-sm md:text-sm font-geist-medium text-black hover:text-red-800 transition-colors duration-200">See All</button>
             <button class="text-black hover:text-red-800 transition-colors duration-200">
-              <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+              <svg xmlns="http://www.w3.org/2000/svg" class="h-3.5 w-3.5 sm:h-4 sm:w-4 md:h-5 md:w-5" fill="none" viewBox="0 0 24 24" stroke="currentColor">
                 <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7" />
               </svg>
             </button>
           </NuxtLink>
           
-          <div class="max-h-64 overflow-y-auto">
-            <div class="space-y-3 p-4">
-              <div v-for="item in cartItems" :key="item.id" class="flex items-start gap-3 py-2 border-b border-gray-100 last:border-0 hover:bg-gray-50 transition-colors duration-200 rounded">
-                <div class="w-12 h-12 bg-gray-100 flex-shrink-0 rounded overflow-hidden">
+          <div class="max-h-40 sm:max-h-48 md:max-h-64 overflow-y-auto">
+            <div class="space-y-1 sm:space-y-2 md:space-y-3 p-2 sm:p-3 md:p-4">
+              <div v-for="item in cartItems" :key="item.id" class="flex items-start gap-1.5 sm:gap-2 md:gap-3 py-1 sm:py-1.5 md:py-2 border-b border-gray-100 last:border-0 hover:bg-gray-50 transition-colors duration-200 rounded">
+                <div class="w-8 h-8 sm:w-10 sm:h-10 md:w-12 md:h-12 bg-gray-100 flex-shrink-0 rounded overflow-hidden">
                   <img :src="item.image" :alt="item.title" class="w-full h-full object-cover">
                 </div>
                 <div class="flex-1 min-w-0">
-                  <h3 class="text-sm sm:text-md font-medium text-gray-900 truncate">{{ item.title }}</h3>
-                  <p class="text-xs text-gray-500 mt-1">Rp. {{ item.price.toLocaleString('id-ID') }}</p>
+                  <h3 class="text-[10px] sm:text-xs md:text-sm font-medium text-gray-900 truncate">{{ item.title }}</h3>
+                  <p class="text-[9px] sm:text-[10px] md:text-xs text-gray-500 mt-0.5 sm:mt-1">Rp. {{ item.price.toLocaleString('id-ID') }}</p>
                 </div>
               </div>
             </div>
@@ -88,7 +88,7 @@ const closeDropdown = () => {
 <style scoped>
 /* Custom Scrollbar */
 .overflow-y-auto::-webkit-scrollbar {
-  width: 6px;
+  width: 3px;
 }
 
 .overflow-y-auto::-webkit-scrollbar-track {

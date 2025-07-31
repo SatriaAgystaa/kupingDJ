@@ -1,13 +1,13 @@
 <template>
   <div class="album-section relative overflow-hidden">
-    <div class="mx-auto py-6 xs:py-7 sm:py-8 md:py-10 lg:py-12 xl:py-12 2xl:py-12 px-4 xs:px-5 sm:px-6 md:px-10 lg:px-10 xl:px-12 2xl:px-12 relative">
+    <div class="mx-auto py-8 sm:py-10 md:py-12 lg:py-14 px-4 sm:px-5 md:px-6 lg:px-8 xl:px-12 relative z-10">
       <!-- Section Header -->
-      <h2 class="text-3xl sm:text-4xl md:text-4xl lg:text-5xl xl:text-5xl font-glancyr-medium tracking-wide mb-4 sm:mb-6 md:mb-8">
+      <h2 class="text-2xl xs:text-3xl sm:text-4xl md:text-4xl lg:text-5xl xl:text-5xl font-glancyr-medium tracking-wide mb-3 sm:mb-4 md:mb-6 lg:mb-8">
         EDM ALBUM
       </h2>
-
+      
       <!-- Albums Grid -->
-      <div class="grid grid-cols-1 sm:grid-cols-2 gap-x-4 sm:gap-x-6 md:gap-x-8 gap-y-6 sm:gap-y-8 lg:gap-y-12">
+      <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-2 gap-6 sm:gap-8 md:gap-6 lg:gap-8 xl:gap-10 items-start pb-0 mb-8 sm:mb-10 md:mb-12">
         <AlbumCard
           v-for="album in displayedAlbums"
           :key="album.id"
@@ -16,10 +16,11 @@
           :date="album.date"
           :price="album.price"
           :tracks="album.tracks"
+          class="w-full"
         />
       </div>
 
-      <!-- Pagination -->
+      <!-- Pagination (unchanged as requested) -->
       <div class="flex flex-col sm:flex-row justify-between items-center mt-8 sm:mt-10 gap-4 font-geist-regular">
         <div class="text-sm text-gray-600 font-geist-regular">
           Showing {{ startItem }}-{{ endItem }} of {{ albums.length }} items
@@ -66,7 +67,7 @@ import AlbumCard from './AlbumCard.vue'
 import { albumsData } from '~/data/albums'
 
 // Pagination logic
-const itemsPerPage = 4 // Changed to 4 to match 2x2 grid
+const itemsPerPage = 4 // Matches 2x2 grid (2 columns x 2 rows)
 const currentPage = ref(1)
 const albums = ref(albumsData)
 
@@ -95,16 +96,44 @@ const prevPage = () => {
 </script>
 
 <style scoped>
-/* Responsive adjustments for very small screens */
+/* Responsive adjustments from the responsive version */
+.album-section {
+  width: 100%;
+}
+
+/* Extra small devices (phones, 400px and down) */
+@media (max-width: 400px) {
+  .grid {
+    gap: 1rem;
+  }
+}
+
+/* Tiny devices (phones, 320px and down) */
+@media (max-width: 320px) {
+  .grid {
+    gap: 0.75rem;
+  }
+}
+
+/* Tablet portrait mode adjustments */
+@media (min-width: 768px) and (max-width: 1023px) and (orientation: portrait) {
+  .grid {
+    gap: 1.5rem;
+  }
+}
+
+/* Tablet landscape mode adjustments */
+@media (min-width: 768px) and (max-width: 1023px) and (orientation: landscape) {
+  .grid {
+    gap: 1rem;
+  }
+}
+
+/* Very small screens adjustments for pagination */
 @media (max-width: 360px) {
   .grid {
     grid-template-columns: repeat(1, minmax(0, 1fr));
     gap: 1.5rem;
-  }
-
-  h2 {
-    font-size: 1.5rem;
-    line-height: 1.2;
   }
 
   /* Stack pagination buttons on small screens */
