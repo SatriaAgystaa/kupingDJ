@@ -30,12 +30,15 @@
     <!-- Trigger Button - Mobile -->
     <button 
       @click="toggleDropdown"
+      aria-label="User Profile" 
       class="sm:hidden flex items-center gap-1 hover:bg-gray-50 rounded-full p-1 transition-colors duration-200"
+      data-click-trigger="profile"
     >
       <img 
         :src="profile.imageUrl" 
         alt="User Profile" 
         class="w-6 h-6 rounded-full object-cover"
+        data-click-trigger="profile"
       >
     </button>
 
