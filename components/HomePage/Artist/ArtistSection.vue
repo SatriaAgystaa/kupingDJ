@@ -67,22 +67,22 @@
       <NuxtLink to="/artist" class="flex justify-center">
         <div class="flex group font-glancyr-light hover:scale-105 transition-all duration-300">
           <!-- Red Button -->
-          <button 
+          <div 
             class="bg-red-800 text-white px-3 py-1.5 xs:px-4 xs:py-2 sm:px-5 sm:py-2.5 md:px-6 md:py-3 font-semibold tracking-wide text-xs xs:text-sm sm:text-base md:text-lg
                    transition-all duration-300 group-hover:bg-red-700"
           >
             EXPLORE ALL ARTISTS
-          </button>
+          </div>
 
           <!-- Black Icon Section -->
           <div 
-            class="bg-black px-3 py-2 xs:px-4 xs:py-2 sm:px-5 sm:py-2.5 md:px-6 md:py-3 flex items-center justify-center 
+            class="bg-black px-3 py-2 xs:px-4 xs:py-2 sm:px-5 sm:py-2.5 md:px-4 md:py-3 flex items-center justify-center 
                    transition-all duration-300 group-hover:bg-gray-900"
           >
             <img 
               src="/icons/baseicons/arrow_white.svg" 
               alt="arrow" 
-              class="w-3 h-3 xs:w-4 xs:h-4 sm:w-5 sm:h-5 md:w-6 md:h-6 transition-transform duration-300 group-hover:translate-x-1" 
+              class="w-3 h-3 xs:w-4 xs:h-4 sm:w-5 sm:h-5 md:w-5 md:h-5 transition-transform duration-300 group-hover:translate-x-1" 
             />
           </div>
         </div>

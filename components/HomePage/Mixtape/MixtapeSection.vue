@@ -1,55 +1,62 @@
 <template>
-  <div class="mixtape-section w-full overflow-hidden">
-    <div class="mx-auto py-8 sm:py-10 md:py-12 lg:py-14 px-4 sm:px-5 md:px-6 lg:px-8 xl:px-12 relative z-10">
+  <div class="mixtape-section w-full">
+    <div class="mx-auto py-8 sm:py-10 md:py-12 lg:py-14 px-4 sm:px-5 md:px-6 lg:px-8 xl:px-12">
       <!-- Section Header -->
       <div class="flex flex-col md:flex-row justify-between items-start md:items-center mb-6 sm:mb-8 md:mb-10 lg:mb-12">
-        <h2 class="text-2xl xs:text-3xl sm:text-4xl md:text-4xl lg:text-5xl xl:text-5xl font-glancyr-medium tracking-wide">
+        <h2 class="text-2xl sm:text-3xl md:text-4xl lg:text-5xl font-glancyr-medium tracking-wide">
           NEW ARRIVAL MIXTAPE
         </h2>
-        <div class="flex gap-2 xs:gap-3 sm:gap-4 self-end md:self-auto">
+        <div class="flex gap-2 sm:gap-3 md:gap-4 self-end md:self-auto">
           <button 
             @click="slideLeft" 
-            class="w-7 h-7 xs:w-8 xs:h-8 sm:w-10 sm:h-10 md:w-12 md:h-12 rounded-full bg-black flex items-center justify-center hover:bg-black/90 transition-all duration-300 group"
+            class="w-10 h-10 sm:w-10 sm:h-10 md:w-12 md:h-12 rounded-full bg-black flex items-center justify-center hover:bg-black/90 transition-all duration-300 group"
             :disabled="currentIndex === 0"
             :class="{ 'opacity-50 cursor-not-allowed': currentIndex === 0 }"
           >
             <img src="/icons/baseicons/arrow_right_line.svg" alt="Previous" 
-                 class="w-3 h-3 xs:w-4 xs:h-4 sm:w-5 sm:h-5 md:w-6 md:h-6 transition-all duration-300 group-hover:-translate-x-0.5" />
+                 class="w-5 h-5 sm:w-5 sm:h-5 md:w-6 md:h-6 transition-all duration-300 group-hover:-translate-x-1" />
           </button>
           <button 
             @click="slideRight" 
-            class="w-7 h-7 xs:w-8 xs:h-8 sm:w-10 sm:h-10 md:w-12 md:h-12 rounded-full bg-black flex items-center justify-center hover:bg-black/90 transition-all duration-300 group"
-            :disabled="currentIndex >= mixtapes.length - visibleCards"
-            :class="{ 'opacity-50 cursor-not-allowed': currentIndex >= mixtapes.length - visibleCards }"
+            class="w-10 h-10 sm:w-10 sm:h-10 md:w-12 md:h-12 rounded-full bg-black flex items-center justify-center hover:bg-black/90 transition-all duration-300 group"
+            :disabled="currentIndex >= maxIndex"
+            :class="{ 'opacity-50 cursor-not-allowed': currentIndex >= maxIndex }"
           >
             <img src="/icons/baseicons/arrow_left_line.svg" alt="Next" 
-                 class="w-3 h-3 xs:w-4 xs:h-4 sm:w-5 sm:h-5 md:w-6 md:h-6 transition-all duration-300 group-hover:translate-x-0.5" />
+                 class="w-5 h-5 sm:w-5 sm:h-5 md:w-6 md:h-6 transition-all duration-300 group-hover:translate-x-1" />
           </button>
         </div>
       </div>
 
-      <!-- Mixtape Cards Grid -->
+      <!-- Mixtape Cards -->
       <div class="relative w-full overflow-hidden mb-6">
-        <div class="grid grid-cols-1 xs:grid-cols-2 sm:grid-cols-2 md:grid-cols-2 lg:grid-cols-4 xl:grid-cols-4 gap-3 xs:gap-4 sm:gap-5 md:gap-6 w-full">
-          <MixtapeCard
-            v-for="mixtape in mixtapes"
+        <div 
+          class="flex transition-transform duration-300 ease-out"
+          :style="{ transform: `translateX(-${currentIndex * cardWidth}px)` }"
+          ref="slider"
+        >
+          <div 
+            v-for="mixtape in mixtapes" 
             :key="mixtape.id"
-            :artist="mixtape.artist"
-            :artistImage="mixtape.artistImage"
-            :title="mixtape.title"
-            :price="mixtape.price"
-            :image="mixtape.image"
-            :likes="mixtape.likes"
-            :downloads="mixtape.downloads"
-            :rating="mixtape.rating"
-            :bpm="mixtape.bpm"
-            :date="mixtape.date"
-            v-bind="mixtape"
-             :is-playing="currentTrack?.id === mixtape.id && isPlaying"
-            @play="handlePlay(mixtape)"
-      @toggle-favorite="handleToggleFavorite"
-            class="w-full h-auto"
-          />
+            class="flex-shrink-0"
+            :style="{ width: `${cardWidth}px` }"
+          >
+            <MixtapeCard
+              :artist="mixtape.artist"
+              :artist-image="mixtape.artistImage"
+              :title="mixtape.title"
+              :price="mixtape.price"
+              :image="mixtape.image"
+              :likes="mixtape.likes"
+              :downloads="mixtape.downloads"
+              :rating="mixtape.rating"
+              :bpm="mixtape.bpm"
+              :date="mixtape.date"
+              :is-playing="currentTrack?.id === mixtape.id && isPlaying"
+              @play="handlePlay(mixtape)"
+              @toggle-favorite="handleToggleFavorite"
+            />
+          </div>
         </div>
       </div>
 
@@ -57,22 +64,22 @@
       <NuxtLink to="/mixtape" class="flex justify-center">
         <div class="flex group font-glancyr-light hover:scale-105 transition-all duration-300">
           <!-- Red Button -->
-          <button 
+          <div 
             class="bg-red-800 text-white px-3 py-1.5 xs:px-4 xs:py-2 sm:px-5 sm:py-2.5 md:px-6 md:py-3 font-semibold tracking-wide text-xs xs:text-sm sm:text-base md:text-lg
                    transition-all duration-300 group-hover:bg-red-700"
           >
-            EXPLORE ALL MIXTAPE
-          </button>
+            EXPLORE ALL MIXTAPES
+          </div>
 
           <!-- Black Icon Section -->
           <div 
-            class="bg-black px-3 py-2 xs:px-4 xs:py-2 sm:px-5 sm:py-2.5 md:px-6 md:py-3 flex items-center justify-center 
+            class="bg-black px-3 py-2 xs:px-4 xs:py-2 sm:px-5 sm:py-2.5 md:px-4 md:py-3 flex items-center justify-center 
                    transition-all duration-300 group-hover:bg-gray-900"
           >
             <img 
               src="/icons/baseicons/arrow_white.svg" 
               alt="arrow" 
-              class="w-3 h-3 xs:w-4 xs:h-4 sm:w-5 sm:h-5 md:w-6 md:h-6 transition-transform duration-300 group-hover:translate-x-1" 
+              class="w-3 h-3 xs:w-4 xs:h-4 sm:w-5 sm:h-5 md:w-5 md:h-5 transition-transform duration-300 group-hover:translate-x-1" 
             />
           </div>
         </div>
@@ -88,61 +95,53 @@ import MixtapeCard from './MixtapeCard.vue'
 
 const { currentTrack, isPlaying, play, pause } = inject('audioPlayer')
 
-const handleToggleFavorite = (id) => {
-  const index = mixtapes.findIndex(m => m.id === id)
-  if (index !== -1) {
-    mixtapes[index].isFavorited = !mixtapes[index].isFavorited
-  }
-}
-
-const props = defineProps({
-  title: {
-    type: String,
-    default: 'NEW ARRIVAL MIXTAPE'
-  }
-})
-
+// Slider functionality
 const currentIndex = ref(0)
+const cardWidth = ref(300)
+const slider = ref(null)
 const windowWidth = ref(0)
 const isClient = typeof window !== 'undefined'
-const currentlyPlayingId = ref(null)
 
 const visibleCards = computed(() => {
-  if (!isClient) return 2
-  if (windowWidth.value >= 1536) return 6
-  if (windowWidth.value >= 1280) return 5
-  if (windowWidth.value >= 1024) return 4
-  if (windowWidth.value >= 768) return 3
-  return 2
+  if (!isClient) return 1
+  if (windowWidth.value >= 1280) return 4  // Large desktop
+  if (windowWidth.value >= 1024) return 4 // Desktop
+  if (windowWidth.value >= 768) return 2  // Tablet (changed from 3 to 2)
+  if (windowWidth.value >= 640) return 2  // Small tablet
+  return 1                               // Mobile
 })
 
+const maxIndex = computed(() => Math.max(0, mixtapes.length - visibleCards.value))
 
-const handlePlay = (mixtape) => {
-  play(mixtape)
+const handlePlay = (mixtape) => play(mixtape)
+const handlePause = () => pause()
+
+const handleToggleFavorite = (id) => {
+  const index = mixtapes.findIndex(m => m.id === id)
+  if (index !== -1) mixtapes[index].isFavorited = !mixtapes[index].isFavorited
 }
 
-// Tambahkan fungsi handlePause
-const handlePause = () => {
-  pause()
-}
+const slideLeft = () => currentIndex.value > 0 && currentIndex.value--
+const slideRight = () => currentIndex.value < maxIndex.value && currentIndex.value++
 
-const slideLeft = () => {
-  if (currentIndex.value > 0) currentIndex.value--
-}
-
-const slideRight = () => {
-  if (currentIndex.value < mixtapes.length - visibleCards.value) currentIndex.value++
+const updateCardWidth = () => {
+  if (isClient && slider.value) {
+    const containerWidth = slider.value.offsetWidth
+    cardWidth.value = containerWidth / visibleCards.value
+  }
 }
 
 const handleResize = () => {
   if (isClient) {
     windowWidth.value = window.innerWidth
+    updateCardWidth()
   }
 }
 
 onMounted(() => {
   if (isClient) {
     windowWidth.value = window.innerWidth
+    updateCardWidth()
     window.addEventListener('resize', handleResize)
   }
 })
@@ -155,53 +154,43 @@ onUnmounted(() => {
 </script>
 
 <style scoped>
-/* Smooth transitions for all interactive elements */
+.mixtape-section {
+  --card-gap: 1rem;
+}
+
+@media (min-width: 640px) {
+  .mixtape-section {
+    --card-gap: 1.5rem; /* Increased gap for better spacing */
+  }
+}
+
+@media (min-width: 768px) {
+  .mixtape-section {
+    --card-gap: 2rem; /* Larger gap for tablet view */
+  }
+}
+
+@media (min-width: 1024px) {
+  .mixtape-section {
+    --card-gap: 1.75rem;
+  }
+}
+
+/* Card padding adjustments */
+.flex-shrink-0 {
+  padding-left: calc(var(--card-gap) / 2);
+  padding-right: calc(var(--card-gap) / 2);
+}
+
+/* Smooth transitions */
 button, .group {
-  transition-property: all;
-  transition-timing-function: cubic-bezier(0.4, 0, 0.2, 1);
-  transition-duration: 300ms;
+  transition: all 0.3s ease;
 }
 
-/* Perfectly aligned icons in buttons */
-button img {
+/* Prevent layout shift */
+img {
   display: block;
-  margin: auto;
-}
-
-/* Responsive grid adjustments */
-@media (max-width: 479px) {
-  .grid-cols-1 .mixtape-card {
-    min-width: 100%;
-  }
-}
-
-@media (min-width: 480px) and (max-width: 639px) {
-  .xs\:grid-cols-2 .mixtape-card {
-    min-width: calc(50% - 0.5rem);
-  }
-}
-
-@media (min-width: 640px) and (max-width: 767px) {
-  .sm\:grid-cols-2 .mixtape-card {
-    min-width: calc(50% - 0.625rem);
-  }
-}
-
-@media (min-width: 768px) and (max-width: 1023px) {
-  .md\:grid-cols-3 .mixtape-card {
-    min-width: calc(33.333% - 0.75rem);
-  }
-}
-
-@media (min-width: 1024px) and (max-width: 1279px) {
-  .lg\:grid-cols-4 .mixtape-card {
-    min-width: calc(25% - 0.9375rem);
-  }
-}
-
-@media (min-width: 1280px) {
-  .xl\:grid-cols-4 .mixtape-card {
-    min-width: calc(25% - 1.125rem);
-  }
+  max-width: 100%;
+  height: auto;
 }
 </style>
