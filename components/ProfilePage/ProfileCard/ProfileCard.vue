@@ -19,15 +19,7 @@
             {{ profile.name }}
           </h2>
           
-          <div class="flex flex-col md:flex-row lg:flex-row xs:items-center xs:gap-2 md:gap-3 mt-0.5 sm:mt-1 font-geist-medium">
-            <div class="flex flex-row items-center gap-1 xs:gap-1.5 sm:gap-2">
-              <img 
-                src="/icons/baseicons/facebook.svg" 
-                alt="Username"
-                class="w-3.5 h-3.5 xs:w-4 xs:h-4 sm:w-5 sm:h-5"
-              />
-              <span class="text-[11px] xs:text-xs sm:text-sm text-gray-600">_{{ profile.username }}</span>
-            </div>
+          <div class="flex flex-col md:flex-row lg:flex-row xs:items-center xs:gap-2 md:gap-3 mt-1 sm:mt-1 font-geist-medium">
             <div class="flex flex-row items-center gap-1 xs:gap-1.5 sm:gap-2">
               <img 
                 src="/icons/baseicons/mail.svg" 
@@ -35,6 +27,10 @@
                 class="w-3.5 h-3.5 xs:w-4 xs:h-4 sm:w-5 sm:h-5"
               />
               <span class="text-[11px] xs:text-xs sm:text-sm text-gray-600">{{ profile.email }}</span>
+            </div>
+            <span class="hidden md:inline text-gray-600">•</span>
+            <div class="flex flex-row items-center gap-1 xs:gap-1.5 sm:gap-2">
+              <span class="text-[11px] xs:text-xs sm:text-sm text-[#a10501]">{{ profile.socialMedia }}</span>
             </div>
           </div>
         </div>

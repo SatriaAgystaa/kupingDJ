@@ -17,7 +17,7 @@
       v-if="feature.effectPath"
       :src="feature.effectPath"
       alt="Background effect"
-      <div class="absolute bottom-0 right-0 w-[240px] sm:w-[300px] md:w-[360px] lg:w-[360px] h-[240px] sm:h-[300px] md:h-[360px] lg:h-[360px] object-cover pointer-events-none z-0"
+      class="absolute bottom-0 right-0 w-[240px] sm:w-[300px] md:w-[360px] lg:w-[360px] h-[240px] sm:h-[300px] md:h-[360px] lg:h-[360px] object-cover pointer-events-none z-0"
     />
 
     <!-- Feature title -->

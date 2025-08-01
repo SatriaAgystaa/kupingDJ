@@ -36,7 +36,7 @@
             aria-label="Toggle favorite"
           >
             <img 
-              :src="isFavorited ? '/icons/baseicons/like_red.svg' : '/icons/baseicons/like_black.svg'" 
+              :src="isFavorited ? '/icons/baseicons/like_pink.svg' : '/icons/baseicons/like_pink.svg'" 
               alt="Like" 
               class="transition-all duration-300"
               :style="{ width: iconInnerSize, height: iconInnerSize }"

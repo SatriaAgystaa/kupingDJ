@@ -89,8 +89,8 @@
               <div>
                 <h3 class="text-xs sm:text-sm font-medium text-gray-900">{{ profile.name }}</h3>
                 <p class="text-[10px] sm:text-xs text-gray-500 flex items-center gap-1">
-                  <img src="/icons/baseicons/facebook.svg" alt="Facebook" class="w-2.5 h-2.5 sm:w-3 sm:h-3">
-                  {{ profile.username }}
+                  <img src="/icons/auth/google.svg" alt="Google" class="w-2.5 h-2.5 sm:w-3 sm:h-3 filter brightness-50">
+                  {{ profile.email }}
                 </p>
               </div>
             </div>

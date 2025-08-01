@@ -57,12 +57,12 @@
             <img 
               src="/icons/baseicons/cart_black.svg" 
               alt="Cart" 
-              class="w-4 h-4 group-hover:hidden"
+              class="w-3 h-3 md:w-4 md:h-4 group-hover:hidden"
             >
             <img 
               src="/icons/baseicons/cart_white.svg" 
               alt="Cart" 
-              class="w-4 h-4 hidden group-hover:block"
+              class="w-3 h-3 md:w-4 md:h-4 hidden group-hover:block"
             >
         </button>
     </div>
