@@ -33,7 +33,7 @@
 const props = defineProps({
   feature: {
     type: Object,
-    required: true
-  }
-})
+    required: true,
+  },
+});
 </script>

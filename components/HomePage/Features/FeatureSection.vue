@@ -30,8 +30,8 @@
 </template>
 
 <script setup>
-import FeatureCard from './FeatureCard.vue'
-import { features } from '~/data/features'
+import FeatureCard from './FeatureCard.vue';
+import { features } from '~/data/features';
 </script>
 
 <style scoped>
@@ -41,11 +41,9 @@ import { features } from '~/data/features'
     font-size: 1.4rem;
     line-height: 1.25;
   }
-  
   .grid {
     gap: 0.75rem;
   }
-  
   .flex.flex-col {
     gap: 1rem;
   }
@@ -64,7 +62,6 @@ import { features } from '~/data/features'
     grid-template-columns: repeat(2, 1fr);
     gap: 1.25rem;
   }
-  
   h2 {
     font-size: 1.8rem;
   }
@@ -82,7 +79,6 @@ import { features } from '~/data/features'
   .grid {
     gap: 2rem;
   }
-  
   h2 {
     font-size: 2.25rem;
   }
