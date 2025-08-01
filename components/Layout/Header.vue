@@ -248,6 +248,10 @@ const closeMobileMenu = () => {
   document.body.style.overflow = ''
 }
 
+const closeAlert = () => {
+  // misal close alert state
+}
+
 const logout = () => {
   if (process.client) {
     localStorage.removeItem('isLoggedIn')

@@ -1,6 +1,6 @@
 <template>
   <section class="w-full bg-white">
-    <div class="mx-auto py-8 sm:py-10 md:py-12 lg:py-14 px-4 sm:px-5 md:px-6 lg:px-8 xl:px-12 relative">
+    <div class="mx-auto py-8 sm:py-10 md:py-12 lg:py-14 px-4 sm:px-5 md:px-6 lg:px-8 xl:px-12 relative z-10">
       <div class="flex flex-col lg:flex-row lg:items-start gap-6 sm:gap-8 md:gap-10 lg:gap-12">
         <!-- Left side - Title and Navigation -->
         <div class="lg:w-1/3 px-4 sm:px-5 md:px-6 lg:px-0">
@@ -76,16 +76,8 @@ const isMobileView = computed(() => windowWidth.value < 1024)
 
 const updateDimensions = () => {
   windowWidth.value = window.innerWidth
-  if (cardsContainer.value) {
-    // Perhitungan max scroll position yang lebih akurat
+  if (cardsContainer.value && cardsContainer.value.scrollWidth) {
     maxScrollPosition.value = cardsContainer.value.scrollWidth - cardsContainer.value.clientWidth
-    // Untuk desktop, pastikan grid layout sudah di-render
-    if (!isMobileView.value) {
-      // Trigger re-check setelah render
-      setTimeout(() => {
-        maxScrollPosition.value = cardsContainer.value.scrollWidth - cardsContainer.value.clientWidth
-      }, 100)
-    }
   }
 }
 
@@ -94,12 +86,11 @@ const isLeftDisabled = computed(() => {
 })
 
 const isRightDisabled = computed(() => {
-  // Tambahkan toleransi 1px untuk mengatasi rounding error di semua device
   return currentScrollPosition.value >= maxScrollPosition.value - 1
 })
 
 const scrollLeft = () => {
-  if (isLeftDisabled.value) return
+  if (!cardsContainer.value || isLeftDisabled.value) return
   
   if (isMobileView.value) {
     const cardWidth = getCardWidth()
@@ -108,7 +99,7 @@ const scrollLeft = () => {
       behavior: 'smooth'
     })
   } else {
-    const cardWidth = 240 // Fixed for desktop
+    const cardWidth = 240
     const newPosition = Math.max(0, currentScrollPosition.value - cardWidth)
     cardsContainer.value.scrollTo({
       left: newPosition,
@@ -118,7 +109,7 @@ const scrollLeft = () => {
 }
 
 const scrollRight = () => {
-  if (isRightDisabled.value) return
+  if (!cardsContainer.value || isRightDisabled.value) return
   
   if (isMobileView.value) {
     const cardWidth = getCardWidth()
@@ -127,7 +118,7 @@ const scrollRight = () => {
       behavior: 'smooth'
     })
   } else {
-    const cardWidth = 240 // Fixed for desktop
+    const cardWidth = 240
     const newPosition = Math.min(maxScrollPosition.value, currentScrollPosition.value + cardWidth)
     cardsContainer.value.scrollTo({
       left: newPosition,
@@ -147,7 +138,6 @@ const getCardWidth = () => {
 const handleScroll = () => {
   if (cardsContainer.value) {
     currentScrollPosition.value = cardsContainer.value.scrollLeft
-    // Untuk desktop, update max scroll position saat scroll
     if (!isMobileView.value) {
       maxScrollPosition.value = cardsContainer.value.scrollWidth - cardsContainer.value.clientWidth
     }
@@ -155,16 +145,19 @@ const handleScroll = () => {
 }
 
 onMounted(() => {
-  updateDimensions()
-  window.addEventListener('resize', updateDimensions)
-  if (cardsContainer.value) {
-    cardsContainer.value.addEventListener('scroll', handleScroll)
+  windowWidth.value = window.innerWidth
+  
+  // Gunakan nextTick untuk memastikan elemen sudah dirender
+  nextTick(() => {
+    updateDimensions()
     
-    // Untuk desktop, pastikan max position dihitung setelah render
-    if (!isMobileView.value) {
-      setTimeout(updateDimensions, 300)
+    // Tambahkan event listener setelah elemen pasti ada
+    if (cardsContainer.value) {
+      cardsContainer.value.addEventListener('scroll', handleScroll)
     }
-  }
+  })
+  
+  window.addEventListener('resize', updateDimensions)
 })
 
 onUnmounted(() => {

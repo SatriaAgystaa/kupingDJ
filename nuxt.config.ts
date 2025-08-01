@@ -4,4 +4,7 @@ export default defineNuxtConfig({
   devtools: { enabled: true },
   modules: ['@nuxtjs/tailwindcss', '@nuxt/image'],
   css: ['~/assets/css/font.css', '~/assets/css/tailwind.css'],
+  plugins: [
+    '~/plugins/click-outside'
+  ]
 })
