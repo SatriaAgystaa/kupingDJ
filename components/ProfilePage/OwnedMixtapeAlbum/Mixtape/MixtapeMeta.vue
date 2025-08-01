@@ -1,4 +1,4 @@
-<!-- MixtapeMeta.vue -->
+<!-- components/MixtapeMeta.vue -->
 <template>
   <div class="font-geist-regular">
     <!-- Artist Name -->
@@ -40,41 +40,43 @@
     </div>
     
     <!-- Action Buttons -->
-<div class="flex flex-row gap-2 font-glancyr-light w-full">
-  <button 
-    @click="$emit('buy-now')"
-    class="flex-1 min-w-0 bg-white border border-[#A10501] text-[#A10501] py-2 px-2 text-xs font-bold 
-          transition-all duration-200 hover:bg-[#A10501] hover:text-white active:scale-95 text-center truncate"
-  >
-    DOWNLOAD MIXTAPE
-  </button>
-  <button 
-    @click="$emit('add-to-cart')"
-    class="flex-shrink-0 bg-white border border-black text-black px-3 py-2 transition-all duration-200 
-            hover:bg-black hover:text-white active:scale-95 flex items-center justify-center gap-1 min-w-[70px]"
-    aria-label="Rate mixtape"
-  >
-    <span class="text-xs font-bold truncate">
-      RATE
-    </span>
-    <div class="relative w-3 h-3 flex-shrink-0">
-      <img 
-        src="/icons/baseicons/star_black.svg" 
-        alt="Rating star" 
-        class="absolute w-full h-full transition-all duration-200 group-hover:opacity-0"
+    <div class="flex flex-row gap-2 font-glancyr-light w-full">
+      <button 
+        @click="$emit('buy-now')"
+        class="flex-1 min-w-0 bg-white border border-[#A10501] text-[#A10501] py-2 px-2 text-xs font-bold 
+              transition-all duration-200 hover:bg-[#A10501] hover:text-white active:scale-95 text-center truncate"
       >
-      <img 
-        src="/icons/baseicons/star_white.svg" 
-        alt="Rating star" 
-        class="absolute w-full h-full opacity-0 transition-all duration-200 group-hover:opacity-100"
+        DOWNLOAD MIXTAPE
+      </button>
+      <button 
+        @click="openRatingModal"
+        class="flex-shrink-0 bg-white border border-black text-black px-3 py-2 transition-all duration-200 
+                hover:bg-black hover:text-white active:scale-95 flex items-center justify-center gap-1 min-w-[70px]"
+        aria-label="Rate mixtape"
       >
+        <span class="text-xs font-bold truncate">
+          RATE
+        </span>
+        <div class="relative w-3 h-3 flex-shrink-0">
+          <img 
+            src="/icons/baseicons/star_black.svg" 
+            alt="Rating star" 
+            class="absolute w-full h-full transition-all duration-200 group-hover:opacity-0"
+          >
+          <img 
+            src="/icons/baseicons/star_white.svg" 
+            alt="Rating star" 
+            class="absolute w-full h-full opacity-0 transition-all duration-200 group-hover:opacity-100"
+          >
+        </div>
+      </button>
     </div>
-  </button>
-</div>
   </div>
 </template>
 
 <script setup>
+const { open } = inject('rating')
+
 const props = defineProps({
   artist: {
     type: String,
@@ -113,6 +115,14 @@ const props = defineProps({
     required: true
   }
 })
+
+const openRatingModal = () => {
+  open({
+    artist: props.artist,
+    title: props.title,
+    // Include any other mixtape data you need
+  })
+}
 
 defineEmits(['buy-now', 'add-to-cart'])
 </script>

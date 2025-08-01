@@ -1,3 +1,4 @@
+<!-- layouts/default.vue -->
 <template>
   <div class="flex min-h-screen flex-col">
     <Header />
@@ -17,6 +18,13 @@
     />
 
     <LoginRequiredAlert v-if="showLoginAlert" @close="showLoginAlert = false" />
+    
+    <RatingModal 
+      v-if="showRatingModal"
+      :mixtape="currentMixtapeForRating"
+      @close="showRatingModal = false"
+      @submit="handleRatingSubmit"
+    />
      
     <div class="z-0">
       <DomsBanner />
@@ -33,11 +41,24 @@ import BannerFooter from '~/components/Layout/BannerFooter.vue'
 import Footer from '~/components/Layout/Footer.vue'
 import LoginRequiredAlert from '~/components/Auth/LoginRequiredAlert.vue'
 import PlaySong from '~/components/Layout/PlaySong.vue'
+import RatingModal from '~/components/Layout/Rating.vue'
 
 const showLoginAlert = ref(false)
 const showPlayer = ref(false)
+const showRatingModal = ref(false)
 const currentTrack = ref(null)
+const currentMixtapeForRating = ref(null)
 const isPlaying = ref(false)
+
+// Provide this function to child components
+const openRatingModal = (mixtape) => {
+  currentMixtapeForRating.value = mixtape
+  showRatingModal.value = true
+}
+
+provide('rating', {
+  open: openRatingModal
+})
 
 const handlePlay = (mixtape) => {
   currentTrack.value = mixtape
@@ -60,6 +81,12 @@ const toggleFavorite = (mixtape) => {
   if (index !== -1) {
     mixtapes[index].isFavorited = !mixtapes[index].isFavorited
   }
+}
+
+const handleRatingSubmit = (rating) => {
+  // Here you would typically send the rating to your backend
+  console.log(`Rating ${rating} stars for mixtape:`, currentMixtapeForRating.value.title)
+  showRatingModal.value = false
 }
 
 provide('audioPlayer', {
