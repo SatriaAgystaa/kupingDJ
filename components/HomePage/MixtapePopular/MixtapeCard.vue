@@ -7,8 +7,10 @@
         :title="title" 
         :isFavorited="isFavorited"
         :isPlaying="isPlaying"
-        @play="handlePlay"
-        @toggle-favorite="$emit('toggle-favorite')"
+        :mixtape="mixtapeData"
+        @play="$emit('play', mixtapeData)"
+        @pause="$emit('pause')"
+        @toggle-favorite="$emit('toggle-favorite', id)"
       />
     </div>
 
@@ -32,11 +34,12 @@
 </template>
 
 <script setup>
-import { ref } from 'vue'
+import { ref, computed } from 'vue'
 import MixtapeCover from './MixtapeCover.vue'
 import MixtapeMeta from './MixtapeMeta.vue'
 
 const props = defineProps({
+  id: Number,
   artist: String,
   artistImage: String,
   title: String,
@@ -47,17 +50,28 @@ const props = defineProps({
   rating: String,
   bpm: String,
   date: String,
-  isFavorited: Boolean
+  music: String,
+  isFavorited: Boolean,
+  isPlaying: Boolean
 })
 
-const emit = defineEmits(['play', 'toggle-favorite', 'buy-now', 'add-to-cart'])
+const emit = defineEmits(['play', 'pause', 'toggle-favorite', 'buy-now', 'add-to-cart'])
 
-const isPlaying = ref(false)
-
-const handlePlay = () => {
-  isPlaying.value = !isPlaying.value
-  emit('play', isPlaying.value)
-}
+const mixtapeData = computed(() => ({
+  id: props.id,
+  artist: props.artist,
+  artistImage: props.artistImage,
+  title: props.title,
+  price: props.price,
+  image: props.image,
+  likes: props.likes,
+  downloads: props.downloads,
+  rating: props.rating,
+  bpm: props.bpm,
+  date: props.date,
+  music: props.music,
+  isFavorited: props.isFavorited
+}))
 </script>
 
 <style scoped>

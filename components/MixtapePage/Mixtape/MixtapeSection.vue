@@ -15,6 +15,7 @@
         class="w-full"
       >
         <MixtapeCard
+          :id="mixtape.id"
           :artist="mixtape.artist"
           :artistImage="mixtape.artistImage"
           :title="mixtape.title"
@@ -25,7 +26,11 @@
           :rating="mixtape.rating"
           :bpm="mixtape.bpm"
           :date="mixtape.date"
-          @play="handlePlay(mixtape.id)"
+          :music="mixtape.music"
+          :isPlaying="localPlayingId === mixtape.id"
+          @play="handlePlay(mixtape)"
+          @pause="handlePause"
+          @toggle-favorite="handleToggleFavorite"
           :isCarousel="false"
         />
       </div>
@@ -72,23 +77,47 @@
 </template>
 
 <script setup>
-import { ref, computed } from 'vue'
+import { ref, computed, inject, watchEffect } from 'vue'
 import { mixtapes } from '@/data/mixtapesPopular'
 import MixtapeCard from './MixtapeCard.vue'
+import { useAudioEventBus } from '@/composables/useAudioEventBus'
 
-const currentlyPlayingId = ref(null)
+const { currentTrack, isPlaying, play, pause } = inject('audioPlayer')
+const { notifyPlay, isCurrentlyPlaying } = useAudioEventBus()
 
-const handlePlay = (id) => {
-  if (currentlyPlayingId.value === id) {
-    currentlyPlayingId.value = null
+// Unique section ID for this instance
+const sectionId = 'mixtape-page'
+
+// Local state for tracking playing mixtape
+const localPlayingId = ref(null)
+
+// Watch for changes in global playing state
+watchEffect(() => {
+  if (isPlaying.value && currentTrack.value) {
+    if (isCurrentlyPlaying(sectionId, currentTrack.value.id)) {
+      localPlayingId.value = currentTrack.value.id
+    } else {
+      localPlayingId.value = null
+    }
   } else {
-    currentlyPlayingId.value = id
+    localPlayingId.value = null
   }
-  
-  // Update all mixtapes to set isPlaying state
-  mixtapes.forEach(mixtape => {
-    mixtape.isPlaying = mixtape.id === currentlyPlayingId.value
-  })
+})
+
+const handlePlay = (mixtape) => {
+  notifyPlay(sectionId, mixtape.id)
+  localPlayingId.value = mixtape.id
+  play(mixtape)
+}
+
+const handlePause = () => {
+  localPlayingId.value = null
+  pause()
+}
+
+const handleToggleFavorite = (id) => {
+  const index = mixtapes.findIndex(m => m.id === id)
+  if (index !== -1) mixtapes[index].isFavorited = !mixtapes[index].isFavorited
 }
 
 // Pagination logic

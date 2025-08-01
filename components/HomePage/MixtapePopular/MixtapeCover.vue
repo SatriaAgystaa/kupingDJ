@@ -59,7 +59,7 @@
 </template>
 
 <script setup>
-import { ref, onMounted, onBeforeUnmount } from 'vue'
+import { ref, onMounted, onBeforeUnmount, inject } from 'vue'
 
 const props = defineProps({
   image: {
@@ -77,10 +77,13 @@ const props = defineProps({
   isPlaying: {
     type: Boolean,
     default: false
-  }
+  },
+  mixtape: Object
 })
 
-const emit = defineEmits(['play', 'toggle-favorite'])
+const emit = defineEmits(['play', 'pause', 'toggle-favorite'])
+
+const { play, pause } = inject('audioPlayer')
 
 // ukuran album cover
 const albumCover = ref(null)
@@ -92,7 +95,13 @@ const likeButtonSize = ref('0px')
 const iconInnerSize = ref('0px')
 
 const handlePlay = () => {
-  emit('play')
+  if (props.isPlaying) {
+    pause()
+    emit('pause')
+  } else {
+    play(props.mixtape)
+    emit('play', props.mixtape)
+  }
 }
 
 const updateSizes = () => {

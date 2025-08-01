@@ -10,6 +10,7 @@ export interface PicksMixtape {
   rating: string;
   bpm: string;
   date: string;
+  music: string;
   subtitle?: string;
   isFavorited?: boolean;
 }
@@ -28,6 +29,7 @@ export const picksMixtapes: PicksMixtape[] = [
     bpm: '150',
     date: '02 July, 2025',
     subtitle: 'Exclusive On Kuping DJ',
+    music: '/music/music1.mp3',
     isFavorited: false
   },
   {
@@ -43,6 +45,7 @@ export const picksMixtapes: PicksMixtape[] = [
     bpm: '150',
     date: '02 July, 2025',
     subtitle: 'Exclusive On Kuping DJ',
+    music: '/music/music1.mp3',
     isFavorited: false
   },
   {
@@ -58,6 +61,7 @@ export const picksMixtapes: PicksMixtape[] = [
     bpm: '150',
     date: '02 July, 2025',
     subtitle: 'Exclusive On Kuping DJ',
+    music: '/music/music1.mp3',
     isFavorited: false
   },
   {
@@ -73,6 +77,7 @@ export const picksMixtapes: PicksMixtape[] = [
     bpm: '150',
     date: '02 July, 2025',
     subtitle: 'Exclusive On Kuping DJ',
+    music: '/music/music1.mp3',
     isFavorited: false
   },
 ];
