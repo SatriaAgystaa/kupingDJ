@@ -1,5 +1,5 @@
 <template>
-  <div class="bg-white w-full lg:w-1/4 h-full p-4 border border-gray-200 shadow-sm lg:sticky lg:top-4">
+  <div class="bg-white w-full lg:w-1/4 h-full p-4 border border-gray-200 shadow-sm">
     <h3 class="text-xl font-geist-semibold mb-4">Transaction Status</h3>
     <div class="relative">
       <div class="flex flex-col">

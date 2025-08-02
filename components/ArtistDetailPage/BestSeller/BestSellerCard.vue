@@ -12,9 +12,16 @@
             :alt="mixtape.title"
             class="w-full h-full object-cover border border-gray-200"
           />
-          <div class="absolute inset-0 flex items-center justify-center">
-            <img src="/icons/baseicons/play.svg" alt="Play" class="w-4 h-4 opacity-90 hover:opacity-100 transition-opacity cursor-pointer"/>
-          </div>
+          <button 
+            @click="handlePlay"
+            class="absolute inset-0 flex items-center justify-center"
+          >
+            <img 
+              :src="isLocalPlaying ? '/icons/baseicons/pause_white.svg' : '/icons/baseicons/play.svg'" 
+              :alt="isLocalPlaying ? 'Pause' : 'Play'" 
+              class="w-4 h-4 opacity-90 hover:opacity-100 transition-opacity"
+            />
+          </button>
           <button class="absolute -top-5 -left-5 bg-white p-3 rounded-full shadow-md border border-gray-200">
             <img src="/icons/baseicons/like_black.svg" alt="Like Icon" class="w-5 h-5"/>
           </button>
@@ -91,9 +98,16 @@
           :alt="mixtape.title"
           class="w-full h-full object-cover border border-gray-200"
         />
-        <div class="absolute inset-0 flex items-center justify-center">
-          <img src="/icons/baseicons/play.svg" alt="Play" class="w-6 h-6 opacity-90 hover:opacity-100 transition-opacity cursor-pointer"/>
-        </div>
+        <button 
+          @click="handlePlay"
+          class="absolute inset-0 flex items-center justify-center"
+        >
+          <img 
+            :src="isLocalPlaying ? '/icons/baseicons/pause_white.svg' : '/icons/baseicons/play.svg'" 
+            :alt="isLocalPlaying ? 'Pause' : 'Play'" 
+            class="w-6 h-6 opacity-90 hover:opacity-100 transition-opacity"
+          />
+        </button>
         <button class="absolute -top-2 -left-2 bg-white p-2 rounded-full shadow-md border border-gray-200">
           <img src="/icons/baseicons/like_black.svg" alt="Like Icon" class="w-4 h-4"/>
         </button>
@@ -161,7 +175,10 @@
 </template>
 
 <script setup>
-defineProps({
+import { inject, ref, computed, watchEffect } from 'vue'
+import { useAudioEventBus } from '@/composables/useAudioEventBus'
+
+const props = defineProps({
   mixtape: {
     type: Object,
     required: true,
@@ -180,6 +197,30 @@ defineProps({
     }
   }
 })
+
+const { currentTrack, isPlaying, play, pause } = inject('audioPlayer')
+const { notifyPlay, isCurrentlyPlaying } = useAudioEventBus()
+
+// Component doesn't have a parent section, so we use a unique ID
+const componentId = `best-seller-${props.mixtape.id}`
+
+// Local playing state
+const isLocalPlaying = computed(() => {
+  return isPlaying.value && 
+         currentTrack.value && 
+         currentTrack.value.id === props.mixtape.id
+})
+
+const handlePlay = () => {
+  if (isLocalPlaying.value) {
+    pause()
+  } else {
+    notifyPlay(componentId, props.mixtape.id)
+    play(props.mixtape)
+  }
+}
+
+const emit = defineEmits(['buy-now', 'add-to-cart'])
 </script>
 
 <style scoped>

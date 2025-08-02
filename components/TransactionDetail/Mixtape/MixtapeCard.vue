@@ -12,14 +12,17 @@
             class="w-full h-full object-cover"
             loading="lazy"
           />
-          <div class="absolute inset-0 flex items-center justify-center transition-all cursor-pointer">
+          <button 
+            @click="handlePlay"
+            class="absolute inset-0 flex items-center justify-center transition-all"
+          >
             <img 
-              src="/icons/baseicons/play.svg" 
-              alt="Play" 
+              :src="isLocalPlaying ? '/icons/baseicons/pause_white.svg' : '/icons/baseicons/play.svg'" 
+              :alt="isLocalPlaying ? 'Pause' : 'Play'" 
               class="w-5 h-5 sm:w-6 sm:h-6 opacity-90 hover:opacity-100 transition-opacity"
               loading="lazy"
             />
-          </div>
+          </button>
         </div>
 
         <!-- Details -->
@@ -66,11 +69,35 @@
 </template>
 
 <script setup lang="ts">
+import { inject, computed } from 'vue'
+import { useAudioEventBus } from '@/composables/useAudioEventBus'
 import type { Mixtape } from '~/data/mixtapes'
 
-defineProps<{
+const props = defineProps<{
   mixtape: Mixtape
 }>()
+
+const { currentTrack, isPlaying, play, pause } = inject('audioPlayer')
+const { notifyPlay } = useAudioEventBus()
+
+// Component ID unique for this mixtape
+const componentId = computed(() => `transaction-detail-${props.mixtape.id}`)
+
+// Local playing state
+const isLocalPlaying = computed(() => {
+  return isPlaying.value && 
+         currentTrack.value && 
+         currentTrack.value.id === props.mixtape.id
+})
+
+const handlePlay = () => {
+  if (isLocalPlaying.value) {
+    pause()
+  } else {
+    notifyPlay(componentId.value, props.mixtape.id)
+    play(props.mixtape)
+  }
+}
 </script>
 
 <style scoped>

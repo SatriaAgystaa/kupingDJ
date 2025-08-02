@@ -36,14 +36,17 @@
             class="w-full h-full object-cover"
             loading="lazy"
           />
-          <div class="absolute inset-0 flex items-center justify-center transition-all cursor-pointer">
+          <button 
+            @click="handlePlay"
+            class="absolute inset-0 flex items-center justify-center transition-all"
+          >
             <img 
-              src="/icons/baseicons/play.svg" 
-              alt="Play" 
+              :src="isLocalPlaying ? '/icons/baseicons/pause_white.svg' : '/icons/baseicons/play.svg'" 
+              :alt="isLocalPlaying ? 'Pause' : 'Play'" 
               class="w-4 h-4 sm:w-5 sm:h-5 opacity-90 hover:opacity-100 transition-opacity"
               loading="lazy"
             />
-          </div>
+          </button>
         </div>
 
         <!-- Details -->
@@ -136,11 +139,38 @@
 </template>
 
 <script setup lang="ts">
+import { inject, computed } from 'vue'
+import { useAudioEventBus } from '@/composables/useAudioEventBus'
 import type { Transaction } from '~/data/transaction'
 
-defineProps<{
+const props = defineProps<{
   transaction: Transaction
 }>()
+
+const { currentTrack, isPlaying, play, pause } = inject('audioPlayer')
+const { notifyPlay } = useAudioEventBus()
+
+// Use the first item in transaction for play functionality
+const firstItem = computed(() => props.transaction.items[0])
+
+// Component ID based on transaction and item
+const componentId = computed(() => `transaction-${props.transaction.id}-item-0`)
+
+// Local playing state for the first item
+const isLocalPlaying = computed(() => {
+  return isPlaying.value && 
+         currentTrack.value && 
+         currentTrack.value.id === firstItem.value.id
+})
+
+const handlePlay = () => {
+  if (isLocalPlaying.value) {
+    pause()
+  } else {
+    notifyPlay(componentId.value, firstItem.value.id)
+    play(firstItem.value)
+  }
+}
 </script>
 
 <style scoped>

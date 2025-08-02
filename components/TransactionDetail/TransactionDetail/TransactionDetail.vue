@@ -74,7 +74,7 @@
 
           <!-- Transaction Summary -->
           <div class="p-3 sm:p-4 w-full lg:w-96 relative">
-            <div class="lg:sticky lg:top-4">
+            <div class="">
               <TransactionSummary
                 total="Rp 0"
                 email="angganaputra@gmail.com"

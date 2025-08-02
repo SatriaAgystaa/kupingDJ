@@ -32,6 +32,7 @@ export const transactions: Transaction[] = [
         bpm: '150',
         date: '02 July, 2025',
         isFavorited: false,
+        music: '/music/music1.mp3',
         quantity: 1
       },
       {
@@ -47,6 +48,7 @@ export const transactions: Transaction[] = [
         bpm: '150',
         date: '02 July, 2025',
         isFavorited: false,
+        music: '/music/music1.mp3',
         quantity: 1
       },
       {
@@ -62,6 +64,7 @@ export const transactions: Transaction[] = [
         bpm: '150',
         date: '02 July, 2025',
         isFavorited: false,
+        music: '/music/music1.mp3',
         quantity: 1
       },
       {
@@ -77,6 +80,7 @@ export const transactions: Transaction[] = [
         bpm: '150',
         date: '02 July, 2025',
         isFavorited: false,
+        music: '/music/music1.mp3',
         quantity: 1
       }
     ],
@@ -100,6 +104,7 @@ export const transactions: Transaction[] = [
         bpm: '150',
         date: '02 July, 2025',
         isFavorited: false,
+        music: '/music/music1.mp3',
         quantity: 1
       },
       {
@@ -115,6 +120,7 @@ export const transactions: Transaction[] = [
         bpm: '150',
         date: '02 July, 2025',
         isFavorited: false,
+        music: '/music/music1.mp3',
         quantity: 1
       },
       {
@@ -130,6 +136,7 @@ export const transactions: Transaction[] = [
         bpm: '150',
         date: '02 July, 2025',
         isFavorited: false,
+        music: '/music/music1.mp3',
         quantity: 1
       }
     ],
@@ -153,6 +160,7 @@ export const transactions: Transaction[] = [
         bpm: '150',
         date: '02 July, 2025',
         isFavorited: false,
+        music: '/music/music1.mp3',
         quantity: 1
       },
       {
@@ -168,6 +176,7 @@ export const transactions: Transaction[] = [
         bpm: '150',
         date: '02 July, 2025',
         isFavorited: false,
+        music: '/music/music1.mp3',
         quantity: 1
       },
       {
@@ -183,6 +192,7 @@ export const transactions: Transaction[] = [
         bpm: '150',
         date: '02 July, 2025',
         isFavorited: false,
+        music: '/music/music1.mp3',
         quantity: 1
       }
     ],
