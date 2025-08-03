@@ -13,7 +13,7 @@
 
         <!-- Reset Password Title with staggered animation -->
         <h1 class="text-3xl font-glancyr-regular text-black uppercase leading-tight tracking-tight mb-10 overflow-hidden">
-          <span class="block transform transition-all duration-700 translate-y-10 opacity-0 animate-slide-up" style="animation-delay: 200ms">RESET</span>
+          <span class="block transform transition-all duration-700 translate-y-10 opacity-0 animate-slide-up" style="animation-delay: 200ms">CHANGE</span>
           <span class="block transform transition-all duration-700 translate-y-10 opacity-0 animate-slide-up" style="animation-delay: 300ms">PASSWORD</span>
         </h1>
 
@@ -21,6 +21,27 @@
         <div class="flex-1">
           <!-- Reset Password Form -->
           <form class="space-y-6">
+            <!-- Current Password with animation -->
+            <div class="transform transition-all duration-500 opacity-0 animate-fade-in" style="animation-delay: 350ms">
+              <label class="block text-md font-geist-semibold text-black mb-2">Current Password</label>
+              <div class="relative group">
+                <input
+                  type="password"
+                  id="current-password"
+                  placeholder="Enter your current password"
+                  class="w-full px-3 py-2 border border-gray-100 shadow-sm bg-gray-50 text-sm placeholder-gray-400 focus:outline-none focus:ring-[#B00000] focus:border-[#B00000] transition-all duration-300 hover:shadow-md focus:shadow-lg"
+                />
+                <div class="absolute inset-y-0 right-0 pr-3 flex items-center cursor-pointer">
+                  <img 
+                    src="/icons/auth/hide.svg" 
+                    alt="Show password icon" 
+                    class="h-5 w-5 transition-transform duration-300 hover:scale-110 active:scale-95"
+                    @click="togglePasswordVisibility('current-password')"
+                  />
+                </div>
+              </div>
+            </div>
+
             <!-- New Password with animation -->
             <div class="transform transition-all duration-500 opacity-0 animate-fade-in" style="animation-delay: 400ms">
               <label class="block text-md font-geist-semibold text-black mb-2">New Password</label>

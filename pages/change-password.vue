@@ -1,10 +1,10 @@
 <!-- pages/forgot-password.vue -->
 <template>
-  <ResetPassword />
+  <ChangePassword />
 </template>
 
 <script setup>
-import ResetPassword from '~/components/Auth/ResetPassword.vue';
+import ChangePassword from '~/components/Auth/ChangePassword.vue';
 
 definePageMeta({
   layout: 'empty'

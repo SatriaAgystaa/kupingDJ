@@ -88,8 +88,8 @@
       </div>
       
       <!-- Transaction Summary - Now sticky on desktop/tablet -->
-      <div class="w-full lg:w-96 mt-6 lg:mt-0 relative">
-        <div class="">
+      <div class="w-full lg:w-96 mt-6 lg:mt-0 relative sticky lg:top-24 z-0 lg:z-auto">
+        <div class="sticky lg:top-24">
           <TransactionCard
             :total-items="totalSelectedItems"
             :total-price="totalSelectedPrice"
@@ -272,7 +272,7 @@ function handleCheckout() {
 @media (min-width: 1024px) {
   .lg\:sticky {
     position: sticky;
-    top: 1rem; /* Adjust this value based on your header height */
+    top: 12rem; /* Adjust this value based on your header height */
     transition: all 0.3s ease;
   }
 }

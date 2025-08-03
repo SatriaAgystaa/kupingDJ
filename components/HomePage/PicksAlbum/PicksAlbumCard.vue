@@ -29,7 +29,7 @@
           Rp. {{ price.toLocaleString('id-ID') }} <span class="text-gray-500 text-xs sm:text-sm">(bundling Price)</span>
         </p>
         <div class="flex items-center gap-2 mt-auto">
-          <button class="flex-1 bg-white border-2 border-[#A10501] text-[#A10501] font-geist-semibold p-2 text-base sm:text-lg md:text-xl hover:bg-[#A10501]/5 transition-colors">
+          <button class="flex-1 bg-white border-2 border-[#A10501] text-[#A10501] font-glancyr-medium p-2 text-base sm:text-lg md:text-xl hover:bg-[#A10501]/5 transition-colors">
             BUY BUNDLING
           </button>
           <button class="border-2 border-black text-black p-2 hover:bg-gray-50 transition-colors">

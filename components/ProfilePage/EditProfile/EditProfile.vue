@@ -120,17 +120,19 @@
               >
             </div>
             <!-- Change Email -->
-            <div class="flex group font-glancyr-light hover:scale-[1.02] transition-all duration-300 active:scale-[0.98] w-full sm:w-auto">
-              <button 
-                @click="showChangeEmailModal = true"
+            <NuxtLink 
+              to="/verify-email"
+              class="flex group font-glancyr-light hover:scale-[1.02] transition-all duration-300 active:scale-[0.98] w-full sm:w-auto no-underline"
+            >
+              <div 
                 class="px-4 py-2 border border-gray-300 bg-[#eaeaea] text-xs sm:text-sm font-glancyr-medium 
-                        group-hover:bg-gray-200 shadow-md hover:shadow-lg flex-1"
+                        group-hover:bg-gray-200 shadow-md hover:shadow-lg flex-1 text-center"
               >
                 <span class="inline-block group-active:translate-y-0.5 transition-transform">
                   CHANGE EMAIL
                 </span>
-              </button>
-            </div>
+              </div>
+            </NuxtLink>
           </div>
 
           <div class="flex flex-col sm:flex-row justify-between items-start sm:items-end gap-3">
@@ -144,8 +146,8 @@
               >
             </div>
             <!-- Change Password -->
-            <div class="flex group font-glancyr-light hover:scale-[1.02] transition-all duration-300 active:scale-[0.98] w-full sm:w-auto">
-              <button 
+            <NuxtLink to="/change-password" class="flex group font-glancyr-light hover:scale-[1.02] transition-all duration-300 active:scale-[0.98] w-full sm:w-auto">
+              <div
                 @click="showChangePasswordModal = true"
                 class="px-4 py-2 border border-gray-300 bg-[#eaeaea] text-xs sm:text-sm font-glancyr-medium 
                         group-hover:bg-gray-200 shadow-md hover:shadow-lg flex-1"
@@ -153,8 +155,8 @@
                 <span class="inline-block group-active:translate-y-0.5 transition-transform">
                   CHANGE PASSWORD
                 </span>
-              </button>
-            </div>
+              </div>
+            </NuxtLink>
           </div>
         </div>
 

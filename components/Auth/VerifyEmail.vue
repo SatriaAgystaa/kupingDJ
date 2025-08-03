@@ -44,7 +44,7 @@
             </div>
 
             <!-- Verify Button with enhanced interaction -->
-            <div class="w-full transform transition-all duration-500 opacity-0 animate-fade-in" style="animation-delay: 700ms">
+            <NuxtLink to="/update-email" class="w-full transform transition-all duration-500 opacity-0 animate-fade-in" style="animation-delay: 700ms">
               <div class="flex w-full group font-glancyr-light hover:scale-[1.02] transition-all duration-300 active:scale-[0.98]">
                 <button 
                   type="submit"
@@ -62,7 +62,7 @@
                   />
                 </div>
               </div>
-            </div>
+            </NuxtLink>
           </form>
 
           <!-- Resend Code Link with animation -->

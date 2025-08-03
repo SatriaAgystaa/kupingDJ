@@ -34,8 +34,8 @@
             <div class="flex flex-col gap-1 sm:gap-1.5 md:gap-2">
               <NuxtLink to="/artist" class="hover:text-[#a10501] transition-all text-xs xs:text-sm sm:text-sm md:text-base transform hover:scale-105">The Artist</NuxtLink>
               <NuxtLink to="/about" class="hover:text-[#a10501] transition-all text-xs xs:text-sm sm:text-sm md:text-base transform hover:scale-105">About Kuping DJ</NuxtLink>
-              <NuxtLink to="#" class="hover:text-[#a10501] transition-all text-xs xs:text-sm sm:text-sm md:text-base transform hover:scale-105">Contact Us</NuxtLink>
-              <NuxtLink to="#" class="hover:text-[#a10501] transition-all text-xs xs:text-sm sm:text-sm md:text-base transform hover:scale-105">FAQ</NuxtLink>
+              <NuxtLink to="/about" class="hover:text-[#a10501] transition-all text-xs xs:text-sm sm:text-sm md:text-base transform hover:scale-105">Contact Us</NuxtLink>
+              <NuxtLink to="/about" class="hover:text-[#a10501] transition-all text-xs xs:text-sm sm:text-sm md:text-base transform hover:scale-105">FAQ</NuxtLink>
               <NuxtLink to="#" class="hover:text-[#a10501] transition-all text-xs xs:text-sm sm:text-sm md:text-base transform hover:scale-105">Terms & Conditions</NuxtLink>
             </div>
           </div>
