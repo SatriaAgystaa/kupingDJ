@@ -54,9 +54,12 @@
                     <div class="flex items-center text-xs sm:text-xs text-gray-500 gap-2 justify-start">
                       <img :src="track.headIcon" class="w-4 h-4 sm:w-4 sm:h-4"/>
                       <!-- Music progress bar - only show if not file.svg -->
-                      <template v-if="!track.headIcon.includes('file.svg')">
-                        <div class="flex-1 h-1 bg-gray-200 overflow-hidden">
-                          <div class="h-full bg-[#A10501]" style="width: 30%"></div>
+                      <template v-if="!track.headIcon.includes('file.svg') && track.music">
+                        <div class="flex-1 h-1 bg-gray-200 overflow-hidden rounded-full">
+                          <div 
+                            class="h-full bg-[#A10501] transition-all duration-300 ease-linear rounded-full" 
+                            :style="{ width: '30%' }"
+                          ></div>
                         </div>
                       </template>
                     </div>
@@ -79,12 +82,32 @@
                       <button
                         v-if="track.music"
                         @click="handleTrackPlay(track)"
-                        class="hover:opacity-70 transition-opacity"
+                        class="hover:opacity-70 active:opacity-50 transition-opacity flex-shrink-0"
                       >
                         <img 
-                          :src="isTrackPlaying(track) ? '/icons/baseicons/pause.svg' : '/icons/baseicons/play_black.svg'" 
+                          :src="isTrackPlaying({ 
+                            id: `${id}-${track.title}`,
+                            title: track.title,
+                            artist: title,
+                            image: coverImage,
+                            music: track.music,
+                            date: track.date,
+                            duration: track.duration,
+                            size: track.size,
+                            isAlbumTrack: true
+                          }) ? '/icons/baseicons/pause.svg' : '/icons/baseicons/play_black.svg'" 
                           class="w-4 h-4 sm:w-4 sm:h-4"
-                          :alt="isTrackPlaying(track) ? 'Pause' : 'Play'"
+                          :alt="isTrackPlaying({ 
+                            id: `${id}-${track.title}`,
+                            title: track.title,
+                            artist: title,
+                            image: coverImage,
+                            music: track.music,
+                            date: track.date,
+                            duration: track.duration,
+                            size: track.size,
+                            isAlbumTrack: true
+                          }) ? 'Pause' : 'Play'"
                         />
                       </button>
                       <img 
@@ -94,10 +117,20 @@
                       />
                       <!-- Music progress bar - only show if not file.svg and has music -->
                       <template v-if="!track.headIcon.includes('file.svg') && track.music">
-                        <div class="flex-1 h-1 bg-gray-200 overflow-hidden">
+                        <div class="flex-1 h-1 bg-gray-200 overflow-hidden rounded-full">
                           <div 
-                            class="h-full bg-[#A10501] transition-all duration-300" 
-                            :style="{ width: getTrackProgress(track) + '%' }"
+                            class="h-full bg-[#A10501] transition-all duration-300 ease-linear rounded-full" 
+                            :style="{ width: getTrackProgress({ 
+                              id: `${id}-${track.title}`,
+                              title: track.title,
+                              artist: title,
+                              image: coverImage,
+                              music: track.music,
+                              date: track.date,
+                              duration: track.duration,
+                              size: track.size,
+                              isAlbumTrack: true
+                            }) + '%' }"
                           ></div>
                         </div>
                       </template>
@@ -149,43 +182,31 @@ const props = defineProps({
 const emit = defineEmits(['toggle-favorite'])
 
 // Inject audio player from layout
-const { play, pause, currentTrack, isPlaying, audioProgress } = inject('audioPlayer')
+const audioPlayer = inject('audioPlayer')
+const { play, pause, currentTrack, isPlaying, audioProgress, isTrackPlaying, getTrackProgress } = audioPlayer
 
 const isLiked = ref(props.isFavorited || false)
 
-// Check if a specific track is currently playing
-const isTrackPlaying = (track) => {
-  return currentTrack.value && currentTrack.value.music === track.music && isPlaying.value
-}
-
 // Handle track play/pause
 const handleTrackPlay = (track) => {
-  if (isTrackPlaying(track)) {
+  // Create track data object similar to mixtape
+  const trackData = {
+    id: `${props.id}-${track.title}`,
+    title: track.title,
+    artist: props.title, // Use album title as artist
+    image: props.coverImage,
+    music: track.music,
+    date: track.date,
+    duration: track.duration,
+    size: track.size, // Add size for album tracks
+    isAlbumTrack: true // Flag to identify album tracks
+  }
+  
+  if (isTrackPlaying(trackData)) {
     pause()
   } else {
-    // Create track data object similar to mixtape
-    const trackData = {
-      id: `${props.id}-${track.title}`,
-      title: track.title,
-      artist: props.title, // Use album title as artist
-      image: props.coverImage,
-      music: track.music,
-      date: track.date,
-      duration: track.duration,
-      size: track.size, // Add size for album tracks
-      isAlbumTrack: true // Flag to identify album tracks
-    }
     play(trackData)
   }
-}
-
-// Get track progress from global audio player
-const getTrackProgress = (track) => {
-  if (isTrackPlaying(track)) {
-    // Return actual audio progress from the global audio player
-    return audioProgress.value || 0
-  }
-  return 0
 }
 
 const toggleLike = () => {

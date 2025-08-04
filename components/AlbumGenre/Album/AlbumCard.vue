@@ -8,7 +8,7 @@
           <img :src="coverImage" :alt="title" class="w-full h-full object-cover aspect-square" />
           <button
             @click="toggleLike"
-            class="absolute top-4 right-4 bg-white p-2 sm:p-3 rounded-full shadow-sm hover:bg-gray-50 transition-colors"
+            class="absolute top-4 right-4 bg-white p-2 sm:p-3 rounded-full shadow-sm hover:bg-gray-50 transition-colors touch-manipulation"
           >
             <img
               :src="isLiked ? '/icons/baseicons/like_pink.svg' : '/icons/baseicons/like_black.svg'"
@@ -29,10 +29,10 @@
           Rp. {{ price.toLocaleString('id-ID') }} <span class="text-gray-500 text-xs sm:text-sm">(bundling Price)</span>
         </p>
         <div class="flex items-center gap-2 mt-auto">
-          <button class="flex-1 bg-white border-2 border-[#A10501] text-[#A10501] font-glancyr-medium p-2 text-base sm:text-lg md:text-xl hover:bg-[#A10501]/5 transition-colors">
+          <button class="flex-1 bg-white border-2 border-[#A10501] text-[#A10501] font-glancyr-medium p-2 text-base sm:text-lg md:text-xl hover:bg-[#A10501]/5 transition-colors touch-manipulation">
             BUY BUNDLING
           </button>
-          <button class="border-2 border-black text-black p-2 hover:bg-gray-50 transition-colors">
+          <button class="border-2 border-black text-black p-2 hover:bg-gray-50 transition-colors touch-manipulation">
             <img src="/icons/baseicons/cart_black.svg" class="w-6 h-6 sm:w-7 sm:h-7" alt="Cart" />
           </button>
         </div>
@@ -54,9 +54,12 @@
                     <div class="flex items-center text-xs sm:text-xs text-gray-500 gap-2 justify-start">
                       <img :src="track.headIcon" class="w-4 h-4 sm:w-4 sm:h-4"/>
                       <!-- Music progress bar - only show if not file.svg -->
-                      <template v-if="!track.headIcon.includes('file.svg')">
-                        <div class="flex-1 h-1 bg-gray-200 overflow-hidden">
-                          <div class="h-full bg-[#A10501]" style="width: 30%"></div>
+                      <template v-if="!track.headIcon.includes('file.svg') && track.music">
+                        <div class="flex-1 h-1 bg-gray-200 overflow-hidden rounded-full">
+                          <div 
+                            class="h-full bg-[#A10501] transition-all duration-300 ease-linear rounded-full" 
+                            :style="{ width: '30%' }"
+                          ></div>
                         </div>
                       </template>
                     </div>
@@ -79,12 +82,32 @@
                       <button
                         v-if="track.music"
                         @click="handleTrackPlay(track)"
-                        class="hover:opacity-70 transition-opacity"
+                        class="hover:opacity-70 active:opacity-50 transition-opacity flex-shrink-0 touch-manipulation"
                       >
                         <img 
-                          :src="isTrackPlaying(track) ? '/icons/baseicons/pause.svg' : '/icons/baseicons/play_black.svg'" 
+                          :src="isTrackPlaying({ 
+                            id: `${id}-${track.title}`,
+                            title: track.title,
+                            artist: title,
+                            image: coverImage,
+                            music: track.music,
+                            date: track.date,
+                            duration: track.duration,
+                            size: track.size,
+                            isAlbumTrack: true
+                          }) ? '/icons/baseicons/pause.svg' : '/icons/baseicons/play_black.svg'" 
                           class="w-4 h-4 sm:w-4 sm:h-4"
-                          :alt="isTrackPlaying(track) ? 'Pause' : 'Play'"
+                          :alt="isTrackPlaying({ 
+                            id: `${id}-${track.title}`,
+                            title: track.title,
+                            artist: title,
+                            image: coverImage,
+                            music: track.music,
+                            date: track.date,
+                            duration: track.duration,
+                            size: track.size,
+                            isAlbumTrack: true
+                          }) ? 'Pause' : 'Play'"
                         />
                       </button>
                       <img 
@@ -94,10 +117,20 @@
                       />
                       <!-- Music progress bar - only show if not file.svg and has music -->
                       <template v-if="!track.headIcon.includes('file.svg') && track.music">
-                        <div class="flex-1 h-1 bg-gray-200 overflow-hidden">
+                        <div class="flex-1 h-1 bg-gray-200 overflow-hidden rounded-full">
                           <div 
-                            class="h-full bg-[#A10501] transition-all duration-300" 
-                            :style="{ width: getTrackProgress(track) + '%' }"
+                            class="h-full bg-[#A10501] transition-all duration-300 ease-linear rounded-full" 
+                            :style="{ width: getTrackProgress({ 
+                              id: `${id}-${track.title}`,
+                              title: track.title,
+                              artist: title,
+                              image: coverImage,
+                              music: track.music,
+                              date: track.date,
+                              duration: track.duration,
+                              size: track.size,
+                              isAlbumTrack: true
+                            }) + '%' }"
                           ></div>
                         </div>
                       </template>
@@ -121,7 +154,7 @@
               </div>
               <div v-else class="bg-[#A10501] text-white flex items-center justify-between px-3 py-2">
                 <span class="text-xs sm:text-xs font-medium">{{ track.price }}</span>
-                <button>
+                <button class="touch-manipulation">
                   <img :src="track.icon" class="w-3 h-3 sm:w-4 sm:h-4" alt="Cart" />
                 </button>
               </div>
@@ -149,43 +182,31 @@ const props = defineProps({
 const emit = defineEmits(['toggle-favorite'])
 
 // Inject audio player from layout
-const { play, pause, currentTrack, isPlaying, audioProgress } = inject('audioPlayer')
+const audioPlayer = inject('audioPlayer')
+const { play, pause, currentTrack, isPlaying, audioProgress, isTrackPlaying, getTrackProgress } = audioPlayer
 
 const isLiked = ref(props.isFavorited || false)
 
-// Check if a specific track is currently playing
-const isTrackPlaying = (track) => {
-  return currentTrack.value && currentTrack.value.music === track.music && isPlaying.value
-}
-
 // Handle track play/pause
 const handleTrackPlay = (track) => {
-  if (isTrackPlaying(track)) {
+  // Create track data object similar to mixtape
+  const trackData = {
+    id: `${props.id}-${track.title}`,
+    title: track.title,
+    artist: props.title, // Use album title as artist
+    image: props.coverImage,
+    music: track.music,
+    date: track.date,
+    duration: track.duration,
+    size: track.size, // Add size for album tracks
+    isAlbumTrack: true // Flag to identify album tracks
+  }
+  
+  if (isTrackPlaying(trackData)) {
     pause()
   } else {
-    // Create track data object similar to mixtape
-    const trackData = {
-      id: `${props.id}-${track.title}`,
-      title: track.title,
-      artist: props.title, // Use album title as artist
-      image: props.coverImage,
-      music: track.music,
-      date: track.date,
-      duration: track.duration,
-      size: track.size, // Add size for album tracks
-      isAlbumTrack: true // Flag to identify album tracks
-    }
     play(trackData)
   }
-}
-
-// Get track progress from global audio player
-const getTrackProgress = (track) => {
-  if (isTrackPlaying(track)) {
-    // Return actual audio progress from the global audio player
-    return audioProgress.value || 0
-  }
-  return 0
 }
 
 const toggleLike = () => {

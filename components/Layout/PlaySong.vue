@@ -45,7 +45,7 @@
         
         <button
           @click="togglePlay"
-          class="w-10 h-10 flex items-center justify-center rounded-full border border-gray-300 bg-white hover:bg-gray-100 transition mr-3 shrink-0"
+          class="w-10 h-10 flex items-center justify-center rounded-full border border-gray-300 bg-white hover:bg-gray-100 active:bg-gray-200 active:scale-95 transition-all touch-manipulation mr-3 shrink-0"
         >
           <img :src="isPlaying ? '/icons/baseicons/pause.svg' : '/icons/baseicons/play_black.svg'" class="w-6 h-6" alt="">
         </button>
@@ -53,7 +53,7 @@
         <div class="flex flex-col flex-1 min-w-0">
           <div class="h-2 bg-gray-200 rounded-full overflow-hidden relative mb-1.5">
             <div
-              class="absolute top-0 left-0 h-full bg-[#A10501] transition-all duration-300"
+              class="absolute top-0 left-0 h-full bg-[#A10501] transition-all duration-300 ease-linear"
               :style="{ width: progressPercentage + '%' }"
             ></div>
           </div>
@@ -98,7 +98,7 @@
     <div class="flex lg:hidden flex-col px-4 py-3 gap-2">
       <div class="h-1 bg-gray-200 rounded-full overflow-hidden relative w-full">
         <div
-          class="absolute top-0 left-0 h-full bg-[#A10501] transition-all duration-300"
+          class="absolute top-0 left-0 h-full bg-[#A10501] transition-all duration-300 ease-linear"
           :style="{ width: progressPercentage + '%' }"
         ></div>
       </div>
@@ -237,7 +237,9 @@ const updateTime = () => {
 
 const handleEnded = () => {
   isPlaying.value = false
+  currentTime.value = 0
   emit('pause')
+  emit('progress', 0)
 }
 
 // Panggil initializeAudio saat komponen dimount
@@ -285,7 +287,9 @@ onMounted(() => {
   
   audio.value.addEventListener('ended', () => {
     isPlaying.value = false
+    currentTime.value = 0
     emit('pause')
+    emit('progress', 0)
   })
 })
 

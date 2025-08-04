@@ -22,14 +22,18 @@
             class="w-full h-full object-cover"
             loading="lazy"
           />
-          <div class="absolute inset-0 flex items-center justify-center transition-all cursor-pointer">
+          <button
+            @click="handlePlayClick"
+            class="absolute inset-0 flex items-center justify-center transition-all bg-black/30 hover:bg-black/40 active:bg-black/50 touch-manipulation"
+            :aria-label="isCurrentlyPlaying ? 'Pause' : 'Play'"
+          >
             <img 
-              src="/icons/baseicons/play.svg" 
-              alt="Play" 
-              class="w-5 h-5 sm:w-6 sm:h-6 opacity-90 hover:opacity-100 transition-opacity"
+              :src="isCurrentlyPlaying ? '/icons/baseicons/pause.svg' : '/icons/baseicons/play.svg'" 
+              :alt="isCurrentlyPlaying ? 'Pause' : 'Play'" 
+              class="w-5 h-5 sm:w-6 sm:h-6 opacity-90 hover:opacity-100 active:scale-95 transition-all pointer-events-none"
               loading="lazy"
             />
-          </div>
+          </button>
         </div>
 
         <!-- Details -->
@@ -47,6 +51,16 @@
           
           <!-- Title -->
           <h3 class="text-base sm:text-lg font-geist-semibold text-black break-words line-clamp-2">{{ mixtape.title }}</h3>
+          
+          <!-- Progress Bar (only show when playing) -->
+          <div v-if="isCurrentlyPlaying && mixtape.music" class="mt-1 mb-1">
+            <div class="h-1 bg-gray-200 rounded-full overflow-hidden">
+              <div 
+                class="h-full bg-[#A10501] transition-all duration-300 ease-linear rounded-full transform-gpu" 
+                :style="{ width: currentProgress + '%' }"
+              ></div>
+            </div>
+          </div>
           
           <!-- Stats -->
           <div class="text-xs sm:text-sm text-gray-500 mt-1 sm:mt-1 flex items-center flex-wrap gap-1 sm:gap-2">
@@ -89,7 +103,7 @@
 
 <script setup lang="ts">
 import type { Mixtape } from '~/data/mixtapes'
-import { computed } from 'vue'
+import { computed, inject } from 'vue'
 
 const props = defineProps<{
   mixtape: Mixtape
@@ -97,6 +111,10 @@ const props = defineProps<{
 }>()
 
 const emit = defineEmits(['update:selected', 'delete'])
+
+// Inject audio player from layout
+const audioPlayer = inject<ReturnType<typeof import('~/composables/useAudioPlayer').useAudioPlayer>>('audioPlayer')
+const { play, pause, isTrackPlaying, getTrackProgress } = audioPlayer || {}
 
 const isSelected = computed({
   get() {
@@ -106,6 +124,29 @@ const isSelected = computed({
     emit('update:selected', value)
   }
 })
+
+// Check if this mixtape is playing
+const isCurrentlyPlaying = computed(() => {
+  if (!isTrackPlaying || !props.mixtape.music) return false
+  return isTrackPlaying(props.mixtape)
+})
+
+// Get current progress
+const currentProgress = computed(() => {
+  if (!audioPlayer?.getTrackProgress || !props.mixtape.music) return 0
+  return audioPlayer.getTrackProgress(props.mixtape)
+})
+
+// Handle play/pause
+const handlePlayClick = () => {
+  if (!play || !pause || !props.mixtape.music) return
+  
+  if (isCurrentlyPlaying.value) {
+    pause()
+  } else {
+    play(props.mixtape)
+  }
+}
 </script>
 
 <style scoped>

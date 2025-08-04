@@ -42,14 +42,30 @@
           <!-- Stats -->
           <div class="mt-1">
             <div class="flex items-center text-xs sm:text-sm text-gray-500 gap-1 sm:gap-2 justify-start w-full sm:w-2/3 lg:w-2/5">
+              <button
+                v-if="hasMusic"
+                @click="handlePlayClick"
+                class="hover:opacity-70 active:opacity-50 transition-opacity flex-shrink-0 touch-manipulation"
+                :aria-label="isCurrentlyPlaying ? 'Pause' : 'Play'"
+              >
+                <img 
+                  :src="isCurrentlyPlaying ? '/icons/baseicons/pause.svg' : '/icons/baseicons/play_black.svg'" 
+                  class="w-3 h-3 sm:w-4 sm:h-4 pointer-events-none"
+                  :alt="isCurrentlyPlaying ? 'Pause' : 'Play'"
+                />
+              </button>
               <img 
+                v-else
                 :src="track.headIcon" 
                 class="w-3 h-3 sm:w-4 sm:h-4 flex-shrink-0"
                 loading="lazy"
               />
               <template v-if="showProgressBar">
-                <div class="flex-1 h-1 bg-gray-200 overflow-hidden min-w-[50px]">
-                  <div class="h-full bg-[#A10501]" style="width: 30%"></div>
+                <div class="flex-1 h-1 bg-gray-200 overflow-hidden min-w-[50px] rounded-full">
+                  <div 
+                    class="h-full bg-[#A10501] transition-all duration-300 ease-linear rounded-full transform-gpu" 
+                    :style="{ width: currentProgress + '%' }"
+                  ></div>
                 </div>
               </template>
               <span class="break-words">{{ track.duration }}</span>
@@ -85,14 +101,22 @@
 
 <script setup lang="ts">
 import type { Track } from '~/data/albums'
-import { computed } from 'vue'
+import { computed, inject } from 'vue'
+import type { AudioTrack } from '~/composables/useAudioPlayer'
 
 const props = defineProps<{
   track: Track
   selected: boolean
+  albumId?: number
+  albumTitle?: string
+  albumImage?: string
 }>()
 
 const emit = defineEmits(['update:selected', 'delete'])
+
+// Inject audio player from layout
+const audioPlayer = inject<ReturnType<typeof import('~/composables/useAudioPlayer').useAudioPlayer>>('audioPlayer')
+const { play, pause, isTrackPlaying, getTrackProgress } = audioPlayer || {}
 
 const isSelected = computed({
   get() {
@@ -104,7 +128,46 @@ const isSelected = computed({
 })
 
 const showTrack = computed(() => props.track.category !== 'Video')
-const showProgressBar = computed(() => !props.track.headIcon.includes('file.svg'))
+const showProgressBar = computed(() => !props.track.headIcon.includes('file.svg') && props.track.music)
+const hasMusic = computed(() => !!props.track.music)
+
+// Convert Track to AudioTrack format
+const trackData = computed<AudioTrack>(() => ({
+  id: `${props.albumId || 'track'}-${props.track.title}`,
+  title: props.track.title,
+  artist: props.albumTitle || 'Unknown Artist',
+  image: props.albumImage || props.track.logo,
+  music: props.track.music,
+  date: props.track.date,
+  duration: props.track.duration,
+  size: props.track.size,
+  price: props.track.price,
+  category: props.track.category,
+  isAlbumTrack: true
+}))
+
+// Check if this track is playing
+const isCurrentlyPlaying = computed(() => {
+  if (!isTrackPlaying || !props.track.music) return false
+  return isTrackPlaying(trackData.value)
+})
+
+// Get current progress
+const currentProgress = computed(() => {
+  if (!getTrackProgress || !props.track.music) return 0
+  return getTrackProgress(trackData.value)
+})
+
+// Handle play/pause
+const handlePlayClick = () => {
+  if (!play || !pause || !props.track.music) return
+  
+  if (isCurrentlyPlaying.value) {
+    pause()
+  } else {
+    play(trackData.value)
+  }
+}
 </script>
 
 <style scoped>

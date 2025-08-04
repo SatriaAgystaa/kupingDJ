@@ -43,14 +43,16 @@ import Footer from '~/components/Layout/Footer.vue'
 import LoginRequiredAlert from '~/components/Auth/LoginRequiredAlert.vue'
 import PlaySong from '~/components/Layout/PlaySong.vue'
 import RatingModal from '~/components/Layout/Rating.vue'
+import { useAudioPlayer } from '~/composables/useAudioPlayer'
 
 const showLoginAlert = ref(false)
 const showPlayer = ref(false)
 const showRatingModal = ref(false)
-const currentTrack = ref(null)
 const currentMixtapeForRating = ref(null)
-const isPlaying = ref(false)
-const audioProgress = ref(0) // Progress percentage (0-100)
+
+// Use the audio player composable
+const audioPlayer = useAudioPlayer()
+const { currentTrack, isPlaying, audioProgress, play, pause, stop } = audioPlayer
 
 // Provide this function to child components
 const openRatingModal = (mixtape) => {
@@ -63,19 +65,17 @@ provide('rating', {
 })
 
 const handlePlay = (mixtape) => {
-  currentTrack.value = mixtape
-  isPlaying.value = true
+  play(mixtape)
   showPlayer.value = true
 }
 
 const handlePause = () => {
-  isPlaying.value = false
+  pause()
 }
 
 const closePlayer = () => {
+  stop()
   showPlayer.value = false
-  isPlaying.value = false
-  currentTrack.value = null
 }
 
 const toggleFavorite = (mixtape) => {
@@ -92,16 +92,17 @@ const handleRatingSubmit = (rating) => {
 }
 
 const handleProgressUpdate = (progress) => {
-  audioProgress.value = progress
+  // Progress is now handled by the composable
 }
 
-provide('audioPlayer', {
-  play: handlePlay,
-  pause: handlePause,
-  currentTrack,
-  isPlaying,
-  audioProgress
+// Watch for track changes to show/hide player
+watch(currentTrack, (newTrack) => {
+  if (newTrack) {
+    showPlayer.value = true
+  }
 })
+
+provide('audioPlayer', audioPlayer)
 
 onMounted(() => {
   if (process.client) {
