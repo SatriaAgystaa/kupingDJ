@@ -15,6 +15,7 @@
       @pause="handlePause"
       @toggle-favorite="toggleFavorite"
       @close="closePlayer"
+      @progress="handleProgressUpdate"
     />
 
     <LoginRequiredAlert v-if="showLoginAlert" @close="showLoginAlert = false" />
@@ -49,6 +50,7 @@ const showRatingModal = ref(false)
 const currentTrack = ref(null)
 const currentMixtapeForRating = ref(null)
 const isPlaying = ref(false)
+const audioProgress = ref(0) // Progress percentage (0-100)
 
 // Provide this function to child components
 const openRatingModal = (mixtape) => {
@@ -89,11 +91,16 @@ const handleRatingSubmit = (rating) => {
   showRatingModal.value = false
 }
 
+const handleProgressUpdate = (progress) => {
+  audioProgress.value = progress
+}
+
 provide('audioPlayer', {
   play: handlePlay,
   pause: handlePause,
   currentTrack,
-  isPlaying
+  isPlaying,
+  audioProgress
 })
 
 onMounted(() => {

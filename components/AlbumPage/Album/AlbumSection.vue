@@ -7,11 +7,14 @@
         <AlbumCard
           v-for="album in displayedAlbums"
           :key="album.id"
+          :id="album.id"
           :title="album.title"
           :coverImage="album.coverImage"
           :date="album.date"
           :price="album.price"
           :tracks="album.tracks"
+          :is-favorited="album.isFavorited"
+          @toggle-favorite="toggleFavorite"
           class="w-full"
         />
       </div>
@@ -65,7 +68,7 @@ import { albumsData } from '~/data/albums'
 // Pagination logic
 const itemsPerPage = 4 // Matches 2x2 grid (2 columns x 2 rows)
 const currentPage = ref(1)
-const albums = ref(albumsData)
+const albums = ref(albumsData.map(album => ({ ...album, isFavorited: false })))
 
 const totalPages = computed(() => Math.ceil(albums.value.length / itemsPerPage))
 
@@ -87,6 +90,14 @@ const nextPage = () => {
 const prevPage = () => {
   if (currentPage.value > 1) {
     currentPage.value--
+  }
+}
+
+// Handle toggle favorite
+const toggleFavorite = (albumId) => {
+  const index = albums.value.findIndex(a => a.id === albumId)
+  if (index !== -1) {
+    albums.value[index].isFavorited = !albums.value[index].isFavorited
   }
 }
 </script>

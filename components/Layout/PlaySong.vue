@@ -183,7 +183,7 @@ const props = defineProps({
   }
 })
 
-const emit = defineEmits(['play', 'pause', 'toggle-favorite', 'buy-now', 'add-to-cart', 'close'])
+const emit = defineEmits(['play', 'pause', 'toggle-favorite', 'buy-now', 'add-to-cart', 'close', 'progress'])
 
 const currentMixtape = ref(props.mixtape)
 const isPlaying = ref(props.isPlaying)
@@ -230,6 +230,8 @@ const initializeAudio = () => {
 
 const updateTime = () => {
   currentTime.value = audio.value?.currentTime || 0
+  // Emit progress to parent
+  emit('progress', progressPercentage.value)
 }
 
 const handleEnded = () => {

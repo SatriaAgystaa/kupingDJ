@@ -11,11 +11,14 @@
         <AlbumCard
           v-for="album in displayedAlbums"
           :key="album.id"
+          :id="album.id"
           :title="album.title"
           :coverImage="album.coverImage"
           :date="album.date"
           :price="album.price"
           :tracks="album.tracks"
+          :is-favorited="album.isFavorited"
+          @toggle-favorite="toggleFavorite"
           class="w-full"
         />
       </div>
@@ -53,7 +56,7 @@ import { ref, computed } from 'vue'
 import AlbumCard from './AlbumCard.vue'
 import { albumsData } from '~/data/albums'
 
-const albums = ref(albumsData)
+const albums = ref(albumsData.map(album => ({ ...album, isFavorited: false })))
 const displayCount = ref(2)
 
 const displayedAlbums = computed(() => {
@@ -66,6 +69,14 @@ const hasMoreAlbums = computed(() => {
 
 const loadMore = () => {
   displayCount.value = Math.min(displayCount.value + 2, albums.value.length)
+}
+
+// Handle toggle favorite
+const toggleFavorite = (albumId) => {
+  const index = albums.value.findIndex(a => a.id === albumId)
+  if (index !== -1) {
+    albums.value[index].isFavorited = !albums.value[index].isFavorited
+  }
 }
 </script>
 

@@ -11,7 +11,7 @@
             class="absolute top-4 right-4 bg-white p-2 sm:p-3 rounded-full shadow-sm hover:bg-gray-50 transition-colors"
           >
             <img
-              src="/icons/baseicons/like_black.svg"
+              :src="isLiked ? '/icons/baseicons/like_pink.svg' : '/icons/baseicons/like_black.svg'"
               class="w-4 h-4 sm:w-5 sm:h-5"
               alt="Like Icon"
             />
@@ -76,11 +76,29 @@
                 <div class="p-3 flex flex-col h-full">
                   <div class="mb-3">
                     <div class="flex items-center text-xs sm:text-xs text-gray-500 gap-2 justify-start">
-                      <img :src="track.headIcon" class="w-4 h-4 sm:w-4 sm:h-4"/>
-                      <!-- Music progress bar - only show if not file.svg -->
-                      <template v-if="!track.headIcon.includes('file.svg')">
+                      <button
+                        v-if="track.music"
+                        @click="handleTrackPlay(track)"
+                        class="hover:opacity-70 transition-opacity"
+                      >
+                        <img 
+                          :src="isTrackPlaying(track) ? '/icons/baseicons/pause.svg' : '/icons/baseicons/play_black.svg'" 
+                          class="w-4 h-4 sm:w-4 sm:h-4"
+                          :alt="isTrackPlaying(track) ? 'Pause' : 'Play'"
+                        />
+                      </button>
+                      <img 
+                        v-else
+                        :src="track.headIcon" 
+                        class="w-4 h-4 sm:w-4 sm:h-4"
+                      />
+                      <!-- Music progress bar - only show if not file.svg and has music -->
+                      <template v-if="!track.headIcon.includes('file.svg') && track.music">
                         <div class="flex-1 h-1 bg-gray-200 overflow-hidden">
-                          <div class="h-full bg-[#A10501]" style="width: 30%"></div>
+                          <div 
+                            class="h-full bg-[#A10501] transition-all duration-300" 
+                            :style="{ width: getTrackProgress(track) + '%' }"
+                          ></div>
                         </div>
                       </template>
                     </div>
@@ -116,18 +134,62 @@
 </template>
 
 <script setup>
-import { ref } from 'vue'
+import { ref, inject, computed } from 'vue'
 
 const props = defineProps({
+  id: Number,
   title: String,
   coverImage: String,
   date: String,
   price: Number,
-  tracks: Array
+  tracks: Array,
+  isFavorited: Boolean
 })
 
-const isLiked = ref(false)
-const toggleLike = () => (isLiked.value = !isLiked.value)
+const emit = defineEmits(['toggle-favorite'])
+
+// Inject audio player from layout
+const { play, pause, currentTrack, isPlaying, audioProgress } = inject('audioPlayer')
+
+const isLiked = ref(props.isFavorited || false)
+
+// Check if a specific track is currently playing
+const isTrackPlaying = (track) => {
+  return currentTrack.value && currentTrack.value.music === track.music && isPlaying.value
+}
+
+// Handle track play/pause
+const handleTrackPlay = (track) => {
+  if (isTrackPlaying(track)) {
+    pause()
+  } else {
+    // Create track data object similar to mixtape
+    const trackData = {
+      id: `${props.id}-${track.title}`,
+      title: track.title,
+      artist: props.title, // Use album title as artist
+      image: props.coverImage,
+      music: track.music,
+      date: track.date,
+      duration: track.duration
+    }
+    play(trackData)
+  }
+}
+
+// Get track progress from global audio player
+const getTrackProgress = (track) => {
+  if (isTrackPlaying(track)) {
+    // Return actual audio progress from the global audio player
+    return audioProgress.value || 0
+  }
+  return 0
+}
+
+const toggleLike = () => {
+  isLiked.value = !isLiked.value
+  emit('toggle-favorite', props.id)
+}
 </script>
 
 <style scoped>

@@ -9,6 +9,7 @@ export interface Track {
   icon: string
   headIcon: string
   barIcon: string
+  music?: string
 }
 
 export interface Album {
@@ -52,7 +53,8 @@ export const albumsData: Album[] = [
         icon: "/icons/baseicons/cart_white.svg",
         logo: "/icons/baseicons/music.svg",
         headIcon: "/icons/baseicons/play_black.svg",
-        barIcon: "/icons/baseicons/bar.svg"
+        barIcon: "/icons/baseicons/bar.svg",
+        music: "/music/music1.mp3"
       },
       {
         title: "Music 2",
@@ -64,7 +66,8 @@ export const albumsData: Album[] = [
         icon: "/icons/baseicons/cart_white.svg",
         logo: "/icons/baseicons/music.svg",
         headIcon: "/icons/baseicons/play_black.svg",
-        barIcon: "/icons/baseicons/bar.svg"
+        barIcon: "/icons/baseicons/bar.svg",
+        music: "/music/music2.mp3"
       },
       {
         title: "Music 3",
@@ -76,7 +79,8 @@ export const albumsData: Album[] = [
         icon: "/icons/baseicons/cart_white.svg",
         logo: "/icons/baseicons/music.svg",
         headIcon: "/icons/baseicons/play_black.svg",
-        barIcon: "/icons/baseicons/bar.svg"
+        barIcon: "/icons/baseicons/bar.svg",
+        music: "/music/music3.mp3"
       },
       {
         title: "Music 4",
@@ -88,7 +92,8 @@ export const albumsData: Album[] = [
         icon: "/icons/baseicons/cart_white.svg",
         logo: "/icons/baseicons/music.svg",
         headIcon: "/icons/baseicons/play_black.svg",
-        barIcon: "/icons/baseicons/bar.svg"
+        barIcon: "/icons/baseicons/bar.svg",
+        music: "/music/music4.mp3"
       },
       {
         title: "Music 5", 
@@ -100,7 +105,8 @@ export const albumsData: Album[] = [
         icon: "/icons/baseicons/cart_white.svg",
         logo: "/icons/baseicons/music.svg",
         headIcon: "/icons/baseicons/play_black.svg",
-        barIcon: "/icons/baseicons/bar.svg"
+        barIcon: "/icons/baseicons/bar.svg",
+        music: "/music/music1.mp3"
       },
     ]
   },
@@ -134,7 +140,8 @@ export const albumsData: Album[] = [
         icon: "/icons/baseicons/cart_white.svg",
         logo: "/icons/baseicons/music.svg",
         headIcon: "/icons/baseicons/play_black.svg",
-        barIcon: "/icons/baseicons/bar.svg"
+        barIcon: "/icons/baseicons/bar.svg",
+        music: "/music/music2.mp3"
       },
       {
         title: "Music 2", 
@@ -146,7 +153,8 @@ export const albumsData: Album[] = [
         icon: "/icons/baseicons/cart_white.svg",
         logo: "/icons/baseicons/music.svg",
         headIcon: "/icons/baseicons/play_black.svg",
-        barIcon: "/icons/baseicons/bar.svg"
+        barIcon: "/icons/baseicons/bar.svg",
+        music: "/music/music3.mp3"
       },
       {
         title: "Music 3",
@@ -158,7 +166,8 @@ export const albumsData: Album[] = [
         icon: "/icons/baseicons/cart_white.svg",
         logo: "/icons/baseicons/music.svg",
         headIcon: "/icons/baseicons/play_black.svg",
-        barIcon: "/icons/baseicons/bar.svg"
+        barIcon: "/icons/baseicons/bar.svg",
+        music: "/music/music4.mp3"
       },
       {
         title: "Music 4",
@@ -170,7 +179,8 @@ export const albumsData: Album[] = [
         icon: "/icons/baseicons/cart_white.svg",
         logo: "/icons/baseicons/music.svg",
         headIcon: "/icons/baseicons/play_black.svg",
-        barIcon: "/icons/baseicons/bar.svg"
+        barIcon: "/icons/baseicons/bar.svg",
+        music: "/music/music1.mp3"
       },
       {
         title: "Music 5",
@@ -182,7 +192,8 @@ export const albumsData: Album[] = [
         icon: "/icons/baseicons/cart_white.svg",
         logo: "/icons/baseicons/music.svg",
         headIcon: "/icons/baseicons/play_black.svg",
-        barIcon: "/icons/baseicons/bar.svg"
+        barIcon: "/icons/baseicons/bar.svg",
+        music: "/music/music2.mp3"
       },
     ]
   },
@@ -216,7 +227,8 @@ export const albumsData: Album[] = [
         icon: "/icons/baseicons/cart_white.svg",
         logo: "/icons/baseicons/music.svg",
         headIcon: "/icons/baseicons/play_black.svg",
-        barIcon: "/icons/baseicons/bar.svg"
+        barIcon: "/icons/baseicons/bar.svg",
+        music: "/music/music3.mp3"
       },
       {
         title: "Music 2", 
@@ -228,7 +240,8 @@ export const albumsData: Album[] = [
         icon: "/icons/baseicons/cart_white.svg",
         logo: "/icons/baseicons/music.svg",
         headIcon: "/icons/baseicons/play_black.svg",
-        barIcon: "/icons/baseicons/bar.svg"
+        barIcon: "/icons/baseicons/bar.svg",
+        music: "/music/music4.mp3"
       },
       {
         title: "Music 3",
@@ -240,7 +253,8 @@ export const albumsData: Album[] = [
         icon: "/icons/baseicons/cart_white.svg",
         logo: "/icons/baseicons/music.svg",
         headIcon: "/icons/baseicons/play_black.svg",
-        barIcon: "/icons/baseicons/bar.svg"
+        barIcon: "/icons/baseicons/bar.svg",
+        music: "/music/music1.mp3"
       },
       {
         title: "Music 4",
@@ -252,7 +266,8 @@ export const albumsData: Album[] = [
         icon: "/icons/baseicons/cart_white.svg",
         logo: "/icons/baseicons/music.svg",
         headIcon: "/icons/baseicons/play_black.svg",
-        barIcon: "/icons/baseicons/bar.svg"
+        barIcon: "/icons/baseicons/bar.svg",
+        music: "/music/music2.mp3"
       },
       {
         title: "Music 5",
@@ -264,7 +279,8 @@ export const albumsData: Album[] = [
         icon: "/icons/baseicons/cart_white.svg",
         logo: "/icons/baseicons/music.svg",
         headIcon: "/icons/baseicons/play_black.svg",
-        barIcon: "/icons/baseicons/bar.svg"
+        barIcon: "/icons/baseicons/bar.svg",
+        music: "/music/music3.mp3"
       },
     ]
   },
@@ -298,7 +314,8 @@ export const albumsData: Album[] = [
         icon: "/icons/baseicons/cart_white.svg",
         logo: "/icons/baseicons/music.svg",
         headIcon: "/icons/baseicons/play_black.svg",
-        barIcon: "/icons/baseicons/bar.svg"
+        barIcon: "/icons/baseicons/bar.svg",
+        music: "/music/music4.mp3"
       },
       {
         title: "Music 2", 
@@ -310,7 +327,8 @@ export const albumsData: Album[] = [
         icon: "/icons/baseicons/cart_white.svg",
         logo: "/icons/baseicons/music.svg",
         headIcon: "/icons/baseicons/play_black.svg",
-        barIcon: "/icons/baseicons/bar.svg"
+        barIcon: "/icons/baseicons/bar.svg",
+        music: "/music/music1.mp3"
       },
       {
         title: "Music 3",
@@ -322,7 +340,8 @@ export const albumsData: Album[] = [
         icon: "/icons/baseicons/cart_white.svg",
         logo: "/icons/baseicons/music.svg",
         headIcon: "/icons/baseicons/play_black.svg",
-        barIcon: "/icons/baseicons/bar.svg"
+        barIcon: "/icons/baseicons/bar.svg",
+        music: "/music/music2.mp3"
       },
       {
         title: "Music 4",
@@ -334,7 +353,8 @@ export const albumsData: Album[] = [
         icon: "/icons/baseicons/cart_white.svg",
         logo: "/icons/baseicons/music.svg",
         headIcon: "/icons/baseicons/play_black.svg",
-        barIcon: "/icons/baseicons/bar.svg"
+        barIcon: "/icons/baseicons/bar.svg",
+        music: "/music/music3.mp3"
       },
       {
         title: "Music 5",
@@ -346,7 +366,8 @@ export const albumsData: Album[] = [
         icon: "/icons/baseicons/cart_white.svg",
         logo: "/icons/baseicons/music.svg",
         headIcon: "/icons/baseicons/play_black.svg",
-        barIcon: "/icons/baseicons/bar.svg"
+        barIcon: "/icons/baseicons/bar.svg",
+        music: "/music/music4.mp3"
       },
     ]
   },
