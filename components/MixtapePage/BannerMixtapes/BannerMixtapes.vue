@@ -31,9 +31,16 @@
         
         <!-- Play Demo Button (inline with icon) -->
         <div class="flex items-center gap-2 mb-4 sm:mb-5 md:mb-6">
-          <img src="/icons/baseicons/play.svg" alt="Play" class="w-3 h-3 xs:w-4 xs:h-4 sm:w-4 sm:h-4 md:w-4 md:h-4" />
-          <button class="text-white font-geist-medium text-xs xs:text-sm sm:text-sm md:text-base hover:underline transition-all duration-200">
-            Play Demo
+          <img 
+            :src="isCurrentlyPlaying ? '/icons/baseicons/pause.svg' : '/icons/baseicons/play.svg'" 
+            :alt="isCurrentlyPlaying ? 'Pause' : 'Play'" 
+            class="w-3 h-3 xs:w-4 xs:h-4 sm:w-4 sm:h-4 md:w-4 md:h-4" 
+          />
+          <button 
+            @click="handlePlayToggle"
+            class="text-white font-geist-medium text-xs xs:text-sm sm:text-sm md:text-base hover:underline transition-all duration-200"
+          >
+            {{ isCurrentlyPlaying ? 'Pause' : 'Play Demo' }}
           </button>
         </div>
         
@@ -74,6 +81,23 @@ import { mixtapes } from '~/data/mixtapes'
 
 // Get the first mixtape as featured (or implement your own logic)
 const featuredMixtape = mixtapes[0]
+
+// Inject the audio player from the layout
+const audioPlayer = inject('audioPlayer')
+
+// Check if current mixtape is playing
+const isCurrentlyPlaying = computed(() => {
+  return audioPlayer?.currentTrack.value?.id === featuredMixtape.id && audioPlayer?.isPlaying.value
+})
+
+// Handle play/pause toggle
+const handlePlayToggle = () => {
+  if (isCurrentlyPlaying.value) {
+    audioPlayer.pause()
+  } else {
+    audioPlayer.play(featuredMixtape)
+  }
+}
 </script>
 
 <style scoped>
