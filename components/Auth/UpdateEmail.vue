@@ -44,7 +44,8 @@
 
             <!-- Update Button with enhanced interaction -->
             <div class="w-full transform transition-all duration-500 opacity-0 animate-fade-in" style="animation-delay: 800ms">
-              <div class="flex w-full group font-glancyr-light hover:scale-[1.02] transition-all duration-300 active:scale-[0.98]">
+              <NuxtLink 
+                to="/profile" class="flex w-full group font-glancyr-light hover:scale-[1.02] transition-all duration-300 active:scale-[0.98]">
                 <button 
                   type="submit"
                   class="flex-1 bg-red-800 text-white py-2 px-4 font-semibold tracking-wide text-sm shadow-md hover:shadow-lg transition-all duration-300 group-hover:bg-red-700"
@@ -61,7 +62,7 @@
                     class="w-4 h-4 transition-transform duration-300 group-hover:translate-x-1 group-active:translate-x-2"
                   />
                 </div>
-              </div>
+              </NuxtLink>
             </div>
           </form>
         </div>

@@ -153,7 +153,7 @@
           </button>
           <button 
             @click="$emit('add-to-cart')"
-            class="bg-white border border-black text-black p-1 sm:p-1.5 transition-all duration-200 
+            class="bg-white border border-black text-black p-1 sm:p-1.5 md:px-3 transition-all duration-200 
                     hover:bg-black hover:text-white active:scale-95 group"
             aria-label="Add to cart"
           >
