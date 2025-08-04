@@ -43,7 +43,7 @@
         <div class="flex-1 overflow-y-auto pr-1 custom-scroll font-geist-regular">
           <div class="grid grid-cols-2 gap-3">
             <div
-              v-for="( hanya track, i) in tracks"
+              v-for="(track, i) in tracks"
               :key="i"
               class="bg-white border shadow-sm flex flex-col justify-between w-full max-w-xs hover:shadow-md transition-shadow"
             >
