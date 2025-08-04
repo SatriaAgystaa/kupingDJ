@@ -32,7 +32,7 @@
         <!-- Play Demo Button (inline with icon) -->
         <div class="flex items-center gap-2 mb-4 sm:mb-5 md:mb-6">
           <img 
-            :src="isCurrentlyPlaying ? '/icons/baseicons/pause.svg' : '/icons/baseicons/play.svg'" 
+            :src="isCurrentlyPlaying ? '/icons/baseicons/pause_white.svg' : '/icons/baseicons/play.svg'" 
             :alt="isCurrentlyPlaying ? 'Pause' : 'Play'" 
             class="w-3 h-3 xs:w-4 xs:h-4 sm:w-4 sm:h-4 md:w-4 md:h-4" 
           />
