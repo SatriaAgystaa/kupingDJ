@@ -19,7 +19,7 @@
         <!-- Form Content -->
         <div class="flex-1">
           <!-- Update Email Form -->
-          <form class="space-y-6">
+          <form class="space-y-6" @submit.prevent="updateEmail">
             <!-- New Email with animation -->
             <div class="transform transition-all duration-500 opacity-0 animate-fade-in" style="animation-delay: 600ms">
               <label class="block text-md font-geist-semibold text-black mb-2">New Email Address</label>
@@ -44,15 +44,15 @@
 
             <!-- Update Button with enhanced interaction -->
             <div class="w-full transform transition-all duration-500 opacity-0 animate-fade-in" style="animation-delay: 800ms">
-              <NuxtLink 
-                to="/profile" class="flex w-full group font-glancyr-light hover:scale-[1.02] transition-all duration-300 active:scale-[0.98]">
-                <button 
-                  type="submit"
-                  class="flex-1 bg-red-800 text-white py-2 px-4 font-semibold tracking-wide text-sm shadow-md hover:shadow-lg transition-all duration-300 group-hover:bg-red-700"
-                  @click.prevent="updateEmail"
+              <button 
+                type="submit"
+                class="flex w-full group font-glancyr-light hover:scale-[1.02] transition-all duration-300 active:scale-[0.98]"
+              >
+                <div 
+                  class="flex-1 bg-red-800 text-white py-2 px-4 font-semibold tracking-wide text-sm shadow-md hover:shadow-lg transition-all duration-300 group-hover:bg-red-700 text-center"
                 >
                   <span class="inline-block group-active:translate-y-0.5 transition-transform">UPDATE EMAIL</span>
-                </button>
+                </div>
                 <div 
                   class="bg-black px-4 py-2 flex items-center justify-center transition-all duration-300 group-hover:bg-gray-900"
                 >
@@ -62,7 +62,7 @@
                     class="w-4 h-4 transition-transform duration-300 group-hover:translate-x-1 group-active:translate-x-2"
                   />
                 </div>
-              </NuxtLink>
+              </button>
             </div>
           </form>
         </div>
@@ -106,20 +106,13 @@
 </template>
 
 <script setup>
-import { ref } from 'vue';
-
 const newEmail = ref('');
 const confirmNewEmail = ref('');
 
 const updateEmail = () => {
-  // Handle email update logic
-  if (newEmail.value !== confirmNewEmail.value) {
-    alert('Email addresses do not match!');
-    return;
-  }
-  
-  console.log('Updating email to:', newEmail.value);
-  // Add your email update API call here
+  // For development/testing purposes, just navigate to profile
+  // without any validation
+  navigateTo('/profile');
 };
 </script>
 
