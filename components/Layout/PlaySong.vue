@@ -24,6 +24,7 @@
           </h3>
           <div class="flex items-center gap-1.5 mt-1.5">
             <img
+              v-if="!currentMixtape.isAlbumTrack"
               :src="currentMixtape.artistImage"
               :alt="currentMixtape.artist"
               class="w-5 h-5 rounded-full"
@@ -73,7 +74,7 @@
             <img src="/icons/baseicons/date.svg" alt="Date" class="w-4 h-4" />
             <span class="font-geist-regular">{{ currentMixtape.date }}</span>
           </div>
-          <span class="font-geist-semibold">{{ currentMixtape.bpm }}BPM</span>
+          <span class="font-geist-semibold">{{ currentMixtape.isAlbumTrack ? currentMixtape.size : currentMixtape.bpm + 'BPM' }}</span>
         </div>
 
         <div class="flex w-full">

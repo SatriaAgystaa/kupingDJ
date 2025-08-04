@@ -171,7 +171,9 @@ const handleTrackPlay = (track) => {
       image: props.coverImage,
       music: track.music,
       date: track.date,
-      duration: track.duration
+      duration: track.duration,
+      size: track.size, // Add size for album tracks
+      isAlbumTrack: true // Flag to identify album tracks
     }
     play(trackData)
   }
