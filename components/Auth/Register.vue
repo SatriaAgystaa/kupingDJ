@@ -19,14 +19,16 @@
         <!-- Form Content -->
         <div class="flex-1">
           <!-- Register Form -->
-          <form class="space-y-6">
+          <form class="space-y-6" @submit.prevent="handleSubmit">
             <!-- Email with animation -->
             <div class="transform transition-all duration-500 opacity-0 animate-fade-in" style="animation-delay: 600ms">
               <label class="block text-md font-geist-semibold text-black mb-2">Email</label>
               <input
                 type="email"
+                v-model="form.email"
                 placeholder="Enter your email"
                 class="w-full px-3 py-2 border border-gray-100 shadow-sm bg-gray-50 text-sm placeholder-gray-400 focus:outline-none focus:ring-[#B00000] focus:border-[#B00000] transition-all duration-300 hover:shadow-md focus:shadow-lg"
+                required
               />
             </div>
 
@@ -36,8 +38,11 @@
               <div class="relative group">
                 <input
                   type="password"
+                  id="password"
+                  v-model="form.password"
                   placeholder="Enter your password"
                   class="w-full px-3 py-2 border border-gray-100 shadow-sm bg-gray-50 text-sm placeholder-gray-400 focus:outline-none focus:ring-[#B00000] focus:border-[#B00000] transition-all duration-300 hover:shadow-md focus:shadow-lg"
+                  required
                 />
                 <div class="absolute inset-y-0 right-0 pr-3 flex items-center cursor-pointer">
                   <img 
@@ -57,8 +62,10 @@
                 <input
                   type="password"
                   id="confirm-password"
+                  v-model="form.confirmPassword"
                   placeholder="Re-Enter your password"
                   class="w-full px-3 py-2 border border-gray-100 shadow-sm bg-gray-50 text-sm placeholder-gray-400 focus:outline-none focus:ring-[#B00000] focus:border-[#B00000] transition-all duration-300 hover:shadow-md focus:shadow-lg"
+                  required
                 />
                 <div class="absolute inset-y-0 right-0 pr-3 flex items-center cursor-pointer">
                   <img 
@@ -75,9 +82,18 @@
             <div class="w-full transform transition-all duration-500 opacity-0 animate-fade-in" style="animation-delay: 900ms">
               <div class="flex w-full group font-glancyr-light hover:scale-[1.02] transition-all duration-300 active:scale-[0.98]">
                 <button 
+                  type="submit"
                   class="flex-1 bg-red-800 text-white py-2 px-4 font-semibold tracking-wide text-sm shadow-md hover:shadow-lg transition-all duration-300 group-hover:bg-red-700"
+                  :disabled="isSubmitting"
                 >
-                  <span class="inline-block group-active:translate-y-0.5 transition-transform">REGISTER</span>
+                  <span v-if="!isSubmitting" class="inline-block group-active:translate-y-0.5 transition-transform">REGISTER</span>
+                  <span v-else class="inline-flex items-center gap-2">
+                    <svg class="animate-spin h-5 w-5 text-white" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24">
+                      <circle class="opacity-25" cx="12" cy="12" r="10" stroke="currentColor" stroke-width="4"></circle>
+                      <path class="opacity-75" fill="currentColor" d="M4 12a8 8 0 018-8V0C5.373 0 0 5.373 0 12h4zm2 5.291A7.962 7.962 0 014 12H0c0 3.042 1.135 5.824 3 7.938l3-2.647z"></path>
+                    </svg>
+                    PROCESSING...
+                  </span>
                 </button>
                 <div 
                   class="bg-black px-4 py-2 flex items-center justify-center transition-all duration-300 group-hover:bg-gray-900"
@@ -95,9 +111,9 @@
           <!-- Login Link with animation -->
           <p class="text-left text-sm text-black mt-3 font-geist-regular transform transition-all duration-500 opacity-0 animate-fade-in" style="animation-delay: 950ms">
             Have account?
-            <a href="/login" class="font-geist-medium border-b border-[#B00000] text-[#B00000] hover:text-red-800 transition-colors duration-200">
+            <NuxtLink to="/login" class="font-geist-medium border-b border-[#B00000] text-[#B00000] hover:text-red-800 transition-colors duration-200">
               Login now
-            </a>
+            </NuxtLink>
           </p>
         </div>
       </div>
@@ -141,24 +157,16 @@
 
 <script setup>
 import { ref } from 'vue';
-import { authData } from '~/data/auth';
+const router = useRouter();
 
-// State form dengan data dummy
-const form = ref({ ...authData.registerForm });
+const form = ref({
+  email: '',
+  password: '',
+  confirmPassword: ''
+});
 
-// Fungsi untuk handle link/unlink Facebook
-const linkFacebook = () => {
-  form.value.isFacebookLinked = true;
-  // Simulasikan proses linking (bisa diganti dengan API call)
-  setTimeout(() => {
-    console.log('Facebook linked successfully!');
-  }, 1000);
-};
+const isSubmitting = ref(false);
 
-const unlinkFacebook = () => {
-  form.value.isFacebookLinked = false;
-};
-// Toggle password visibility
 const togglePasswordVisibility = (fieldId) => {
   const input = document.getElementById(fieldId);
   const icon = input.nextElementSibling.querySelector('img');
@@ -169,6 +177,27 @@ const togglePasswordVisibility = (fieldId) => {
     input.type = 'password';
     icon.src = '/icons/auth/hide.svg';
   }
+};
+
+const handleSubmit = async () => {
+  // Simple validation
+  if (!form.value.email || !form.value.password || !form.value.confirmPassword) {
+    return;
+  }
+
+  if (form.value.password !== form.value.confirmPassword) {
+    return;
+  }
+
+  isSubmitting.value = true;
+  
+  // Simulate API call
+  await new Promise(resolve => setTimeout(resolve, 1500));
+  
+  // Navigate to verification page
+  router.push('/register-verification');
+  
+  isSubmitting.value = false;
 };
 </script>
 
@@ -214,5 +243,14 @@ const togglePasswordVisibility = (fieldId) => {
 /* Hover effects */
 .group:hover .group-hover\:scale-110 {
   transform: scale(1.1);
+}
+
+/* Spinner animation */
+.animate-spin {
+  animation: spin 1s linear infinite;
+}
+@keyframes spin {
+  from { transform: rotate(0deg); }
+  to { transform: rotate(360deg); }
 }
 </style>

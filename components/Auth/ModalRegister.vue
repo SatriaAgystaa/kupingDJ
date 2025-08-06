@@ -26,12 +26,12 @@
 
         <!-- Buttons row -->
         <div class="flex flex-row gap-2 sm:gap-4 w-full p-3 sm:p-4">
-          <button 
-            @click="closeModal"
-            class="flex-1 bg-red-800 text-white px-6 py-2 rounded-sm font-medium hover:bg-red-700 transition-colors duration-200"
+          <NuxtLink 
+            to="/login"
+            class="flex-1 bg-red-800 text-white px-6 py-2 rounded-sm font-medium hover:bg-red-700 transition-colors duration-200 text-center"
           >
             OKAY
-          </button>
+          </NuxtLink>
         </div>
       </div>
     </div>
@@ -39,7 +39,7 @@
 </template>
 
 <script setup>
-import { defineProps, defineEmits } from 'vue';
+import { defineProps } from 'vue';
 
 const props = defineProps({
   isOpen: {
@@ -47,12 +47,6 @@ const props = defineProps({
     required: true
   }
 });
-
-const emit = defineEmits(['close']);
-
-const closeModal = () => {
-  emit('close');
-};
 </script>
 
 <style scoped>
@@ -74,5 +68,13 @@ const closeModal = () => {
 .modal-enter-from .modal-container,
 .modal-leave-to .modal-container {
   transform: scale(0.95);
+}
+
+/* Button styling to match original */
+a {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  text-decoration: none;
 }
 </style>

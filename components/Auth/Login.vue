@@ -75,7 +75,7 @@
             <!-- Reset Password -->
             <div class="text-sm font-geist-regular transition-colors duration-300">
               <span class="text-black">Forget your password?</span>
-              <NuxtLink to="/reset-password" class="font-geist-medium border-b border-[#B00000] text-[#B00000] hover:text-red-800 transition-colors duration-200">
+              <NuxtLink to="/change-password" class="font-geist-medium border-b border-[#B00000] text-[#B00000] hover:text-red-800 transition-colors duration-200">
                 Reset Password
               </NuxtLink>
             </div>

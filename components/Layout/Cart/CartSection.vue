@@ -53,8 +53,8 @@
           
           <div class="max-h-40 sm:max-h-48 md:max-h-64 overflow-y-auto">
             <div class="space-y-1 sm:space-y-2 md:space-y-3 p-2 sm:p-3 md:p-4">
-              <div v-for="item in cartItems" :key="item.id" class="flex items-start gap-1.5 sm:gap-2 md:gap-3 py-1 sm:py-1.5 md:py-2 border-b border-gray-100 last:border-0 hover:bg-gray-50 transition-colors duration-200 rounded">
-                <div class="w-8 h-8 sm:w-10 sm:h-10 md:w-12 md:h-12 bg-gray-100 flex-shrink-0 rounded overflow-hidden">
+              <div v-for="item in cartItems" :key="item.id" class="flex items-start gap-1.5 sm:gap-2 md:gap-3 py-1 sm:py-1.5 md:py-2 border-b border-gray-100 last:border-0 hover:bg-gray-50 transition-colors duration-200">
+                <div class="w-8 h-8 sm:w-10 sm:h-10 md:w-12 md:h-12 bg-gray-100 flex-shrink-0 overflow-hidden">
                   <img :src="item.image" :alt="item.title" class="w-full h-full object-cover">
                 </div>
                 <div class="flex-1 min-w-0">
