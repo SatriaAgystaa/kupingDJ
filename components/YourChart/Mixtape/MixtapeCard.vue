@@ -1,6 +1,6 @@
 <template>
   <div class="flex items-start sm:items-center gap-3 sm:gap-4 py-3 sm:py-4">
-    <!-- Custom Checkbox -->
+    <!-- Custom Checkbox - Will be used for bulk deletion when backend is connected -->
     <label class="custom-checkbox">
       <input 
         type="checkbox" 
@@ -28,7 +28,7 @@
             :aria-label="isCurrentlyPlaying ? 'Pause' : 'Play'"
           >
             <img 
-              :src="isCurrentlyPlaying ? '/icons/baseicons/pause.svg' : '/icons/baseicons/play.svg'" 
+              :src="isCurrentlyPlaying ? '/icons/baseicons/pause_white.svg' : '/icons/baseicons/play.svg'" 
               :alt="isCurrentlyPlaying ? 'Pause' : 'Play'" 
               class="w-5 h-5 sm:w-6 sm:h-6 opacity-90 hover:opacity-100 active:scale-95 transition-all pointer-events-none"
               loading="lazy"
@@ -51,16 +51,6 @@
           
           <!-- Title -->
           <h3 class="text-base sm:text-lg font-geist-semibold text-black break-words line-clamp-2">{{ mixtape.title }}</h3>
-          
-          <!-- Progress Bar (only show when playing) -->
-          <div v-if="isCurrentlyPlaying && mixtape.music" class="mt-1 mb-1">
-            <div class="h-1 bg-gray-200 rounded-full overflow-hidden">
-              <div 
-                class="h-full bg-[#A10501] transition-all duration-300 ease-linear rounded-full transform-gpu" 
-                :style="{ width: currentProgress + '%' }"
-              ></div>
-            </div>
-          </div>
           
           <!-- Stats -->
           <div class="text-xs sm:text-sm text-gray-500 mt-1 sm:mt-1 flex items-center flex-wrap gap-1 sm:gap-2">
@@ -114,7 +104,7 @@ const emit = defineEmits(['update:selected', 'delete'])
 
 // Inject audio player from layout
 const audioPlayer = inject<ReturnType<typeof import('~/composables/useAudioPlayer').useAudioPlayer>>('audioPlayer')
-const { play, pause, isTrackPlaying, getTrackProgress } = audioPlayer || {}
+const { play, pause, isTrackPlaying } = audioPlayer || {}
 
 const isSelected = computed({
   get() {
@@ -125,16 +115,16 @@ const isSelected = computed({
   }
 })
 
+// Create unique mixtape data for YourChart context
+const mixtapeData = computed(() => ({
+  ...props.mixtape,
+  id: `yourchart-mixtape-${props.mixtape.id}-${props.mixtape.music?.split('/').pop() || 'nomusic'}`
+}))
+
 // Check if this mixtape is playing
 const isCurrentlyPlaying = computed(() => {
   if (!isTrackPlaying || !props.mixtape.music) return false
-  return isTrackPlaying(props.mixtape)
-})
-
-// Get current progress
-const currentProgress = computed(() => {
-  if (!audioPlayer?.getTrackProgress || !props.mixtape.music) return 0
-  return audioPlayer.getTrackProgress(props.mixtape)
+  return isTrackPlaying(mixtapeData.value)
 })
 
 // Handle play/pause
@@ -144,7 +134,7 @@ const handlePlayClick = () => {
   if (isCurrentlyPlaying.value) {
     pause()
   } else {
-    play(props.mixtape)
+    play(mixtapeData.value)
   }
 }
 </script>

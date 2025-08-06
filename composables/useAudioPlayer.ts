@@ -104,7 +104,8 @@ export const useAudioPlayer = () => {
   }
 
   const play = (track: AudioTrack) => {
-    if (currentTrack.value?.music !== track.music) {
+    // Compare by unique ID instead of just music path
+    if (currentTrack.value?.id !== track.id || currentTrack.value?.music !== track.music) {
       currentTrack.value = track
       initializeAudio(track)
     }
@@ -126,7 +127,8 @@ export const useAudioPlayer = () => {
 
   const togglePlay = (track?: AudioTrack) => {
     if (track) {
-      if (currentTrack.value?.music === track.music && isPlaying.value) {
+      // Compare by unique ID instead of just music path
+      if (currentTrack.value?.id === track.id && isPlaying.value) {
         pause()
       } else {
         play(track)
@@ -153,7 +155,8 @@ export const useAudioPlayer = () => {
   }
 
   const isTrackPlaying = (track: AudioTrack) => {
-    return currentTrack.value?.music === track.music && isPlaying.value
+    // Compare by unique ID to ensure each track is treated separately
+    return currentTrack.value?.id === track.id && isPlaying.value
   }
 
   const getTrackProgress = (track: AudioTrack) => {

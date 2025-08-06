@@ -1,6 +1,6 @@
 <template>
   <div v-if="showTrack" class="flex items-start sm:items-center gap-3 sm:gap-4 py-3 sm:py-4">
-    <!-- Custom Checkbox -->
+    <!-- Custom Checkbox - Will be used for bulk deletion when backend is connected -->
     <label class="custom-checkbox">
       <input 
         type="checkbox" 
@@ -13,7 +13,7 @@
     <!-- Content Container -->
     <div class="flex-1 flex flex-col sm:flex-row sm:items-center gap-3 sm:gap-4">
       <!-- Image and Details Row -->
-      <div class="flex-1 flex items-start sm:items-center gap-3 sm:gap-4 min-w-0">
+      <div class="flex-1 flex items-start sm:items-start gap-3 sm:gap-4 min-w-0">
         <!-- Image -->
         <div class="relative w-16 h-16 sm:w-20 sm:h-20 flex-shrink-0 bg-red-100 flex items-center justify-center">
           <img 
@@ -49,7 +49,7 @@
                 :aria-label="isCurrentlyPlaying ? 'Pause' : 'Play'"
               >
                 <img 
-                  :src="isCurrentlyPlaying ? '/icons/baseicons/pause.svg' : '/icons/baseicons/play_black.svg'" 
+                  :src="isCurrentlyPlaying ? '/icons/baseicons/pause_white.svg' : '/icons/baseicons/play_black.svg'" 
                   class="w-3 h-3 sm:w-4 sm:h-4 pointer-events-none"
                   :alt="isCurrentlyPlaying ? 'Pause' : 'Play'"
                 />
@@ -131,9 +131,9 @@ const showTrack = computed(() => props.track.category !== 'Video')
 const showProgressBar = computed(() => !props.track.headIcon.includes('file.svg') && props.track.music)
 const hasMusic = computed(() => !!props.track.music)
 
-// Convert Track to AudioTrack format
+// Convert Track to AudioTrack format with unique ID for YourChart context
 const trackData = computed<AudioTrack>(() => ({
-  id: `${props.albumId || 'track'}-${props.track.title}`,
+  id: `yourchart-album-${props.albumId || 'unknown'}-track-${props.track.title}-${props.track.music?.split('/').pop() || 'nomusic'}`,
   title: props.track.title,
   artist: props.albumTitle || 'Unknown Artist',
   image: props.albumImage || props.track.logo,

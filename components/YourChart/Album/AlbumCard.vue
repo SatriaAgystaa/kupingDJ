@@ -1,6 +1,6 @@
 <template>
   <div class="flex items-start sm:items-center gap-3 sm:gap-4 py-3 sm:py-4">
-    <!-- Custom Checkbox -->
+    <!-- Custom Checkbox - Will be used for bulk deletion when backend is connected -->
     <label class="custom-checkbox">
       <input 
         type="checkbox" 

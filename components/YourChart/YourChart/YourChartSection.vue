@@ -53,6 +53,7 @@
               :mixtape="mixtape"
               :selected="selectedMixtapes.includes(mixtape.id)"
               @update:selected="toggleMixtapeSelection(mixtape.id, $event)"
+              @delete="deleteMixtape(mixtape)"
             />
           </div>
         </div>
@@ -70,17 +71,22 @@
               :album="album"
               :selected="selectedAlbums.includes(album.id)"
               @update:selected="toggleAlbumSelection(album.id, $event)"
+              @delete="deleteAlbum(album)"
             />
             
             <!-- Partial Tracks -->
             <div v-for="album in albums" :key="'partial-'+album.id">
               <PartialCard
-                v-for="(track, index) in album.tracks"
+                v-for="(trackItem, index) in getAlbumTracks(album.id)"
                 :key="'track-'+album.id+'-'+index"
-                :track="track"
+                :track="trackItem.track"
                 :album="album"
+                :album-id="album.id"
+                :album-title="album.title"
+                :album-image="album.coverImage"
                 :selected="selectedTracks.includes(`${album.id}-${index}`)"
                 @update:selected="toggleTrackSelection(album.id, index, $event)"
+                @delete="deleteTrack(album.id, index)"
               />
             </div>
           </div>
@@ -91,8 +97,8 @@
       <div class="w-full lg:w-96 mt-6 lg:mt-0 relative sticky lg:top-24 z-0 lg:z-auto">
         <div class="sticky lg:top-24">
           <TransactionCard
-            :total-items="totalSelectedItems"
-            :total-price="totalSelectedPrice"
+            :total-items="totalItems"
+            :total-price="totalPrice"
             email="angganaputra@gmail.com"
             @checkout="handleCheckout"
           />
@@ -103,30 +109,60 @@
 </template>
 
 <script setup lang="ts">
-import { ref, computed } from 'vue'
-import { mixtapes } from '~/data/mixtapes'
-import { albumsData as albums } from '~/data/albums'
+import { ref, computed, onMounted } from 'vue'
+import type { Mixtape } from '~/data/mixtapes'
+import type { Album } from '~/data/albums'
 import AlbumCard from '../Album/AlbumCard.vue'
 import MixtapeCard from '../Mixtape/MixtapeCard.vue'
 import PartialCard from '../Partial/PartialCard.vue'
 import TransactionCard from '../Transaction/TransactionCard.vue'
+import { useYourChart } from '~/composables/useYourChart'
 
+// Use the YourChart composable
+const { 
+  chartItems, 
+  totalItems, 
+  totalPrice, 
+  getMixtapes, 
+  getAlbums, 
+  getTracks,
+  removeItem,
+  initializeDummyData 
+} = useYourChart()
+
+// Checkbox selections - these will be used for bulk delete when backend is connected
 const selectedMixtapes = ref<number[]>([])
 const selectedAlbums = ref<number[]>([])
 const selectedTracks = ref<string[]>([])
 
+// Get chart data
+const mixtapes = computed(() => getMixtapes.value)
+const albums = computed(() => getAlbums.value)
+const albumTracks = computed(() => getTracks.value)
+
+// Group tracks by album for display
+const getAlbumTracks = (albumId: number) => {
+  return albumTracks.value
+    .filter(item => item.album.id === albumId)
+    .map((item, index) => ({
+      track: item.track,
+      album: item.album,
+      trackIndex: index
+    }))
+}
+
 const selectAll = computed({
   get() {
-    return selectedMixtapes.value.length === mixtapes.length &&
-           selectedAlbums.value.length === albums.length &&
-           selectedTracks.value.length === albums.reduce((acc, album) => acc + album.tracks.length, 0)
+    return selectedMixtapes.value.length === mixtapes.value.length &&
+           selectedAlbums.value.length === albums.value.length &&
+           selectedTracks.value.length === albumTracks.value.length
   },
   set(value: boolean) {
     if (value) {
-      selectedMixtapes.value = mixtapes.map(m => m.id)
-      selectedAlbums.value = albums.map(a => a.id)
-      selectedTracks.value = albums.flatMap((album, albumIndex) => 
-        album.tracks.map((_, trackIndex) => `${album.id}-${trackIndex}`)
+      selectedMixtapes.value = mixtapes.value.map(m => m.id)
+      selectedAlbums.value = albums.value.map(a => a.id)
+      selectedTracks.value = albumTracks.value.map((item, index) => 
+        `${item.album.id}-${index}`
       )
     } else {
       selectedMixtapes.value = []
@@ -136,36 +172,7 @@ const selectAll = computed({
   }
 })
 
-const totalSelectedItems = computed(() => {
-  return selectedMixtapes.value.length + 
-         selectedAlbums.value.length + 
-         selectedTracks.value.length
-})
-
-const totalSelectedPrice = computed(() => {
-  const mixtapeTotal = mixtapes
-    .filter(m => selectedMixtapes.value.includes(m.id))
-    .reduce((acc, m) => acc + parseInt(m.price.replace(/\D/g, '')), 0)
-  
-  const albumTotal = albums
-    .filter(a => selectedAlbums.value.includes(a.id))
-    .reduce((acc, a) => acc + a.price, 0)
-  
-  const trackTotal = selectedTracks.value
-    .map(id => {
-      const [albumId, trackIndex] = id.split('-')
-      const album = albums.find(a => a.id === parseInt(albumId))
-      if (!album) return 0
-      const track = album.tracks[parseInt(trackIndex)]
-      return track.price.startsWith('Rp.') 
-        ? parseInt(track.price.replace(/\D/g, '')) 
-        : 0
-    })
-    .reduce((acc, price) => acc + price, 0)
-  
-  return mixtapeTotal + albumTotal + trackTotal
-})
-
+// Checkbox toggle functions - will be used for deletion when backend is connected
 function toggleMixtapeSelection(id: number, selected: boolean) {
   if (selected) {
     selectedMixtapes.value.push(id)
@@ -191,20 +198,48 @@ function toggleTrackSelection(albumId: number, trackIndex: number, selected: boo
   }
 }
 
+// Delete selected items - will be implemented when backend is connected
 function deleteSelected() {
-  // Implement delete logic here
-  console.log('Deleting selected items')
+  // TODO: When backend is connected, use checkboxes to delete selected items
+  console.log('Delete selected items functionality will be implemented with backend')
+  console.log('Selected items:', {
+    mixtapes: selectedMixtapes.value,
+    albums: selectedAlbums.value,
+    tracks: selectedTracks.value
+  })
+}
+
+// Handle individual item deletion
+function deleteMixtape(mixtape: Mixtape) {
+  removeItem(`mixtape-${mixtape.id}`)
+}
+
+function deleteAlbum(album: Album) {
+  removeItem(`album-${album.id}`)
+}
+
+function deleteTrack(albumId: number, trackIndex: number) {
+  const track = albumTracks.value.find(
+    item => item.album.id === albumId
+  )
+  if (track) {
+    removeItem(`track-${albumId}-${trackIndex}`)
+  }
 }
 
 function handleCheckout() {
   // Implement checkout logic here
   console.log('Checking out', {
-    mixtapes: selectedMixtapes.value,
-    albums: selectedAlbums.value,
-    tracks: selectedTracks.value,
-    total: totalSelectedPrice.value
+    items: chartItems.value,
+    totalItems: totalItems.value,
+    totalPrice: totalPrice.value
   })
 }
+
+// Initialize with dummy data on mount
+onMounted(() => {
+  initializeDummyData()
+})
 </script>
 
 <style scoped>
