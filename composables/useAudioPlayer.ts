@@ -25,18 +25,27 @@ const duration = ref(0)
 const audio = ref<HTMLAudioElement | null>(null)
 let animationFrameId: number | null = null
 
+// Global audio instance to ensure only one audio element exists
+let globalAudioInstance: HTMLAudioElement | null = null
+
 export const useAudioPlayer = () => {
   const initializeAudio = (track: AudioTrack) => {
     if (!track.music) return
     
-    if (audio.value) {
-      audio.value.pause()
-      audio.value.removeEventListener('timeupdate', updateTime)
-      audio.value.removeEventListener('ended', handleEnded)
-      audio.value.removeEventListener('loadedmetadata', handleLoadedMetadata)
+    // Clean up any existing audio instance
+    if (globalAudioInstance) {
+      globalAudioInstance.pause()
+      globalAudioInstance.currentTime = 0
+      globalAudioInstance.removeEventListener('timeupdate', updateTime)
+      globalAudioInstance.removeEventListener('ended', handleEnded)
+      globalAudioInstance.removeEventListener('loadedmetadata', handleLoadedMetadata)
+      globalAudioInstance.src = ''
+      globalAudioInstance = null
     }
     
-    audio.value = new Audio(track.music)
+    // Always create a new audio instance to ensure clean state
+    globalAudioInstance = new Audio(track.music)
+    audio.value = globalAudioInstance
     
     audio.value.addEventListener('loadedmetadata', handleLoadedMetadata)
     audio.value.addEventListener('timeupdate', updateTime)
@@ -147,10 +156,20 @@ export const useAudioPlayer = () => {
       audio.value.pause()
       audio.value.currentTime = 0
     }
+    
+    // Clean up global audio instance
+    if (globalAudioInstance) {
+      globalAudioInstance.pause()
+      globalAudioInstance.currentTime = 0
+      globalAudioInstance.src = ''
+      globalAudioInstance = null
+    }
+    
     isPlaying.value = false
     audioProgress.value = 0
     currentTime.value = 0
     currentTrack.value = null
+    audio.value = null
     stopProgressAnimation()
   }
 

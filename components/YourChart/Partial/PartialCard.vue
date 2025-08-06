@@ -49,7 +49,7 @@
                 :aria-label="isCurrentlyPlaying ? 'Pause' : 'Play'"
               >
                 <img 
-                  :src="isCurrentlyPlaying ? '/icons/baseicons/pause_white.svg' : '/icons/baseicons/play_black.svg'" 
+                  :src="isCurrentlyPlaying ? '/icons/baseicons/pause.svg' : '/icons/baseicons/play_black.svg'" 
                   class="w-3 h-3 sm:w-4 sm:h-4 pointer-events-none"
                   :alt="isCurrentlyPlaying ? 'Pause' : 'Play'"
                 />
