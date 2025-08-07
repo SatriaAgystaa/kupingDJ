@@ -26,19 +26,23 @@
               <label class="block text-md font-geist-semibold text-black mb-2">Current Password</label>
               <div class="relative group">
                 <input
-                  type="password"
+                  :type="showCurrentPassword ? 'text' : 'password'"
                   id="current-password"
                   placeholder="Enter your current password"
-                  class="w-full px-3 py-2 border border-gray-100 shadow-sm bg-gray-50 text-sm placeholder-gray-400 focus:outline-none focus:ring-[#B00000] focus:border-[#B00000] transition-all duration-300 hover:shadow-md focus:shadow-lg"
+                  class="w-full pr-10 pl-3 py-2 border border-gray-100 shadow-sm bg-gray-50 text-sm placeholder-gray-400 focus:outline-none focus:ring-[#B00000] focus:border-[#B00000] transition-all duration-300 hover:shadow-md focus:shadow-lg"
                 />
-                <div class="absolute inset-y-0 right-0 pr-3 flex items-center cursor-pointer">
+                <button
+                  type="button"
+                  class="absolute inset-y-0 right-0 pr-3 flex items-center cursor-pointer group"
+                  @click="toggleCurrentPassword"
+                  aria-label="Toggle password visibility"
+                >
                   <img 
-                    src="/icons/auth/hide.svg" 
-                    alt="Show password icon" 
+                    :src="showCurrentPassword ? '/icons/auth/show.svg' : '/icons/auth/hide.svg'" 
+                    alt="Toggle password visibility"
                     class="h-5 w-5 transition-transform duration-300 hover:scale-110 active:scale-95"
-                    @click="togglePasswordVisibility('current-password')"
                   />
-                </div>
+                </button>
               </div>
             </div>
 
@@ -47,19 +51,23 @@
               <label class="block text-md font-geist-semibold text-black mb-2">New Password</label>
               <div class="relative group">
                 <input
-                  type="password"
+                  :type="showNewPassword ? 'text' : 'password'"
                   id="new-password"
                   placeholder="Enter your new password"
-                  class="w-full px-3 py-2 border border-gray-100 shadow-sm bg-gray-50 text-sm placeholder-gray-400 focus:outline-none focus:ring-[#B00000] focus:border-[#B00000] transition-all duration-300 hover:shadow-md focus:shadow-lg"
+                  class="w-full pr-10 pl-3 py-2 border border-gray-100 shadow-sm bg-gray-50 text-sm placeholder-gray-400 focus:outline-none focus:ring-[#B00000] focus:border-[#B00000] transition-all duration-300 hover:shadow-md focus:shadow-lg"
                 />
-                <div class="absolute inset-y-0 right-0 pr-3 flex items-center cursor-pointer">
+                <button
+                  type="button"
+                  class="absolute inset-y-0 right-0 pr-3 flex items-center cursor-pointer group"
+                  @click="toggleNewPassword"
+                  aria-label="Toggle password visibility"
+                >
                   <img 
-                    src="/icons/auth/hide.svg" 
-                    alt="Show password icon" 
+                    :src="showNewPassword ? '/icons/auth/show.svg' : '/icons/auth/hide.svg'" 
+                    alt="Toggle password visibility"
                     class="h-5 w-5 transition-transform duration-300 hover:scale-110 active:scale-95"
-                    @click="togglePasswordVisibility('new-password')"
                   />
-                </div>
+                </button>
               </div>
             </div>
 
@@ -68,19 +76,23 @@
               <label class="block text-md font-geist-semibold text-black mb-2">Confirm New Password</label>
               <div class="relative group">
                 <input
-                  type="password"
+                  :type="showConfirmPassword ? 'text' : 'password'"
                   id="confirm-password"
                   placeholder="Re-enter your new password"
-                  class="w-full px-3 py-2 border border-gray-100 shadow-sm bg-gray-50 text-sm placeholder-gray-400 focus:outline-none focus:ring-[#B00000] focus:border-[#B00000] transition-all duration-300 hover:shadow-md focus:shadow-lg"
+                  class="w-full pr-10 pl-3 py-2 border border-gray-100 shadow-sm bg-gray-50 text-sm placeholder-gray-400 focus:outline-none focus:ring-[#B00000] focus:border-[#B00000] transition-all duration-300 hover:shadow-md focus:shadow-lg"
                 />
-                <div class="absolute inset-y-0 right-0 pr-3 flex items-center cursor-pointer">
+                <button
+                  type="button"
+                  class="absolute inset-y-0 right-0 pr-3 flex items-center cursor-pointer group"
+                  @click="toggleConfirmPassword"
+                  aria-label="Toggle password visibility"
+                >
                   <img 
-                    src="/icons/auth/hide.svg" 
-                    alt="Show password icon" 
+                    :src="showConfirmPassword ? '/icons/auth/show.svg' : '/icons/auth/hide.svg'" 
+                    alt="Toggle password visibility"
                     class="h-5 w-5 transition-transform duration-300 hover:scale-110 active:scale-95"
-                    @click="togglePasswordVisibility('confirm-password')"
                   />
-                </div>
+                </button>
               </div>
             </div>
 
@@ -148,17 +160,24 @@
 </template>
 
 <script setup>
-// Toggle password visibility
-const togglePasswordVisibility = (fieldId) => {
-  const input = document.getElementById(fieldId);
-  const icon = input.nextElementSibling.querySelector('img');
-  if (input.type === 'password') {
-    input.type = 'text';
-    icon.src = '/icons/auth/show.svg';
-  } else {
-    input.type = 'password';
-    icon.src = '/icons/auth/hide.svg';
-  }
+import { ref } from 'vue';
+
+// Password visibility states
+const showCurrentPassword = ref(false);
+const showNewPassword = ref(false);
+const showConfirmPassword = ref(false);
+
+// Toggle functions for each password field
+const toggleCurrentPassword = () => {
+  showCurrentPassword.value = !showCurrentPassword.value;
+};
+
+const toggleNewPassword = () => {
+  showNewPassword.value = !showNewPassword.value;
+};
+
+const toggleConfirmPassword = () => {
+  showConfirmPassword.value = !showConfirmPassword.value;
 };
 
 const changePassword = () => {

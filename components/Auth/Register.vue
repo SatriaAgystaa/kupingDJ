@@ -37,21 +37,25 @@
               <label class="block text-md font-geist-semibold text-black mb-2">Password</label>
               <div class="relative group">
                 <input
-                  type="password"
+                  :type="showPassword ? 'text' : 'password'"
                   id="password"
                   v-model="form.password"
                   placeholder="Enter your password"
-                  class="w-full px-3 py-2 border border-gray-100 shadow-sm bg-gray-50 text-sm placeholder-gray-400 focus:outline-none focus:ring-[#B00000] focus:border-[#B00000] transition-all duration-300 hover:shadow-md focus:shadow-lg"
+                  class="w-full pr-10 pl-3 py-2 border border-gray-100 shadow-sm bg-gray-50 text-sm placeholder-gray-400 focus:outline-none focus:ring-[#B00000] focus:border-[#B00000] transition-all duration-300 hover:shadow-md focus:shadow-lg"
                   required
                 />
-                <div class="absolute inset-y-0 right-0 pr-3 flex items-center cursor-pointer">
+                <button
+                  type="button"
+                  class="absolute inset-y-0 right-0 pr-3 flex items-center cursor-pointer group"
+                  @click="togglePasswordVisibility"
+                  aria-label="Toggle password visibility"
+                >
                   <img 
-                    src="/icons/auth/hide.svg" 
-                    alt="Show password icon" 
+                    :src="showPassword ? '/icons/auth/show.svg' : '/icons/auth/hide.svg'" 
+                    alt="Toggle password visibility"
                     class="h-5 w-5 transition-transform duration-300 hover:scale-110 active:scale-95"
-                    @click="togglePasswordVisibility('password')"
                   />
-                </div>
+                </button>
               </div>
             </div>
 
@@ -60,21 +64,25 @@
               <label class="block text-md font-geist-semibold text-black mb-2">Confirm Password</label>
               <div class="relative group">
                 <input
-                  type="password"
+                  :type="showConfirmPassword ? 'text' : 'password'"
                   id="confirm-password"
                   v-model="form.confirmPassword"
                   placeholder="Re-Enter your password"
-                  class="w-full px-3 py-2 border border-gray-100 shadow-sm bg-gray-50 text-sm placeholder-gray-400 focus:outline-none focus:ring-[#B00000] focus:border-[#B00000] transition-all duration-300 hover:shadow-md focus:shadow-lg"
+                  class="w-full pr-10 pl-3 py-2 border border-gray-100 shadow-sm bg-gray-50 text-sm placeholder-gray-400 focus:outline-none focus:ring-[#B00000] focus:border-[#B00000] transition-all duration-300 hover:shadow-md focus:shadow-lg"
                   required
                 />
-                <div class="absolute inset-y-0 right-0 pr-3 flex items-center cursor-pointer">
+                <button
+                  type="button"
+                  class="absolute inset-y-0 right-0 pr-3 flex items-center cursor-pointer group"
+                  @click="toggleConfirmPasswordVisibility"
+                  aria-label="Toggle password visibility"
+                >
                   <img 
-                    src="/icons/auth/hide.svg" 
-                    alt="Show password icon" 
+                    :src="showConfirmPassword ? '/icons/auth/show.svg' : '/icons/auth/hide.svg'" 
+                    alt="Toggle password visibility"
                     class="h-5 w-5 transition-transform duration-300 hover:scale-110 active:scale-95"
-                    @click="togglePasswordVisibility('confirm-password')"
                   />
-                </div>
+                </button>
               </div>
             </div>
 
@@ -167,16 +175,17 @@ const form = ref({
 
 const isSubmitting = ref(false);
 
-const togglePasswordVisibility = (fieldId) => {
-  const input = document.getElementById(fieldId);
-  const icon = input.nextElementSibling.querySelector('img');
-  if (input.type === 'password') {
-    input.type = 'text';
-    icon.src = '/icons/auth/show.svg';
-  } else {
-    input.type = 'password';
-    icon.src = '/icons/auth/hide.svg';
-  }
+// Password visibility states
+const showPassword = ref(false);
+const showConfirmPassword = ref(false);
+
+// Toggle password visibility functions
+const togglePasswordVisibility = () => {
+  showPassword.value = !showPassword.value;
+};
+
+const toggleConfirmPasswordVisibility = () => {
+  showConfirmPassword.value = !showConfirmPassword.value;
 };
 
 const handleSubmit = async () => {

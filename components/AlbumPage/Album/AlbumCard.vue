@@ -3,6 +3,7 @@
   <div class="album-card bg-white border overflow-hidden shadow-sm h-full hover:shadow-md transition-shadow duration-300">
     <div class="grid grid-cols-1 lg:grid-cols-2 gap-0 h-full">
       <!-- Left Section -->
+      <NuxtLink to="/album-detail" class="block">
       <div class="p-4 sm:p-5 md:p-6 flex flex-col h-full border-b border-gray-200">
         <div class="relative mb-4 sm:mb-5 md:mb-6">
           <img :src="coverImage" :alt="title" class="w-full h-full object-cover aspect-square" />
@@ -37,6 +38,7 @@
           </button>
         </div>
       </div>
+      </NuxtLink>
 
       <!-- Right Section -->
       <div class="px-4 sm:px-0 md:px-6 lg:px-0 sm:pr-5 lg:pr-6 py-4 sm:py-5 md:py-6 flex flex-col h-full sm:aspect-square md:aspect-square lg:asspect-square w-full">
