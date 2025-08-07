@@ -38,7 +38,7 @@
                     </button>
                     <!-- Black Icon Section -->
                     <div 
-                      class="bg-black px-2 sm:px-3 py-1.5 sm:py-2 md:py-2.5 lg:py-3 flex items-center justify-center 
+                      class="bg-black px-2 sm:px-4 py-1.5 sm:py-2 md:py-2.5 lg:py-3 flex items-center justify-center 
                             transition-all duration-300 group-hover:bg-gray-900"
                     >
                       <img 
